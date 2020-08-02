@@ -1,26 +1,56 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import Main from './Components/Main';
+import {auth, provider}  from './firebase.js';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      user: null,
+    }
+    this.login = this.login.bind(this);
+    this.logout = this.logout.bind(this);
+  }
+
+  componentDidMount() {
+    // Persist Login Across Refresh
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({
+           user: user.uid,
+         });
+      }
+    });
+  }
+
+  login() {
+    auth.signInWithPopup(provider)
+      .then((result) => {
+        const user = result.user;
+        this.setState({
+          user: user.uid,
+        });
+      });
+  }
+
+  logout() {
+    auth.signOut()
+      .then(() => {
+        this.setState({
+          user: null
+        });
+      });
+      window.location = '/NewOrder';
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <Main user={this.state.user}/>
+      </div>
+    );
+  }
 }
 
 export default App;
