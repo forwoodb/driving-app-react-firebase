@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import * as firebase from 'firebase';
-// import axios from 'axios';
+// import * as firebase from 'firebase';
 
 export default class AnalysisDoorDash extends Component {
   render() {
