@@ -2,11 +2,9 @@ import React, {Component} from 'react';
 // import * as firebase from 'firebase';
 
 // Components
-import AnalysisAll from './AnalysisAll.js';
-import AnalysisSelect from './AnalysisSelect.js';
 import AnalysisSelectLocation from './AnalysisSelectLocation.js';
 
-export default class Analysis extends Component {
+class Analysis extends Component {
   render() {
     // Orders
     let orders = this.props.orders;
@@ -15,25 +13,47 @@ export default class Analysis extends Component {
     platforms = [...new Set(platforms)].sort();
     console.log(platforms);
 
-    let averageTime = orders.reduce(function(total, order) {
-      return total + parseFloat(order.duration);
-    }, 0)/orders.length;
+    function averageTime(data) {
+      return (
+        data.reduce(function(total, order) {
+          return total + parseFloat(order.duration);
+        }, 0)/data.length
+      );
+    }
 
-    let averageDistance = orders.reduce(function(total, order) {
-      return total + parseFloat(order.distance);
-    }, 0)/orders.length;
+    function averageDistance(data) {
+      return (
+        data.reduce(function(total, order) {
+          return total + parseFloat(order.distance);
+        }, 0)/data.length
+      );
+    }
 
-    let dollarOrder = orders.reduce(function(total, order) {
-      return total + parseFloat(order.earnings);
-    }, 0)/orders.length;
+    function dollarOrder(data) {
+      return (
+        data.reduce(function(total, order) {
+          return total + parseFloat(order.earnings);
+        }, 0)/data.length
+      );
+    }
 
-    let dollarHour = orders.reduce(function(total, order) {
-      return total + parseFloat(order.earnings);
-    }, 0)/orders.length/averageTime * 60;
+    function dollarHour(data) {
+      return (
+        data.reduce(function(total, order) {
+          return total + parseFloat(order.earnings);
+        }, 0)/data.length/averageTime(data) * 60
+      );
+    }
 
-    let dollarMile = orders.reduce(function(total, order) {
-      return total + parseFloat(order.earnings);
-    }, 0)/orders.length/averageDistance;
+    function dollarMile(data) {
+      return (
+        data.reduce(function(total, order) {
+          return total + parseFloat(order.earnings);
+        }, 0)/data.length/averageDistance(data)
+      );
+    }
+
+    console.log(dollarHour(orders));
 
     return (
       <div>
@@ -51,49 +71,32 @@ export default class Analysis extends Component {
             </tr>
           </thead>
           <tbody>
-            <AnalysisAll
+            <AnalysisPlatform
               user={this.props.user}
+              platform="All"
               numberOrders={orders.length}
-              averageTime={averageTime.toFixed(2)}
-              averageDistance={averageDistance.toFixed(2)}
-              dollarOrder={dollarOrder.toFixed(2)}
-              dollarHour={dollarHour.toFixed(2)}
-              dollarMile={dollarMile.toFixed(2)}
+              averageTime={averageTime(orders).toFixed(2)}
+              averageDistance={averageDistance(orders).toFixed(2)}
+              dollarOrder={dollarOrder(orders).toFixed(2)}
+              dollarHour={dollarHour(orders).toFixed(2)}
+              dollarMile={dollarMile(orders).toFixed(2)}
             />
             {
               platforms.map((platform, index) => {
                 let platformOrders = orders.filter(order => order.platform === platform);
 
-                let averageTime = platformOrders.reduce(function(total, order) {
-                  return total + parseFloat(order.duration);
-                }, 0)/platformOrders.length;
-
-                let averageDistance = platformOrders.reduce(function(total, order) {
-                  return total + parseFloat(order.distance);
-                }, 0)/platformOrders.length;
-
-                let dollarOrder = platformOrders.reduce(function(total, order) {
-                  return total + parseFloat(order.earnings);
-                }, 0)/platformOrders.length;
-
-                let dollarHour = platformOrders.reduce(function(total, order) {
-                  return total + parseFloat(order.earnings);
-                }, 0)/platformOrders.length/averageTime * 60;
-
-                let dollarMile = platformOrders.reduce(function(total, order) {
-                  return total + parseFloat(order.earnings);
-                }, 0)/platformOrders.length/averageDistance;
-
                 return (
-                  <tr key={index}>
-                    <td className="text-center">{platform}</td>
-                    <td className="text-center">{platformOrders.length}</td>
-                    <td className="text-center">{averageTime.toFixed(2)}</td>
-                    <td className="text-center">{averageDistance.toFixed(2)}</td>
-                    <td className="text-center">{dollarOrder.toFixed(2)}</td>
-                    <td className="text-center">{dollarHour.toFixed(2)}</td>
-                    <td className="text-center">{dollarMile.toFixed(2)}</td>
-                  </tr>
+                  <AnalysisPlatform
+                    user={this.props.user}
+                    key={index}
+                    platform={platform}
+                    numberOrders={platformOrders.length}
+                    averageTime={averageTime(platformOrders).toFixed(2)}
+                    averageDistance={averageDistance(platformOrders).toFixed(2)}
+                    dollarOrder={dollarOrder(platformOrders).toFixed(2)}
+                    dollarHour={dollarHour(platformOrders).toFixed(2)}
+                    dollarMile={dollarMile(platformOrders).toFixed(2)}
+                  />
                 );
               })
             }
@@ -115,14 +118,25 @@ export default class Analysis extends Component {
               user={this.props.user}
               orders={this.props.orders}
             />
-
-            <AnalysisSelect
-              user={this.props.user}
-              orders={this.props.orders}
-            />
           </tbody>
         </table>
       </div>
     );
   }
 }
+
+function AnalysisPlatform(props) {
+  return (
+    <tr>
+      <td className="text-center">{props.platform}</td>
+      <td className="text-center">{props.numberOrders}</td>
+      <td className="text-center">{props.averageTime}</td>
+      <td className="text-center">{props.averageDistance}</td>
+      <td className="text-center">{props.dollarOrder}</td>
+      <td className="text-center">{props.dollarHour}</td>
+      <td className="text-center">{props.dollarMile}</td>
+    </tr>
+  );
+}
+
+export default Analysis;
