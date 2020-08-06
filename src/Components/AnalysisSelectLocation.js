@@ -18,14 +18,14 @@ export default class AnalysisSelectLocation extends Component {
     this.setState({
       location: e.target.value,
     })
-    console.log(e.target.value);
+    // console.log(e.target.value);
   }
 
   handlePlatformChange(e) {
     this.setState({
       platform: e.target.value,
     })
-    console.log(e.target.value);
+    // console.log(e.target.value);
   }
 
   render() {
@@ -35,10 +35,10 @@ export default class AnalysisSelectLocation extends Component {
     let platform = this.state.platform;
 
     // Locations list
-    console.log(orders);
+    // console.log(orders);
     let locations = orders.map(order => order.location);
     locations = [...new Set(locations)];
-    console.log(locations);
+    // console.log(locations);
     //
 
     if (location === '') {

@@ -2,9 +2,6 @@ import React, {Component} from 'react';
 // import * as firebase from 'firebase';
 
 // Components
-import AnalysisUberEats from './AnalysisUberEats.js';
-import AnalysisGrubHub from './AnalysisGrubHub.js';
-import AnalysisDoorDash from './AnalysisDoorDash.js';
 import AnalysisAll from './AnalysisAll.js';
 import AnalysisSelect from './AnalysisSelect.js';
 import AnalysisSelectLocation from './AnalysisSelectLocation.js';
@@ -14,9 +11,9 @@ export default class Analysis extends Component {
     // Orders
     let orders = this.props.orders;
 
-    // let platforms = orders.map(order => order.platform);
-    // platforms = [...new Set(platforms)];
-    // console.log(platforms);
+    let platforms = orders.map(order => order.platform);
+    platforms = [...new Set(platforms)].sort();
+    console.log(platforms);
 
     let averageTime = orders.reduce(function(total, order) {
       return total + parseFloat(order.duration);
@@ -54,13 +51,6 @@ export default class Analysis extends Component {
             </tr>
           </thead>
           <tbody>
-            {
-              // this.props.orders.map((platform, index) => {
-              //   return <tr key={index}>
-              //     <td>{platform.platform}</td>
-              //   </tr>;
-              // })
-            }
             <AnalysisAll
               user={this.props.user}
               numberOrders={orders.length}
@@ -69,37 +59,44 @@ export default class Analysis extends Component {
               dollarOrder={dollarOrder.toFixed(2)}
               dollarHour={dollarHour.toFixed(2)}
               dollarMile={dollarMile.toFixed(2)}
-          />
-            <AnalysisDoorDash
-              user={this.props.user}
-              orders={this.props.orders}
-              numberOrders={orders.length}
-              averageTime={averageTime.toFixed(2)}
-              averageDistance={averageDistance.toFixed(2)}
-              dollarOrder={dollarOrder.toFixed(2)}
-              dollarHour={dollarHour.toFixed(2)}
-              dollarMile={dollarMile.toFixed(2)}
             />
-            <AnalysisGrubHub
-              user={this.props.user}
-              orders={this.props.orders}
-              numberOrders={orders.length}
-              averageTime={averageTime.toFixed(2)}
-              averageDistance={averageDistance.toFixed(2)}
-              dollarOrder={dollarOrder.toFixed(2)}
-              dollarHour={dollarHour.toFixed(2)}
-              dollarMile={dollarMile.toFixed(2)}
-            />
-            <AnalysisUberEats
-              user={this.props.user}
-              orders={this.props.orders}
-              numberOrders={orders.length}
-              averageTime={averageTime.toFixed(2)}
-              averageDistance={averageDistance.toFixed(2)}
-              dollarOrder={dollarOrder.toFixed(2)}
-              dollarHour={dollarHour.toFixed(2)}
-              dollarMile={dollarMile.toFixed(2)}
-            />
+            {
+              platforms.map((platform, index) => {
+                let platformOrders = orders.filter(order => order.platform === platform);
+
+                let averageTime = platformOrders.reduce(function(total, order) {
+                  return total + parseFloat(order.duration);
+                }, 0)/platformOrders.length;
+
+                let averageDistance = platformOrders.reduce(function(total, order) {
+                  return total + parseFloat(order.distance);
+                }, 0)/platformOrders.length;
+
+                let dollarOrder = platformOrders.reduce(function(total, order) {
+                  return total + parseFloat(order.earnings);
+                }, 0)/platformOrders.length;
+
+                let dollarHour = platformOrders.reduce(function(total, order) {
+                  return total + parseFloat(order.earnings);
+                }, 0)/platformOrders.length/averageTime * 60;
+
+                let dollarMile = platformOrders.reduce(function(total, order) {
+                  return total + parseFloat(order.earnings);
+                }, 0)/platformOrders.length/averageDistance;
+
+                return (
+                  <tr key={index}>
+                    <td className="text-center">{platform}</td>
+                    <td className="text-center">{platformOrders.length}</td>
+                    <td className="text-center">{averageTime.toFixed(2)}</td>
+                    <td className="text-center">{averageDistance.toFixed(2)}</td>
+                    <td className="text-center">{dollarOrder.toFixed(2)}</td>
+                    <td className="text-center">{dollarHour.toFixed(2)}</td>
+                    <td className="text-center">{dollarMile.toFixed(2)}</td>
+                  </tr>
+                );
+              })
+            }
           </tbody>
           <thead>
             <tr>
