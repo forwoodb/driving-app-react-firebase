@@ -31,7 +31,7 @@ class OrdersList extends Component {
               id={order.id}
               order={order}
               date={order.date}
-              time={order.time}
+              startTime={order.startTime}
               location={order.location}
               platform={order.platform}
               duration={order.duration}
@@ -50,7 +50,7 @@ function Order(props) {
   return (
     <tr>
       <td className="text-center" width="275px">{props.date}</td>
-      <td className="text-center" width="275px">{props.time}</td>
+      <td className="text-center" width="275px">{props.startTime}</td>
       <td className="text-center" width="275px">{props.location}</td>
       <td className="text-center" width="275px">{props.platform}</td>
       <td className="text-center" width="275px">{props.duration}</td>

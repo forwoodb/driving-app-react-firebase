@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import * as firebase from 'firebase';
 // import AnalysisSelectLocation from './AnalysisSelectLocation';
-// Fuck you github 
+// Fuck you github
 
 export default class NewOrder extends Component {
   constructor(props) {
@@ -10,10 +10,13 @@ export default class NewOrder extends Component {
       locations: [],
       location: '',
       platform: 'All Platforms',
+      startTime: '',
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleLocationChange = this.handleLocationChange.bind(this);
     this.handlePlatformChange = this.handlePlatformChange.bind(this);
+    this.handleStartTimeChange = this.handleStartTimeChange.bind(this);
+    this.startTime = this.startTime.bind(this);
   }
 
   getData(locationValue, platformValue) {
@@ -98,6 +101,13 @@ export default class NewOrder extends Component {
     this.__isMounted = false;
   }
 
+  startTime(e) {
+    this.setState({
+      startTime: new Date().toTimeString(),
+    })
+    console.log(this.state.startTime);
+  }
+
   handleLocationChange(e) {
     this.getData(e.target.value, this.state.platform);
     console.log(e.target.value);
@@ -108,13 +118,21 @@ export default class NewOrder extends Component {
     console.log(e.target.value);
   }
 
+  handleStartTimeChange(e) {
+    this.setState({
+      startTime: e.target.value,
+    })
+    console.log(e.target.value);
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     const newOrder = {
       order_id: Number(new Date()),
       user: this.props.user ? this.props.user : 'demo',
       date: new Date().toDateString(),
-      time: new Date().toTimeString(),
+      startTime: e.target.startTime.value,
+      endTime: new Date().toTimeString(),
       location: e.target.location.value,
       platform: e.target.platform.value,
       duration: e.target.duration.value,
@@ -124,6 +142,7 @@ export default class NewOrder extends Component {
     firebase.database().ref('orders').push(newOrder)
     this.setState({
       location: '',
+      startTime: '',
     })
     e.target.elements.duration.value = '';
     e.target.elements.distance.value = '';
@@ -141,9 +160,9 @@ export default class NewOrder extends Component {
               <input
                 className="form-control"
                 type="text" placeholder="Location"
+                name="location"
                 value={this.state.location} onChange={this.handleLocationChange}
                 list="locations"
-                name="location"
               />
               <datalist id="locations">
                 {this.state.locations.sort().map((location, index) => {
@@ -155,8 +174,8 @@ export default class NewOrder extends Component {
             <div className="col input-group-sm">
               <select
                 className="form-control"
-                name="platform"
                 type="text"
+                name="platform"
                 value={this.state.platform} onChange={this.handlePlatformChange}
               >
                 <option>All Platforms</option>
@@ -164,6 +183,16 @@ export default class NewOrder extends Component {
                 <option>GrubHub</option>
                 <option>UberEats</option>
               </select>
+            </div>
+            <div className="col input-group-sm">
+                <input
+                  className="form-control"
+                  type="text"
+                  name="startTime"
+                  placeholder="Start Time"
+                  value={this.state.startTime} onChange={this.handleStartTimeChange}
+                />
+                <button type="button" onClick={this.startTime}>Enter Timestamp</button>
             </div>
           </div>
           <div className="form-row mb-3">

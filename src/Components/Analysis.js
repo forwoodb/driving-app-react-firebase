@@ -5,13 +5,17 @@ import React, {Component} from 'react';
 import AnalysisSelectLocation from './AnalysisSelectLocation.js';
 
 class Analysis extends Component {
+  
   render() {
     // Orders
     let orders = this.props.orders;
 
     let platforms = orders.map(order => order.platform);
     platforms = [...new Set(platforms)].sort();
-    console.log(platforms);
+    // console.log(platforms);
+
+    let locations = orders.map(order => order.location);
+    locations = [...new Set(locations)].sort();
 
     function averageTime(data) {
       return (
@@ -53,7 +57,7 @@ class Analysis extends Component {
       );
     }
 
-    console.log(dollarHour(orders));
+    console.log(orders);
 
     return (
       <div>
@@ -118,7 +122,29 @@ class Analysis extends Component {
               user={this.props.user}
               orders={this.props.orders}
             />
+            {
+              locations.map((location, index) => {
+                let locationOrders = orders.filter(order => order.location === location);
+                // let platform = orders.filter(order => order.platform);
+
+                return (
+                  <AnalysisLocation
+                    user={this.props.user}
+                    key={index}
+                    location={location}
+                    numberOrders={locationOrders.length}
+                    averageTime={averageTime(locationOrders).toFixed(2)}
+                    averageDistance={averageDistance(locationOrders).toFixed(2)}
+                    dollarOrder={dollarOrder(locationOrders).toFixed(2)}
+                    dollarHour={dollarHour(locationOrders).toFixed(2)}
+                    dollarMile={dollarMile(locationOrders).toFixed(2)}
+                  />
+                );
+              })
+            }
           </tbody>
+          <thead></thead>
+          <tbody></tbody>
         </table>
       </div>
     );
@@ -128,6 +154,21 @@ class Analysis extends Component {
 function AnalysisPlatform(props) {
   return (
     <tr>
+      <td className="text-center">{props.platform}</td>
+      <td className="text-center">{props.numberOrders}</td>
+      <td className="text-center">{props.averageTime}</td>
+      <td className="text-center">{props.averageDistance}</td>
+      <td className="text-center">{props.dollarOrder}</td>
+      <td className="text-center">{props.dollarHour}</td>
+      <td className="text-center">{props.dollarMile}</td>
+    </tr>
+  );
+}
+
+function AnalysisLocation(props) {
+  return (
+    <tr>
+      <td className="text-center">{props.location}</td>
       <td className="text-center">{props.platform}</td>
       <td className="text-center">{props.numberOrders}</td>
       <td className="text-center">{props.averageTime}</td>
