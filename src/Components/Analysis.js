@@ -5,7 +5,7 @@ import React, {Component} from 'react';
 import AnalysisSelectLocation from './AnalysisSelectLocation.js';
 
 class Analysis extends Component {
-  
+
   render() {
     // Orders
     let orders = this.props.orders;
@@ -57,7 +57,7 @@ class Analysis extends Component {
       );
     }
 
-    console.log(orders);
+    // console.log(orders);
 
     return (
       <div>
@@ -140,6 +140,8 @@ class Analysis extends Component {
                     dollarMile={dollarMile(locationOrders).toFixed(2)}
                   />
                 );
+              }).sort((x,y) => {
+                return y.props.dollarHour - x.props.dollarHour;
               })
             }
           </tbody>
