@@ -31,7 +31,7 @@ class OrdersList extends Component {
               id={order.id}
               order={order}
               date={order.date}
-              startTime={order.startTime}
+              startTime={order.startTime || order.time}
               location={order.location}
               platform={order.platform}
               duration={order.duration}

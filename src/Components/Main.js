@@ -9,7 +9,6 @@ import NewOrder from './NewOrder.js';
 import OrdersList from './OrdersList.js';
 import EditOrder from './EditOrder.js';
 import Analysis from './Analysis.js';
-// import Suggest from './Autocomplete.js';
 
 
 class Main extends Component {

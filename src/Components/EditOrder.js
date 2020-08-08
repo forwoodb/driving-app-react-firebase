@@ -7,6 +7,7 @@ export default class EditOrder extends Component {
     this.state = {
       location: '',
       platform: '',
+      startTime: '',
       duration: '',
       distance: '',
       earnings: '',
@@ -25,6 +26,7 @@ export default class EditOrder extends Component {
       this.setState({
         location: data.location,
         platform: data.platform,
+        startTime: data.startTime,
         duration: data.duration,
         distance: data.distance,
         earnings: data.earnings,
@@ -41,6 +43,12 @@ export default class EditOrder extends Component {
   handlePlatformChange(e) {
     this.setState({
       platform: e.target.value,
+    })
+  }
+
+  handleStartTimeChange(e) {
+    this.setState({
+      startTime: e.target.value,
     })
   }
 
@@ -67,6 +75,7 @@ export default class EditOrder extends Component {
     const editOrder = {
       location: e.target.location.value,
       platform: e.target.platform.value,
+      startTime: e.target.startTime.value,
       duration: e.target.duration.value,
       distance: e.target.distance.value,
       earnings: e.target.earnings.value,
@@ -88,9 +97,8 @@ export default class EditOrder extends Component {
       <div>
         <h1>Edit Order</h1>
         <form onSubmit={this.handleSubmit} style={this.getStyle()}>
-          <div className="row">
-            <div className="col">
-              <div className="form-group">
+          <div className="form-row mb-3">
+            <div className="col input-group-sm">
                 <label htmlFor="location">Location</label>
                 <input
                   id="location"
@@ -101,9 +109,7 @@ export default class EditOrder extends Component {
                   onChange={this.handleLocationChange}
                 />
             </div>
-            </div>
-            <div className="col">
-              <div className="form-group">
+            <div className="col input-group-sm">
                 <label htmlFor="platform">Platform</label>
                 <select
                   id="platform"
@@ -113,17 +119,24 @@ export default class EditOrder extends Component {
                   value={this.state.platform}
                   onChange={this.handlePlatformChange}
                 >
-                  <option>Any</option>
+                  <option>All Platforms</option>
                   <option>UberEats</option>
                   <option>GrubHub</option>
                   <option>DoorDash</option>
                 </select>
-              </div>
+            </div>
+            <div className="col input-group-sm">
+              <label htmlFor="startTime">Start Time</label>
+              <input
+                className="form-control"
+                type="text"
+                name="startTime"
+                value={this.state.startTime} onChange={this.handleStartTimeChange}
+              />
             </div>
           </div>
-          <div className="row">
-            <div className="col">
-              <div className="form-group">
+          <div className="form-row mb-3">
+            <div className="col input-group-sm">
                 <label htmlFor="time">Duration</label>
                 <input
                   type="text"
@@ -134,9 +147,7 @@ export default class EditOrder extends Component {
                   onChange={this.handleDurationChange}
                 />
             </div>
-            </div>
-            <div className="col">
-              <div className="form-group">
+            <div className="col input-group-sm">
                 <label htmlFor="distance">Distance</label>
                 <input
                   type="text"
@@ -147,9 +158,7 @@ export default class EditOrder extends Component {
                   onChange={this.handleDistanceChange}
                 />
             </div>
-            </div>
-            <div className="col">
-              <div className="form-group">
+            <div className="col input-group-sm">
                 <label htmlFor="earnings">Earnings</label>
                 <input
                   type="text"
@@ -159,12 +168,9 @@ export default class EditOrder extends Component {
                   className="form-control"
                   onChange={this.handleEarningsChange}
                 />
-              </div>
             </div>
           </div>
-          <div className="form-group">
-            <button className="btn btn-primary" type="submit">Update</button>
-          </div>
+          <button className="btn btn-primary btn-sm mb-3" type="submit">Update</button>
         </form>
       </div>
     );
