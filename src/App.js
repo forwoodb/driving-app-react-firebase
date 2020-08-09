@@ -32,6 +32,7 @@ class App extends Component {
           user: user.uid,
         });
       });
+      // window.location = '/NewOrder';
   }
 
   logout() {
@@ -47,7 +48,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Main user={this.state.user}/>
+        <Main
+          user={this.state.user}
+          logout={this.logout}
+          login={this.login}
+        />
       </div>
     );
   }

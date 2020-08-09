@@ -65,8 +65,8 @@ class Main extends Component {
         <Router>
           <HeaderNavbar
             user={this.props.user}
-            logout={this.logout}
-            login={this.login}
+            logout={this.props.logout}
+            login={this.props.login}
           />
           <Route path="/NewOrder">
             <NewOrder user={this.props.user} />
