@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {LocationHeader} from './Location.js';
 
 export default class AnalysisSelect extends Component {
   constructor(props) {
@@ -30,9 +31,6 @@ export default class AnalysisSelect extends Component {
     let location = this.state.location;
     let platform = this.state.platform;
 
-    let locations = orders.map(order => order.location);
-    locations = [...new Set(locations)];
-
     if (location) {
       orders = orders.filter(order => order.location === location);
     }
@@ -43,56 +41,40 @@ export default class AnalysisSelect extends Component {
       orders = orders.filter(order => order.platform === platform);
     }
 
-
-    let averageTime = orders.reduce(function(total, order) {
-      return total + Number(order.duration);
-    }, 0)/orders.length;
-
-    let averageDistance = orders.reduce(function(total, order) {
-      return total + Number(order.distance);
-    }, 0)/orders.length;
-
-    let dollarOrder = orders.reduce(function(total, order) {
-      return total + Number(order.earnings);
-    }, 0)/orders.length;
-
-    let dollarHour = orders.reduce(function(total, order) {
-      return total + Number(order.earnings);
-    }, 0)/orders.length/averageTime * 60;
-
-    let dollarMile = orders.reduce(function(total, order) {
-      return total + Number(order.earnings);
-    }, 0)/orders.length/averageDistance;
-
     return (
-      <tr>
-        <td className="text-center">
-          <input
-            value={this.state.location} onChange={this.handleLocationChange}
-            list="locations" name="location" id="location"
-          />
-          <datalist id="locations">
-            {locations.sort().map((location, index) => {
-              return <option key={index} value={location}/>
-            })}
+      <table className="table table-striped table-hover">
+        <LocationHeader/>
+        <tbody>
+          <tr>
+            <td className="text-center">
+              <input
+                value={this.state.location} onChange={this.handleLocationChange}
+                list="locations" name="location" id="location"
+              />
+              <datalist id="locations">
+                {this.props.locations.sort().map((location, index) => {
+                  return <option key={index} value={location}/>
+                })}
 
-          </datalist>
-        </td>
-        <td className="text-center">
-          <select value={this.state.platform} onChange={this.handlePlatformChange}>
-            <option>All</option>
-            <option>DoorDash</option>
-            <option>GrubHub</option>
-            <option>UberEats</option>
-          </select>
-        </td>
-        <td className="text-center">{orders.length}</td>
-        <td className="text-center">{averageTime.toFixed(2)}</td>
-        <td className="text-center">{averageDistance.toFixed(2)}</td>
-        <td className="text-center">{dollarOrder.toFixed(2)}</td>
-        <td className="text-center">{dollarHour.toFixed(2)}</td>
-        <td className="text-center">{dollarMile.toFixed(2)}</td>
-      </tr>
+              </datalist>
+            </td>
+            <td className="text-center">
+              <select value={this.state.platform} onChange={this.handlePlatformChange}>
+                <option>All</option>
+                <option>DoorDash</option>
+                <option>GrubHub</option>
+                <option>UberEats</option>
+              </select>
+            </td>
+            <td className="text-center">{orders.length}</td>
+            <td className="text-center">{this.props.averageTime(orders)}</td>
+            <td className="text-center">{this.props.averageDistance(orders)}</td>
+            <td className="text-center">{this.props.dollarOrder(orders)}</td>
+            <td className="text-center">{this.props.dollarHour(orders)}</td>
+            <td className="text-center">{this.props.dollarMile(orders)}</td>
+          </tr>
+        </tbody>
+      </table>
     );
   }
 }

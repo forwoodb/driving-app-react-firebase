@@ -4,6 +4,7 @@ import React, {Component} from 'react';
 import AnalysisSelect from './AnalysisSelect.js';
 import Platform from './Platform.js';
 import Time from './Time.js';
+import Location from './Location.js';
 
 class Analysis extends Component {
   constructor() {
@@ -64,12 +65,6 @@ class Analysis extends Component {
     let locations = orders.map(order => order.location);
     locations = [...new Set(locations)].sort();
 
-
-
-
-
-    // console.log(orders);
-
     return (
       <div>
         <h1>Platform</h1>
@@ -83,50 +78,27 @@ class Analysis extends Component {
           dollarHour={(data) => this.dollarHour(data).toFixed(2)}
           dollarMile={(data) => this.dollarMile(data).toFixed(2)}
         />
-        <table className="table table-striped table-hover">
-          <thead>
-            <tr>
-              <th>Location</th>
-              <th>Platform</th>
-              <th># of Orders</th>
-              <th>Average Time</th>
-              <th>Average Distance</th>
-              <th>$/Order</th>
-              <th>$/Hour</th>
-              <th>$/Mile</th>
-            </tr>
-          </thead>
-          <tbody>
-            <AnalysisSelect
-              user={this.props.user}
-              orders={this.props.orders}
-            />
-            {
-              locations.map((location, index) => {
-                let locationOrders = orders.filter(order => order.location === location);
-                // let platform = orders.filter(order => order.platform);
-
-                return (
-                  <AnalysisLocation
-                    user={this.props.user}
-                    key={index}
-                    location={location}
-                    numberOrders={locationOrders.length}
-                    averageTime={this.averageTime(locationOrders).toFixed(2)}
-                    averageDistance={this.averageDistance(locationOrders).toFixed(2)}
-                    dollarOrder={this.dollarOrder(locationOrders).toFixed(2)}
-                    dollarHour={this.dollarHour(locationOrders).toFixed(2)}
-                    dollarMile={this.dollarMile(locationOrders).toFixed(2)}
-                  />
-                );
-              }).sort((x,y) => {
-                return y.props.dollarHour - x.props.dollarHour;
-              })
-            }
-          </tbody>
-        </table>
+        <AnalysisSelect
+          user={this.props.user}
+          orders={orders}
+          locations={locations}
+          averageTime={(data) => this.averageTime(data).toFixed(2)}
+          averageDistance={(data) => this.averageDistance(data).toFixed(2)}
+          dollarOrder={(data) => this.dollarOrder(data).toFixed(2)}
+          dollarHour={(data) => this.dollarHour(data).toFixed(2)}
+          dollarMile={(data) => this.dollarMile(data).toFixed(2)}
+        />
         <Time
           orders={orders}
+          averageTime={(data) => this.averageTime(data).toFixed(2)}
+          averageDistance={(data) => this.averageDistance(data).toFixed(2)}
+          dollarOrder={(data) => this.dollarOrder(data).toFixed(2)}
+          dollarHour={(data) => this.dollarHour(data).toFixed(2)}
+          dollarMile={(data) => this.dollarMile(data).toFixed(2)}
+        />
+        <Location
+          orders={orders}
+          locations={locations}
           averageTime={(data) => this.averageTime(data).toFixed(2)}
           averageDistance={(data) => this.averageDistance(data).toFixed(2)}
           dollarOrder={(data) => this.dollarOrder(data).toFixed(2)}
@@ -136,42 +108,6 @@ class Analysis extends Component {
       </div>
     );
   }
-}
-
-class Location extends Component {
-  render() {
-    return (
-      <table className="table table-striped table-hover">
-        <thead>
-          <tr>
-            <th>Location</th>
-            <th>Platform</th>
-            <th># of Orders</th>
-            <th>Average Time</th>
-            <th>Average Distance</th>
-            <th>$/Order</th>
-            <th>$/Hour</th>
-            <th>$/Mile</th>
-          </tr>
-        </thead>
-      </table>
-    );
-  }
-}
-
-function AnalysisLocation(props) {
-  return (
-    <tr>
-      <td className="text-center">{props.location}</td>
-      <td className="text-center">{props.platform}</td>
-      <td className="text-center">{props.numberOrders}</td>
-      <td className="text-center">{props.averageTime}</td>
-      <td className="text-center">{props.averageDistance}</td>
-      <td className="text-center">{props.dollarOrder}</td>
-      <td className="text-center">{props.dollarHour}</td>
-      <td className="text-center">{props.dollarMile}</td>
-    </tr>
-  );
 }
 
 export default Analysis;
