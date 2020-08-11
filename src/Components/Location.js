@@ -4,6 +4,7 @@ export default class Location extends Component {
   render() {
     return (
       <table className="table table-striped table-hover">
+        <LocationHeader/>
         <tbody>
         {
           this.props.locations.map((location, index) => {
@@ -15,6 +16,7 @@ export default class Location extends Component {
                 user={this.props.user}
                 key={index}
                 location={location}
+                platform={this.props.platform}
                 numberOrders={locationOrders.length}
                 averageTime={this.props.averageTime(locationOrders)}
                 averageDistance={this.props.averageDistance(locationOrders)}

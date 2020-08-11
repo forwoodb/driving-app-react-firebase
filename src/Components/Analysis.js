@@ -3,8 +3,6 @@ import React, {Component} from 'react';
 // Components
 import AnalysisSelect from './AnalysisSelect.js';
 import Platform from './Platform.js';
-import Time from './Time.js';
-import Location from './Location.js';
 
 class Analysis extends Component {
   constructor() {
@@ -20,7 +18,7 @@ class Analysis extends Component {
     return (
       data.reduce(function(total, order) {
         return total + parseFloat(order.duration);
-      }, 0)/data.length
+      }, 0)/data.length || 0
     );
   }
 
@@ -28,7 +26,7 @@ class Analysis extends Component {
     return (
       data.reduce(function(total, order) {
         return total + parseFloat(order.distance);
-      }, 0)/data.length
+      }, 0)/data.length || 0
     );
   }
 
@@ -36,7 +34,7 @@ class Analysis extends Component {
     return (
       data.reduce(function(total, order) {
         return total + parseFloat(order.earnings);
-      }, 0)/data.length
+      }, 0)/data.length || 0
     );
   }
 
@@ -44,7 +42,7 @@ class Analysis extends Component {
     return (
       data.reduce(function(total, order) {
         return total + parseFloat(order.earnings);
-      }, 0)/data.length/this.averageTime(data) * 60
+      }, 0)/data.length/this.averageTime(data) * 60 || 0
     );
   }
 
@@ -52,7 +50,7 @@ class Analysis extends Component {
     return (
       data.reduce(function(total, order) {
         return total + parseFloat(order.earnings);
-      }, 0)/data.length/this.averageDistance(data)
+      }, 0)/data.length/this.averageDistance(data) || 0
     );
   }
 
@@ -80,23 +78,6 @@ class Analysis extends Component {
         />
         <AnalysisSelect
           user={this.props.user}
-          orders={orders}
-          locations={locations}
-          averageTime={(data) => this.averageTime(data).toFixed(2)}
-          averageDistance={(data) => this.averageDistance(data).toFixed(2)}
-          dollarOrder={(data) => this.dollarOrder(data).toFixed(2)}
-          dollarHour={(data) => this.dollarHour(data).toFixed(2)}
-          dollarMile={(data) => this.dollarMile(data).toFixed(2)}
-        />
-        <Time
-          orders={orders}
-          averageTime={(data) => this.averageTime(data).toFixed(2)}
-          averageDistance={(data) => this.averageDistance(data).toFixed(2)}
-          dollarOrder={(data) => this.dollarOrder(data).toFixed(2)}
-          dollarHour={(data) => this.dollarHour(data).toFixed(2)}
-          dollarMile={(data) => this.dollarMile(data).toFixed(2)}
-        />
-        <Location
           orders={orders}
           locations={locations}
           averageTime={(data) => this.averageTime(data).toFixed(2)}

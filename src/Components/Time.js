@@ -45,9 +45,7 @@ export default class Time extends Component {
           {
             times.map((time, index, times) => {
               let timeOrders = this.props.orders.filter((order) => {
-                // console.log(order.startTime >= time && order.startTime < times[index + 1] || order.time >= time && order.time < times[index + 1]);
                 return (order.startTime >= time && order.startTime < times[index + 1]) || (order.time >= time && order.time < times[index + 1]);
-                // return order.startTime >= time && order.startTime < time[index + 1] || order.time >= time && order.time < time[index + 1];
               })
               return (
                 <AnalysisTime

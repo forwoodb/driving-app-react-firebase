@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {LocationHeader} from './Location.js';
+import Time from './Time.js';
+import Location from './Location.js';
 
 export default class AnalysisSelect extends Component {
   constructor(props) {
@@ -36,12 +38,13 @@ export default class AnalysisSelect extends Component {
     }
 
     if (platform === 'All') {
-      orders = orders;
+      orders = this.props.orders;
     } else if (platform) {
       orders = orders.filter(order => order.platform === platform);
     }
 
     return (
+      <div>
       <table className="table table-striped table-hover">
         <LocationHeader/>
         <tbody>
@@ -75,6 +78,26 @@ export default class AnalysisSelect extends Component {
           </tr>
         </tbody>
       </table>
+
+      <Time
+        orders={orders}
+        averageTime={this.props.averageTime}
+        averageDistance={this.props.averageDistance}
+        dollarOrder={this.props.dollarOrder}
+        dollarHour={this.props.dollarHour}
+        dollarMile={this.props.dollarMile}
+      />
+      <Location
+        orders={orders}
+        locations={this.props.locations}
+        platform={platform}
+        averageTime={this.props.averageTime}
+        averageDistance={this.props.averageDistance}
+        dollarOrder={this.props.dollarOrder}
+        dollarHour={this.props.dollarHour}
+        dollarMile={this.props.dollarMile}
+      />
+      </div>
     );
   }
 }
