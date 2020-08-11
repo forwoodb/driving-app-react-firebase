@@ -10,21 +10,22 @@ export default class Location extends Component {
           this.props.locations.map((location, index) => {
             let locationOrders = this.props.orders.filter(order => order.location === location);
             // let platform = orders.filter(order => order.platform);
-
-            return (
-              <AnalysisLocation
-                user={this.props.user}
-                key={index}
-                location={location}
-                platform={this.props.platform}
-                numberOrders={locationOrders.length}
-                averageTime={this.props.averageTime(locationOrders)}
-                averageDistance={this.props.averageDistance(locationOrders)}
-                dollarOrder={this.props.dollarOrder(locationOrders)}
-                dollarHour={this.props.dollarHour(locationOrders)}
-                dollarMile={this.props.dollarMile(locationOrders)}
-              />
-            );
+            if (locationOrders.length > 0) {
+              return (
+                <AnalysisLocation
+                  user={this.props.user}
+                  key={index}
+                  location={location}
+                  platform={this.props.platform}
+                  numberOrders={locationOrders.length}
+                  averageTime={this.props.averageTime(locationOrders)}
+                  averageDistance={this.props.averageDistance(locationOrders)}
+                  dollarOrder={this.props.dollarOrder(locationOrders)}
+                  dollarHour={this.props.dollarHour(locationOrders)}
+                  dollarMile={this.props.dollarMile(locationOrders)}
+                />
+              );
+            }
           }).sort((x,y) => {
             return y.props.dollarHour - x.props.dollarHour;
           })
