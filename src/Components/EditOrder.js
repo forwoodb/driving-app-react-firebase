@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import * as firebase from 'firebase';
+import firebase from '../firebase.js';
 
 export default class EditOrder extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       location: '',
       platform: '',
@@ -26,7 +26,7 @@ export default class EditOrder extends Component {
       this.setState({
         location: data.location,
         platform: data.platform,
-        startTime: data.startTime,
+        startTime: data.startTime || data.time,
         duration: data.duration,
         distance: data.distance,
         earnings: data.earnings,
@@ -131,7 +131,8 @@ export default class EditOrder extends Component {
                 className="form-control"
                 type="text"
                 name="startTime"
-                value={this.state.startTime} onChange={this.handleStartTimeChange}
+                value={this.state.startTime}
+                onChange={this.handleStartTimeChange}
               />
             </div>
           </div>

@@ -1,21 +1,45 @@
 import React, {Component} from 'react';
-// import * as firebase from 'firebase';
 
 // Components
-import AnalysisSelectLocation from './AnalysisSelectLocation.js';
+import AnalysisSelect from './AnalysisSelect.js';
 
 class Analysis extends Component {
 
   render() {
-    // Orders
     let orders = this.props.orders;
 
     let platforms = orders.map(order => order.platform);
     platforms = [...new Set(platforms)].sort();
-    // console.log(platforms);
 
     let locations = orders.map(order => order.location);
     locations = [...new Set(locations)].sort();
+
+    let times = [
+      "00:00:00",
+      "01:00:00",
+      "02:00:00",
+      "03:00:00",
+      "04:00:00",
+      "05:00:00",
+      "06:00:00",
+      "07:00:00",
+      "08:00:00",
+      "09:00:00",
+      "10:00:00",
+      "11:00:00",
+      "12:00:00",
+      "13:00:00",
+      "14:00:00",
+      "15:00:00",
+      "16:00:00",
+      "17:00:00",
+      "18:00:00",
+      "19:00:00",
+      "20:00:00",
+      "21:00:00",
+      "22:00:00",
+      "23:00:00",
+    ]
 
     function averageTime(data) {
       return (
@@ -118,7 +142,7 @@ class Analysis extends Component {
             </tr>
           </thead>
           <tbody>
-            <AnalysisSelectLocation
+            <AnalysisSelect
               user={this.props.user}
               orders={this.props.orders}
             />
@@ -145,8 +169,42 @@ class Analysis extends Component {
               })
             }
           </tbody>
-          <thead></thead>
-          <tbody></tbody>
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th># of Orders</th>
+              <th>Average Time</th>
+              <th>Average Distance</th>
+              <th>$/Order</th>
+              <th>$/Hour</th>
+              <th>$/Mile</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              times.map((time, index, times) => {
+                let timeOrders = orders.filter((order) => {
+                  // console.log(order.startTime >= time && order.startTime < times[index + 1] || order.time >= time && order.time < times[index + 1]);
+                  return (order.startTime >= time && order.startTime < times[index + 1]) || (order.time >= time && order.time < times[index + 1]);
+                  // return order.startTime >= time && order.startTime < time[index + 1] || order.time >= time && order.time < time[index + 1];
+                })
+                return (
+                  <AnalysisTime
+                    user={this.props.user}
+                    key={index}
+                    time={time}
+                    numberOrders={timeOrders.length}
+                    averageTime={averageTime(timeOrders).toFixed(2)}
+                    averageDistance={averageDistance(timeOrders).toFixed(2)}
+                    dollarOrder={dollarOrder(timeOrders).toFixed(2)}
+                    dollarHour={dollarHour(timeOrders).toFixed(2)}
+                    dollarMile={dollarMile(timeOrders).toFixed(2)}
+                  />
+                );
+              })
+            }
+
+          </tbody>
         </table>
       </div>
     );
@@ -172,6 +230,20 @@ function AnalysisLocation(props) {
     <tr>
       <td className="text-center">{props.location}</td>
       <td className="text-center">{props.platform}</td>
+      <td className="text-center">{props.numberOrders}</td>
+      <td className="text-center">{props.averageTime}</td>
+      <td className="text-center">{props.averageDistance}</td>
+      <td className="text-center">{props.dollarOrder}</td>
+      <td className="text-center">{props.dollarHour}</td>
+      <td className="text-center">{props.dollarMile}</td>
+    </tr>
+  );
+}
+
+function AnalysisTime(props) {
+  return (
+    <tr>
+      <td className="text-center">{props.time}</td>
       <td className="text-center">{props.numberOrders}</td>
       <td className="text-center">{props.averageTime}</td>
       <td className="text-center">{props.averageDistance}</td>

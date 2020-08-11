@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-import * as firebase from 'firebase';
-// import AnalysisSelectLocation from './AnalysisSelectLocation';
-// Fuck you github
+import firebase from '../firebase.js';
 
 export default class NewOrder extends Component {
   constructor(props) {
@@ -38,15 +36,11 @@ export default class NewOrder extends Component {
       }
 
       // Locations list
-      // console.log(orders);
       let locations = orders.map(order => order.location);
       locations = [...new Set(locations)];
-      // console.log(locations);
-      //
 
-      if (locationValue === '') {
-        orders = orders;
-      } else if (locationValue) {
+
+      if (locationValue) {
         orders = orders.filter(order => order.location === locationValue);
       }
 

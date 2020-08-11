@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-// import * as firebase from 'firebase';
 
-export default class AnalysisSelectLocation extends Component {
+export default class AnalysisSelect extends Component {
   constructor(props) {
     super(props);
 
@@ -18,32 +17,23 @@ export default class AnalysisSelectLocation extends Component {
     this.setState({
       location: e.target.value,
     })
-    // console.log(e.target.value);
   }
 
   handlePlatformChange(e) {
     this.setState({
       platform: e.target.value,
     })
-    // console.log(e.target.value);
   }
 
   render() {
-    // console.log(this.props.orders);
     let orders = this.props.orders;
     let location = this.state.location;
     let platform = this.state.platform;
 
-    // Locations list
-    // console.log(orders);
     let locations = orders.map(order => order.location);
     locations = [...new Set(locations)];
-    // console.log(locations);
-    //
 
-    if (location === '') {
-      orders = orders;
-    } else if (location) {
+    if (location) {
       orders = orders.filter(order => order.location === location);
     }
 
@@ -78,7 +68,7 @@ export default class AnalysisSelectLocation extends Component {
       <tr>
         <td className="text-center">
           <input
-            value={this.props.location} onChange={this.handleLocationChange}
+            value={this.state.location} onChange={this.handleLocationChange}
             list="locations" name="location" id="location"
           />
           <datalist id="locations">
@@ -106,3 +96,4 @@ export default class AnalysisSelectLocation extends Component {
     );
   }
 }
+
