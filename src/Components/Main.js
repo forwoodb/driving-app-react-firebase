@@ -68,8 +68,8 @@ class Main extends Component {
             logout={this.props.logout}
             login={this.props.login}
           />
-          <Route path="/NewOrder">
-            <NewOrder user={this.props.user} />
+          <Route exact path="/">
+            <NewOrder user={this.props.user}/>
           </Route>
           <Route path="/OrdersList">
             <OrdersList

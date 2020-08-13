@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-// import firebase from '../firebase.js';
-
 import {Link} from 'react-router-dom';
+// import AnalysisSelect from './AnalysisSelect.js';
 
-
+// Try form attribute for edit
 class OrdersList extends Component {
   render() {
     return (
+      <div>
       <table className="table table-sm table-striped table-hover">
         <thead>
           <tr>
@@ -42,6 +42,7 @@ class OrdersList extends Component {
           )}
         </tbody>
       </table>
+      </div>
     );
   }
 }

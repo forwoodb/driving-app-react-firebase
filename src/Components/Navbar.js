@@ -12,7 +12,7 @@ class HeaderNavbar extends Component {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Link to="/NewOrder" className="nav-link">New Order</Link>
+            <Link to="/" className="nav-link">New Order</Link>
             <Link to="/OrdersList" className="nav-link">Orders List</Link>
             <Link to="/Analysis" className="nav-link">Analysis</Link>
             {this.props.user ?

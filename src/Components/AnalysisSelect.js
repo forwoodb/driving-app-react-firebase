@@ -30,8 +30,11 @@ export default class AnalysisSelect extends Component {
 
   render() {
     let orders = this.props.orders;
+    // console.log(orders);
     let location = this.state.location;
     let platform = this.state.platform;
+    // let locations = orders.map(order => order.location);
+    // locations = [...new Set(locations)].sort();
 
     if (location) {
       orders = orders.filter(order => order.location === location);
