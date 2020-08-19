@@ -32,7 +32,7 @@ class App extends Component {
           user: user.uid,
         });
       });
-      // window.location = '/NewOrder';
+      window.location = '/NewOrder';
   }
 
   logout() {

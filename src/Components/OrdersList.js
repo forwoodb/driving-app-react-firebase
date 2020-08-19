@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-// import AnalysisSelect from './AnalysisSelect.js';
 
 // Try form attribute for edit
 class OrdersList extends Component {
