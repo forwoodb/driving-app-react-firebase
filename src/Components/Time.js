@@ -32,13 +32,13 @@ export default class Time extends Component {
       <table className="table table-striped table-hover">
         <thead>
           <tr>
-            <th>Time</th>
-            <th># of Orders</th>
-            <th>Average Time</th>
-            <th>Average Distance</th>
-            <th>$/Order</th>
-            <th>$/Hour</th>
-            <th>$/Mile</th>
+            <th className="text-center">Time</th>
+            <th className="text-center"># of Orders</th>
+            <th className="text-center">Average Time</th>
+            <th className="text-center">Average Distance</th>
+            <th className="text-center">$/Order</th>
+            <th className="text-center">$/Hour</th>
+            <th className="text-center">$/Mile</th>
           </tr>
         </thead>
         <tbody>

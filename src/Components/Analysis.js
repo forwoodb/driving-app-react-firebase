@@ -62,7 +62,6 @@ class Analysis extends Component {
 
     let platforms = orders.map(order => order.platform);
     platforms = [...new Set(platforms)].sort();
-    console.log(platforms);
 
     let locations = orders.map(order => order.location);
     locations = [...new Set(locations)].sort();
