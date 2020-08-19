@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 
 export default class Platform extends Component {
   render() {
+    let orders = this.props.orders;
+    console.log(this.props.orders);
     return (
       <div>
         <table className="table table-striped table-hover">
@@ -21,11 +23,11 @@ export default class Platform extends Component {
               user={this.props.user}
               platform="All"
               numberOrders={this.props.numberOrders}
-              averageTime={this.props.averageTime(this.props.orders)}
-              averageDistance={this.props.averageDistance(this.props.orders)}
-              dollarOrder={this.props.dollarOrder(this.props.orders)}
-              dollarHour={this.props.dollarHour(this.props.orders)}
-              dollarMile={this.props.dollarMile(this.props.orders)}
+              averageTime={this.props.averageTime(orders)}
+              averageDistance={this.props.averageDistance(orders)}
+              dollarOrder={this.props.dollarOrder(orders)}
+              dollarHour={this.props.dollarHour(orders)}
+              dollarMile={this.props.dollarMile(orders)}
             />
             {
               this.props.platforms.map((platform, index) => {

@@ -32,7 +32,7 @@ class App extends Component {
           user: user.uid,
         });
       });
-      window.location = '/NewOrder';
+      // window.location = '/';
   }
 
   logout() {
@@ -42,7 +42,7 @@ class App extends Component {
           user: null
         });
       });
-      window.location = '/NewOrder';
+      window.location = '/';
   }
 
   render() {

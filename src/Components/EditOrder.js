@@ -14,6 +14,7 @@ export default class EditOrder extends Component {
     }
     this.handleLocationChange = this.handleLocationChange.bind(this);
     this.handlePlatformChange = this.handlePlatformChange.bind(this);
+    this.handleStartTimeChange = this.handleStartTimeChange.bind(this);
     this.handleDurationChange = this.handleDurationChange.bind(this);
     this.handleDistanceChange = this.handleDistanceChange.bind(this);
     this.handleEarningsChange = this.handleEarningsChange.bind(this);

@@ -17,15 +17,18 @@ class Analysis extends Component {
   averageTime(data) {
     return (
       data.reduce(function(total, order) {
-        return total + parseFloat(order.duration);
-      }, 0)/data.length || 0
+        if (isNaN(order.duration)) {
+          return order.duration = 0;
+        }
+        return total + (parseFloat(order.duration) || 0);
+      }, 0)/data.length
     );
   }
 
   averageDistance(data) {
     return (
       data.reduce(function(total, order) {
-        return total + parseFloat(order.distance);
+        return total + (parseFloat(order.distance) || 0);
       }, 0)/data.length || 0
     );
   }
@@ -33,7 +36,7 @@ class Analysis extends Component {
   dollarOrder(data) {
     return (
       data.reduce(function(total, order) {
-        return total + parseFloat(order.earnings);
+        return total + (parseFloat(order.earnings) || 0);
       }, 0)/data.length || 0
     );
   }
@@ -41,7 +44,7 @@ class Analysis extends Component {
   dollarHour(data) {
     return (
       data.reduce(function(total, order) {
-        return total + parseFloat(order.earnings);
+        return total + (parseFloat(order.earnings) || 0);
       }, 0)/data.length/this.averageTime(data) * 60 || 0
     );
   }
@@ -49,7 +52,7 @@ class Analysis extends Component {
   dollarMile(data) {
     return (
       data.reduce(function(total, order) {
-        return total + parseFloat(order.earnings);
+        return total + (parseFloat(order.earnings) || 0);
       }, 0)/data.length/this.averageDistance(data) || 0
     );
   }
@@ -59,6 +62,7 @@ class Analysis extends Component {
 
     let platforms = orders.map(order => order.platform);
     platforms = [...new Set(platforms)].sort();
+    console.log(platforms);
 
     let locations = orders.map(order => order.location);
     locations = [...new Set(locations)].sort();
