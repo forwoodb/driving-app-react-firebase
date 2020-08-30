@@ -8,6 +8,7 @@ export default class EditOrder extends Component {
       location: '',
       platform: '',
       startTime: '',
+      date: '',
       duration: '',
       distance: '',
       earnings: '',
@@ -15,6 +16,7 @@ export default class EditOrder extends Component {
     this.handleLocationChange = this.handleLocationChange.bind(this);
     this.handlePlatformChange = this.handlePlatformChange.bind(this);
     this.handleStartTimeChange = this.handleStartTimeChange.bind(this);
+    this.handleDateChange = this.handleDateChange.bind(this);
     this.handleDurationChange = this.handleDurationChange.bind(this);
     this.handleDistanceChange = this.handleDistanceChange.bind(this);
     this.handleEarningsChange = this.handleEarningsChange.bind(this);
@@ -28,6 +30,7 @@ export default class EditOrder extends Component {
         location: data.location,
         platform: data.platform,
         startTime: data.startTime || data.time,
+        date: data.date,
         duration: data.duration,
         distance: data.distance,
         earnings: data.earnings,
@@ -50,6 +53,12 @@ export default class EditOrder extends Component {
   handleStartTimeChange(e) {
     this.setState({
       startTime: e.target.value,
+    })
+  }
+
+  handleDateChange(e) {
+    this.setState({
+      date: e.target.value,
     })
   }
 
@@ -77,6 +86,7 @@ export default class EditOrder extends Component {
       location: e.target.location.value,
       platform: e.target.platform.value,
       startTime: e.target.startTime.value,
+      date: e.target.date.value,
       duration: e.target.duration.value,
       distance: e.target.distance.value,
       earnings: e.target.earnings.value,
@@ -126,6 +136,8 @@ export default class EditOrder extends Component {
                   <option>DoorDash</option>
                 </select>
             </div>
+          </div>
+          <div className="form-row mb-3">
             <div className="col input-group-sm">
               <label htmlFor="startTime">Start Time</label>
               <input
@@ -136,40 +148,50 @@ export default class EditOrder extends Component {
                 onChange={this.handleStartTimeChange}
               />
             </div>
+            <div className="col input-group-sm">
+              <label htmlFor="date">Date</label>
+              <input
+                className="form-control"
+                type="text"
+                name="date"
+                value={this.state.date}
+                onChange={this.handleDateChange}
+              />
+            </div>
           </div>
           <div className="form-row mb-3">
             <div className="col input-group-sm">
-                <label htmlFor="time">Duration</label>
-                <input
-                  type="text"
-                  name="duration"
-                  value={this.state.duration}
-                  id="duration"
-                  className="form-control"
-                  onChange={this.handleDurationChange}
-                />
+              <label htmlFor="time">Duration</label>
+              <input
+                type="text"
+                name="duration"
+                value={this.state.duration}
+                id="duration"
+                className="form-control"
+                onChange={this.handleDurationChange}
+              />
             </div>
             <div className="col input-group-sm">
-                <label htmlFor="distance">Distance</label>
-                <input
-                  type="text"
-                  name="distance"
-                  value={this.state.distance}
-                  id="distance"
-                  className="form-control"
-                  onChange={this.handleDistanceChange}
-                />
+              <label htmlFor="distance">Distance</label>
+              <input
+                type="text"
+                name="distance"
+                value={this.state.distance}
+                id="distance"
+                className="form-control"
+                onChange={this.handleDistanceChange}
+              />
             </div>
             <div className="col input-group-sm">
-                <label htmlFor="earnings">Earnings</label>
-                <input
-                  type="text"
-                  name="earnings"
-                  value={this.state.earnings}
-                  id="earnings"
-                  className="form-control"
-                  onChange={this.handleEarningsChange}
-                />
+              <label htmlFor="earnings">Earnings</label>
+              <input
+                type="text"
+                name="earnings"
+                value={this.state.earnings}
+                id="earnings"
+                className="form-control"
+                onChange={this.handleEarningsChange}
+              />
             </div>
           </div>
           <button className="btn btn-primary btn-sm mb-3" type="submit">Update</button>
