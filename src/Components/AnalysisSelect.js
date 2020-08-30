@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {LocationHeader} from './Location.js';
 import Time from './Time.js';
 import Location from './Location.js';
+import Day from './Day.js';
 
 export default class AnalysisSelect extends Component {
   constructor(props) {
@@ -81,6 +82,14 @@ export default class AnalysisSelect extends Component {
         </tbody>
       </table>
 
+      <Day
+        orders={orders}
+        averageTime={this.props.averageTime}
+        averageDistance={this.props.averageDistance}
+        dollarOrder={this.props.dollarOrder}
+        dollarHour={this.props.dollarHour}
+        dollarMile={this.props.dollarMile}
+      />
       <Time
         orders={orders}
         averageTime={this.props.averageTime}
