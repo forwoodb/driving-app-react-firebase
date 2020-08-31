@@ -66,6 +66,16 @@ class Analysis extends Component {
     let locations = orders.map(order => order.location);
     locations = [...new Set(locations)].sort();
 
+    let days = [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun",
+    ]
+
     return (
       <div>
         <h1>Platform</h1>
@@ -83,6 +93,7 @@ class Analysis extends Component {
           user={this.props.user}
           orders={orders}
           locations={locations}
+          days={days}
           averageTime={(data) => this.averageTime(data).toFixed(2)}
           averageDistance={(data) => this.averageDistance(data).toFixed(2)}
           dollarOrder={(data) => this.dollarOrder(data).toFixed(2)}

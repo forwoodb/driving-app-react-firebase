@@ -17,6 +17,7 @@ export default class Location extends Component {
                   key={index}
                   location={location}
                   platform={this.props.platform}
+                  day={this.props.day}
                   numberOrders={locationOrders.length}
                   averageTime={this.props.averageTime(locationOrders)}
                   averageDistance={this.props.averageDistance(locationOrders)}
@@ -42,6 +43,7 @@ export function LocationHeader() {
       <tr>
         <th className="text-center">Location</th>
         <th className="text-center">Platform</th>
+        <th className="text-center">Day</th>
         <th className="text-center"># of Orders</th>
         <th className="text-center">Average Time</th>
         <th className="text-center">Average Distance</th>
@@ -58,6 +60,7 @@ function AnalysisLocation(props) {
     <tr>
       <td className="text-center">{props.location}</td>
       <td className="text-center">{props.platform}</td>
+      <td className="text-center">{props.day}</td>
       <td className="text-center">{props.numberOrders}</td>
       <td className="text-center">{props.averageTime}</td>
       <td className="text-center">{props.averageDistance}</td>
