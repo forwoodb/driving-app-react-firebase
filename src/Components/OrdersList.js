@@ -4,6 +4,15 @@ import {Link} from 'react-router-dom';
 // Try form attribute for edit
 class OrdersList extends Component {
   render() {
+    function compareTime(a,b) {
+      let comparison = 0;
+      if (a.startTime < b.startTime) {
+        comparison = 1
+      } else if (a.startTime > b.startTime) {
+        comparison = -1;
+      }
+      return comparison;
+    }
     return (
       <div>
       <table className="table table-sm table-striped table-hover">
@@ -21,9 +30,12 @@ class OrdersList extends Component {
           </tr>
         </thead>
         <tbody>
-          {this.props.orders.sort((x,y) => {
-            return y.order_id - x.order_id;
-          })
+          {this.props.orders
+            .sort((x,y) => {
+              let dateX = new Date(x.date);
+              let dateY = new Date(y.date);
+              return dateY - dateX || compareTime(x,y);
+            })
           .map(order =>
             <Order
               key={order.order_id}
