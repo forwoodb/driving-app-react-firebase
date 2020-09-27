@@ -27,6 +27,7 @@ export default class Time extends Component {
       "21:00:00",
       "22:00:00",
       "23:00:00",
+      "24:00:00",
     ]
     return (
       <table className="table table-striped table-hover">
@@ -49,8 +50,6 @@ export default class Time extends Component {
                   (order.startTime >= time && order.startTime < times[index + 1])
                   ||
                   (order.time >= time && order.time < times[index + 1])
-                  ||
-                  (order.startTime >= '23:00' || order.time >= '23:00')
                 );
               })
               if (timeOrders.length > 0) {
