@@ -170,7 +170,6 @@ export default class NewOrder extends Component {
                 {this.state.locations.sort().map((location, index) => {
                   return <option key={index} value={location}/>
                 })}
-
               </datalist>
             </div>
           </div>

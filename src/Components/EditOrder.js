@@ -5,6 +5,7 @@ export default class EditOrder extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      locations: [],
       location: '',
       platform: '',
       startTime: '',
@@ -23,9 +24,62 @@ export default class EditOrder extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  getLocations() {
+    firebase.database().ref('orders').on('value', (snapshot) => {
+      const data = snapshot.val();
+      let orders = [];
+
+      let user;
+      if (this.props.user) {
+        user = this.props.user;
+      } else {
+        user = 'demo';
+      }
+
+      for (var order in data) {
+        if (data[order].user === user) {
+          orders.push({...data[order]})
+        }
+      }
+
+      // Locations list
+      let locations = orders.map(order => order.location);
+      locations = [...new Set(locations)];
+
+      this.setState({
+        locations: locations,
+      })
+    });
+  }
+
   componentDidMount() {
     firebase.database().ref('orders/' + this.props.match.params.id).on('value', (snapshot) => {
       const data = snapshot.val();
+      // let orders = [];
+      //
+      let user;
+      if (this.props.user) {
+        user = this.props.user;
+      } else {
+        user = 'demo';
+      }
+
+      console.log(user);
+      //
+      // for (var order in data) {
+      //   if (data[order].user === user) {
+      //     orders.push({...data[order]})
+      //   }
+      // }
+      // console.log(orders);
+      //
+      // // Locations list
+      // let locations = orders.map(order => order.location);
+      // locations = [...new Set(locations)];
+      // console.log(locations);
+
+      this.getLocations()
+
       this.setState({
         location: data.location,
         platform: data.platform,
@@ -104,6 +158,7 @@ export default class EditOrder extends Component {
   }
 
   render() {
+    console.log(this.state.locations);
     return (
       <div>
         <h2 className="text-center">Edit Order</h2>
@@ -130,7 +185,13 @@ export default class EditOrder extends Component {
                   type="text"
                   value={this.state.location}
                   onChange={this.handleLocationChange}
+                  list="locations"
                 />
+                <datalist id="locations">
+                  {this.state.locations.sort().map((location, index) => {
+                    return <option key={index} value={location}/>
+                  })}
+                </datalist>
             </div>
           </div>
           <div className="form-row mb-3">

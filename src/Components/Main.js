@@ -82,7 +82,8 @@ class Main extends Component {
           <Route path="/Analysis">
             <Analysis user={this.props.user} orders={this.state.orders}/>
           </Route>
-          <Route path="/Edit/:id" exact component={EditOrder}/>
+          {/*<Route path="/Edit/:id" exact component={EditOrder}/>*/}
+          <Route path="/Edit/:id" render={(props) => <EditOrder user={this.props.user} {...props}/>}/>
         </Router>
       </div>
     );
