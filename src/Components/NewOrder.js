@@ -99,24 +99,20 @@ export default class NewOrder extends Component {
     this.setState({
       startTime: new Date().toTimeString(),
     })
-    console.log(this.state.startTime);
   }
 
   handleLocationChange(e) {
     this.getData(e.target.value, this.state.platform);
-    console.log(e.target.value);
   }
 
   handlePlatformChange(e) {
     this.getData(this.state.location, e.target.value);
-    console.log(e.target.value);
   }
 
   handleStartTimeChange(e) {
     this.setState({
       startTime: e.target.value,
     })
-    console.log(e.target.value);
   }
 
   handleSubmit(e) {
@@ -144,11 +140,23 @@ export default class NewOrder extends Component {
   }
 
   render() {
-    // console.log(this.props.orders);
-
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
+          <div className="form-row mb-3">
+            <button type="button" onClick={this.startTime}>Enter Timestamp</button>
+          </div>
+          <div className="form-row mb-3">
+            <div className="col input-group-sm">
+                <input
+                  className="form-control"
+                  type="text"
+                  name="startTime"
+                  placeholder="Start Time"
+                  value={this.state.startTime} onChange={this.handleStartTimeChange}
+                />
+            </div>
+          </div>
           <div className="form-row mb-3">
             <div className="col input-group-sm">
               <input
@@ -165,6 +173,8 @@ export default class NewOrder extends Component {
 
               </datalist>
             </div>
+          </div>
+          <div className="form-row mb-3">
             <div className="col input-group-sm">
               <select
                 className="form-control"
@@ -180,24 +190,14 @@ export default class NewOrder extends Component {
             </div>
             <div className="col input-group-sm">
                 <input
-                  className="form-control"
-                  type="text"
-                  name="startTime"
-                  placeholder="Start Time"
-                  value={this.state.startTime} onChange={this.handleStartTimeChange}
-                />
-                <button type="button" onClick={this.startTime}>Enter Timestamp</button>
-            </div>
-          </div>
-          <div className="form-row mb-3">
-            <div className="col input-group-sm">
-                <input
                   type="text"
                   name="duration"
                   className="form-control"
                   placeholder="Duration"
                 />
             </div>
+          </div>
+          <div className="form-row mb-3">
             <div className="col input-group-sm">
                 <input
                   type="text"
