@@ -110,6 +110,18 @@ export default class EditOrder extends Component {
         <form onSubmit={this.handleSubmit} style={this.getStyle()}>
           <div className="form-row mb-3">
             <div className="col input-group-sm">
+              <label htmlFor="startTime">Start Time</label>
+              <input
+                className="form-control"
+                type="text"
+                name="startTime"
+                value={this.state.startTime}
+                onChange={this.handleStartTimeChange}
+              />
+            </div>
+          </div>
+          <div className="form-row mb-3">
+            <div className="col input-group-sm">
                 <label htmlFor="location">Location</label>
                 <input
                   id="location"
@@ -120,6 +132,8 @@ export default class EditOrder extends Component {
                   onChange={this.handleLocationChange}
                 />
             </div>
+          </div>
+          <div className="form-row mb-3">
             <div className="col input-group-sm">
                 <label htmlFor="platform">Platform</label>
                 <select
@@ -135,18 +149,6 @@ export default class EditOrder extends Component {
                   <option>GrubHub</option>
                   <option>DoorDash</option>
                 </select>
-            </div>
-          </div>
-          <div className="form-row mb-3">
-            <div className="col input-group-sm">
-              <label htmlFor="startTime">Start Time</label>
-              <input
-                className="form-control"
-                type="text"
-                name="startTime"
-                value={this.state.startTime}
-                onChange={this.handleStartTimeChange}
-              />
             </div>
             <div className="col input-group-sm">
               <label htmlFor="date">Date</label>

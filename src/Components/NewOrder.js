@@ -143,7 +143,7 @@ export default class NewOrder extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <div className="form-row mb-3">
+          <div className="form-row mb-3 align-center">
             <button type="button" onClick={this.startTime}>Enter Timestamp</button>
           </div>
           <div className="form-row mb-3">
