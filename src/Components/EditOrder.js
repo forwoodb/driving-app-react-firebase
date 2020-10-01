@@ -106,7 +106,7 @@ export default class EditOrder extends Component {
   render() {
     return (
       <div>
-        <h1>Edit Order</h1>
+        <h2 className="text-center">Edit Order</h2>
         <form onSubmit={this.handleSubmit} style={this.getStyle()}>
           <div className="form-row mb-3">
             <div className="col input-group-sm">
