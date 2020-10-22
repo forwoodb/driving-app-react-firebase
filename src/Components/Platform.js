@@ -3,6 +3,10 @@ import React, {Component} from 'react';
 export default class Platform extends Component {
   render() {
     let orders = this.props.orders;
+
+    let platforms = orders.map(order => order.platform);
+    platforms = [...new Set(platforms)].sort();
+
     return (
       <div>
         <table className="table table-striped table-hover">
@@ -29,7 +33,7 @@ export default class Platform extends Component {
               dollarMile={this.props.dollarMile(orders)}
             />
             {
-              this.props.platforms.map((platform, index) => {
+              platforms.map((platform, index) => {
                 let platformOrders = this.props.orders.filter(order => order.platform === platform);
 
                 return (

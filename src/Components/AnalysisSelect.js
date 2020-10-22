@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {LocationHeader} from './Location.js';
+import Platform from './Platform.js';
 import Time from './Time.js';
 import Location from './Location.js';
 import Day from './Day.js';
@@ -110,6 +111,21 @@ export default class AnalysisSelect extends Component {
         </tbody>
       </table>
 
+      <Platform
+        orders={orders}
+        // platforms={platforms}
+        numberOrders={orders.length}
+        averageTime={this.props.averageTime}
+        averageDistance={this.props.averageDistance}
+        dollarOrder={this.props.dollarOrder}
+        dollarHour={this.props.dollarHour}
+        dollarMile={this.props.dollarMile}
+        // averageTime={(data) => this.averageTime(data).toFixed(2)}
+        // averageDistance={(data) => this.averageDistance(data).toFixed(2)}
+        // dollarOrder={(data) => this.dollarOrder(data).toFixed(2)}
+        // dollarHour={(data) => this.dollarHour(data).toFixed(2)}
+        // dollarMile={(data) => this.dollarMile(data).toFixed(2)}
+      />
       <Day
         orders={orders}
         averageTime={this.props.averageTime}

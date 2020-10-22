@@ -79,16 +79,6 @@ class Analysis extends Component {
     return (
       <div>
         <h1>Platform</h1>
-        <Platform
-          orders={orders}
-          platforms={platforms}
-          numberOrders={orders.length}
-          averageTime={(data) => this.averageTime(data).toFixed(2)}
-          averageDistance={(data) => this.averageDistance(data).toFixed(2)}
-          dollarOrder={(data) => this.dollarOrder(data).toFixed(2)}
-          dollarHour={(data) => this.dollarHour(data).toFixed(2)}
-          dollarMile={(data) => this.dollarMile(data).toFixed(2)}
-        />
         <AnalysisSelect
           user={this.props.user}
           orders={orders}
