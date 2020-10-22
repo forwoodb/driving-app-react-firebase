@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {LocationHeader} from './Location.js';
+import {SelectHeader} from './Location.js';
 import Platform from './Platform.js';
 import Time from './Time.js';
 import Location from './Location.js';
@@ -15,10 +15,13 @@ export default class AnalysisSelect extends Component {
       location: '',
       days: [],
       day: '',
+      times: this.props.times,
+      time: '',
     }
     this.handleLocationChange = this.handleLocationChange.bind(this);
     this.handlePlatformChange = this.handlePlatformChange.bind(this);
     this.handleDayChange = this.handleDayChange.bind(this);
+    this.handleTimeChange = this.handleTimeChange.bind(this);
   }
 
   handleLocationChange(e) {
@@ -39,11 +42,18 @@ export default class AnalysisSelect extends Component {
     })
   }
 
+  handleTimeChange(e) {
+    this.setState({
+      time: e.target.value,
+    })
+  }
+
   render() {
     let orders = this.props.orders;
     let location = this.state.location;
     let platform = this.state.platform;
     let day = this.state.day;
+    let time = this.state.time;
     // let locations = orders.map(order => order.location);
     // locations = [...new Set(locations)].sort();
 
@@ -63,10 +73,30 @@ export default class AnalysisSelect extends Component {
       orders = orders.filter(order => order.date.includes(day));
     }
 
+    if (time === 'All') {
+      orders = this.props.orders;
+    } else if (time) {
+      orders = orders.filter((order) => {
+          return (
+            order.time >= time && order.time < (parseInt(time) + 1 + ':00:00')
+            ||
+            order.startTime >= time && order.startTime < (parseInt(time) + 1 + ':00:00')
+          )
+        }
+      );
+    }
+
     return (
       <div>
       <table className="table table-striped table-hover">
-        <LocationHeader/>
+        <thead>
+          <tr>
+            <th className="text-center">Location</th>
+            <th className="text-center">Platform</th>
+            <th className="text-center">Day</th>
+            <th className="text-center">Time</th>
+          </tr>
+        </thead>
         <tbody>
           <tr>
             <td className="text-center">
@@ -101,6 +131,49 @@ export default class AnalysisSelect extends Component {
                 <option>Sun</option>
               </select>
             </td>
+            <td className="text-center">
+              <select value={this.state.time} onChange={this.handleTimeChange}>
+                <option>All</option>
+                <option>00:00:00</option>
+                <option>01:00:00</option>
+                <option>02:00:00</option>
+                <option>03:00:00</option>
+                <option>04:00:00</option>
+                <option>05:00:00</option>
+                <option>06:00:00</option>
+                <option>07:00:00</option>
+                <option>08:00:00</option>
+                <option>09:00:00</option>
+                <option>10:00:00</option>
+                <option>11:00:00</option>
+                <option>12:00:00</option>
+                <option>13:00:00</option>
+                <option>14:00:00</option>
+                <option>15:00:00</option>
+                <option>16:00:00</option>
+                <option>17:00:00</option>
+                <option>18:00:00</option>
+                <option>19:00:00</option>
+                <option>20:00:00</option>
+                <option>21:00:00</option>
+                <option>22:00:00</option>
+                <option>23:00:00</option>
+              </select>
+            </td>
+          </tr>
+        </tbody>
+        <thead>
+          <tr>
+            <th className="text-center"># of Orders</th>
+            <th className="text-center">Average Time</th>
+            <th className="text-center">Average Distance</th>
+            <th className="text-center">$/Order</th>
+            <th className="text-center">$/Hour</th>
+            <th className="text-center">$/Mile</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
             <td className="text-center">{orders.length}</td>
             <td className="text-center">{this.props.averageTime(orders)}</td>
             <td className="text-center">{this.props.averageDistance(orders)}</td>
@@ -113,18 +186,12 @@ export default class AnalysisSelect extends Component {
 
       <Platform
         orders={orders}
-        // platforms={platforms}
         numberOrders={orders.length}
         averageTime={this.props.averageTime}
         averageDistance={this.props.averageDistance}
         dollarOrder={this.props.dollarOrder}
         dollarHour={this.props.dollarHour}
         dollarMile={this.props.dollarMile}
-        // averageTime={(data) => this.averageTime(data).toFixed(2)}
-        // averageDistance={(data) => this.averageDistance(data).toFixed(2)}
-        // dollarOrder={(data) => this.dollarOrder(data).toFixed(2)}
-        // dollarHour={(data) => this.dollarHour(data).toFixed(2)}
-        // dollarMile={(data) => this.dollarMile(data).toFixed(2)}
       />
       <Day
         orders={orders}
