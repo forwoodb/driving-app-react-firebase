@@ -206,9 +206,9 @@ export default class EditOrder extends Component {
                   onChange={this.handlePlatformChange}
                 >
                   <option>All Platforms</option>
-                  <option>UberEats</option>
-                  <option>GrubHub</option>
                   <option>DoorDash</option>
+                  <option>GrubHub</option>
+                  <option>UberEats</option>
                 </select>
             </div>
             <div className="col input-group-sm">
@@ -257,7 +257,7 @@ export default class EditOrder extends Component {
               />
             </div>
           </div>
-          <button className="btn btn-primary btn-sm mb-3" type="submit">Update</button>
+          <button className="btn btn-primary btn-sm mb-3">Update</button>
         </form>
       </div>
     );
