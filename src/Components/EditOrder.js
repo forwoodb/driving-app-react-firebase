@@ -64,20 +64,6 @@ export default class EditOrder extends Component {
         user = 'demo';
       }
 
-      console.log(user);
-      //
-      // for (var order in data) {
-      //   if (data[order].user === user) {
-      //     orders.push({...data[order]})
-      //   }
-      // }
-      // console.log(orders);
-      //
-      // // Locations list
-      // let locations = orders.map(order => order.location);
-      // locations = [...new Set(locations)];
-      // console.log(locations);
-
       this.getLocations()
 
       this.setState({
@@ -158,7 +144,6 @@ export default class EditOrder extends Component {
   }
 
   render() {
-    console.log(this.state.locations);
     return (
       <div>
         <h2 className="text-center">Edit Order</h2>

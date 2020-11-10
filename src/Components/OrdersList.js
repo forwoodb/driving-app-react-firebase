@@ -46,8 +46,8 @@ class OrdersList extends Component {
               location={order.location}
               platform={order.platform}
               duration={order.duration}
-              distance={order.distance}
-              earnings={order.earnings}
+              distance={Number(order.distance).toFixed(2)}
+              earnings={Number(order.earnings).toFixed(2)}
               onDelete={() => this.props.onDelete(order.id)}
             />
           )}
