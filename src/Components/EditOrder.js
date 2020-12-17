@@ -6,6 +6,7 @@ export default class EditOrder extends Component {
     super(props);
     this.state = {
       locations: [],
+      areas: [],
       location: '',
       area: '',
       platform: '',
@@ -48,8 +49,13 @@ export default class EditOrder extends Component {
       let locations = orders.map(order => order.location);
       locations = [...new Set(locations)];
 
+      // Areas list
+      let areas = orders.map(order => order.area);
+      areas = [...new Set(areas)];
+
       this.setState({
         locations: locations,
+        areas: areas,
       })
     });
   }
@@ -190,7 +196,7 @@ export default class EditOrder extends Component {
               </datalist>
             </div>
             <div className="col input-group-sm">
-              <label htmlFor="location">Area</label>
+              <label htmlFor="area">Area</label>
               <input
                 id="area"
                 className="form-control"
@@ -198,7 +204,13 @@ export default class EditOrder extends Component {
                 type="text"
                 value={this.state.area}
                 onChange={this.handleAreaChange}
+                list="areas"
               />
+              <datalist id="areas">
+                {this.state.areas.sort().map((area, index) => {
+                  return <option key={index} value={area}/>
+                })}
+              </datalist>
             </div>
           </div>
           <div className="form-row mb-3">
