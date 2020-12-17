@@ -3,6 +3,7 @@ import {SelectHeader} from './Location.js';
 import Platform from './Platform.js';
 import Time from './Time.js';
 import Location from './Location.js';
+import Area from './Area.js';
 import Day from './Day.js';
 
 export default class AnalysisSelect extends Component {
@@ -231,6 +232,17 @@ export default class AnalysisSelect extends Component {
       />
       <Time
         orders={orders}
+        averageTime={this.props.averageTime}
+        averageDistance={this.props.averageDistance}
+        dollarOrder={this.props.dollarOrder}
+        dollarHour={this.props.dollarHour}
+        dollarMile={this.props.dollarMile}
+      />
+      <Area
+        orders={orders}
+        areas={this.props.areas}
+        platform={platform}
+        day={day}
         averageTime={this.props.averageTime}
         averageDistance={this.props.averageDistance}
         dollarOrder={this.props.dollarOrder}
