@@ -7,6 +7,8 @@ export default class NewOrder extends Component {
     this.state = {
       locations: [],
       location: '',
+      areas: [],
+      area: '',
       platform: 'All Platforms',
       startTime: '',
     }
@@ -39,6 +41,9 @@ export default class NewOrder extends Component {
       let locations = orders.map(order => order.location);
       locations = [...new Set(locations)];
 
+      // Areas List
+      let areas = orders.map(order => order.area);
+      areas = [...new Set(areas)];
 
       if (locationValue) {
         orders = orders.filter(order => order.location === locationValue);
@@ -74,6 +79,7 @@ export default class NewOrder extends Component {
       this.__isMounted &&
       this.setState({
         locations: locations,
+        areas: areas,
         location: locationValue,
         platform: platformValue,
         numberOrders: orders.length,
@@ -150,13 +156,13 @@ export default class NewOrder extends Component {
           </div>
           <div className="form-row mb-3">
             <div className="col input-group-sm">
-                <input
-                  className="form-control"
-                  type="text"
-                  name="startTime"
-                  placeholder="Start Time"
-                  value={this.state.startTime} onChange={this.handleStartTimeChange}
-                />
+              <input
+                className="form-control"
+                type="text"
+                name="startTime"
+                placeholder="Start Time"
+                value={this.state.startTime} onChange={this.handleStartTimeChange}
+              />
             </div>
           </div>
           <div className="form-row mb-3">
@@ -176,11 +182,18 @@ export default class NewOrder extends Component {
             </div>
             <div className="col input-group-sm">
               <input
+                className="form-control"
                 type="text"
                 name="area"
                 className="form-control"
                 placeholder="Area"
+                list="areas"
               />
+              <datalist id="areas">
+                {this.state.areas.sort().map((area, index) => {
+                  return <option key={index} value={area}/>
+                })}
+              </datalist>
             </div>
           </div>
           <div className="form-row mb-3">
