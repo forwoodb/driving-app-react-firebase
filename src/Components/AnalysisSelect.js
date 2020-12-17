@@ -12,13 +12,16 @@ export default class AnalysisSelect extends Component {
     this.state = {
       orders: this.props.orders,
       locations: [],
+      areas: [],
       location: '',
+      area: '',
       days: [],
       day: '',
       times: this.props.times,
       time: '',
     }
     this.handleLocationChange = this.handleLocationChange.bind(this);
+    this.handleAreaChange = this.handleAreaChange.bind(this);
     this.handlePlatformChange = this.handlePlatformChange.bind(this);
     this.handleDayChange = this.handleDayChange.bind(this);
     this.handleTimeChange = this.handleTimeChange.bind(this);
@@ -27,6 +30,12 @@ export default class AnalysisSelect extends Component {
   handleLocationChange(e) {
     this.setState({
       location: e.target.value,
+    })
+  }
+
+  handleAreaChange(e) {
+    this.setState({
+      area: e.target.value,
     })
   }
 
@@ -51,6 +60,7 @@ export default class AnalysisSelect extends Component {
   render() {
     let orders = this.props.orders;
     let location = this.state.location;
+    let area = this.state.area;
     let platform = this.state.platform;
     let day = this.state.day;
     let time = this.state.time;
@@ -59,6 +69,10 @@ export default class AnalysisSelect extends Component {
 
     if (location) {
       orders = orders.filter(order => order.location === location);
+    }
+
+    if (area) {
+      orders = orders.filter(order => order.area === area);
     }
 
     if (platform === 'All') {
@@ -93,6 +107,7 @@ export default class AnalysisSelect extends Component {
         <thead>
           <tr>
             <th className="text-center">Location</th>
+            <th className="text-center">Area</th>
             <th className="text-center">Platform</th>
             <th className="text-center">Day</th>
             <th className="text-center">Time</th>
@@ -108,6 +123,18 @@ export default class AnalysisSelect extends Component {
               <datalist id="locations">
                 {this.props.locations.sort().map((location, index) => {
                   return <option key={index} value={location}/>
+                })}
+
+              </datalist>
+            </td>
+            <td className="text-center">
+              <input
+                value={this.state.area} onChange={this.handleAreaChange}
+                list="areas" name="area" id="area"
+              />
+              <datalist id="areas">
+                {this.props.areas.sort().map((area, index) => {
+                  return <option key={index} value={area}/>
                 })}
 
               </datalist>
