@@ -21,6 +21,7 @@ class OrdersList extends Component {
             <th scope="col" className="text-center">Date</th>
             <th scope="col" className="text-center">Time</th>
             <th scope="col" className="text-center">Location</th>
+            <th scope="col" className="text-center">Area</th>
             <th scope="col" className="text-center">Platform</th>
             <th scope="col" className="text-center">Duration</th>
             <th scope="col" className="text-center">Distance</th>
@@ -44,6 +45,7 @@ class OrdersList extends Component {
               date={order.date}
               startTime={order.startTime || order.time}
               location={order.location}
+              area={order.area}
               platform={order.platform}
               duration={order.duration}
               distance={Number(order.distance).toFixed(2)}
@@ -64,6 +66,7 @@ function Order(props) {
       <td className="text-center" width="275px">{props.date}</td>
       <td className="text-center" width="275px">{props.startTime}</td>
       <td className="text-center" width="275px">{props.location}</td>
+      <td className="text-center" width="275px">{props.area}</td>
       <td className="text-center" width="275px">{props.platform}</td>
       <td className="text-center" width="275px">{props.duration}</td>
       <td className="text-center" width="275px">{props.distance}</td>

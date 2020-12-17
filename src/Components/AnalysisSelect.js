@@ -85,6 +85,7 @@ export default class AnalysisSelect extends Component {
         }
       );
     }
+    console.log('0' + (parseInt(time) + 1) + ':00:00');
 
     return (
       <div>

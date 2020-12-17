@@ -124,6 +124,7 @@ export default class NewOrder extends Component {
       startTime: e.target.startTime.value,
       endTime: new Date().toTimeString(),
       location: e.target.location.value,
+      area: e.target.area.value,
       platform: e.target.platform.value,
       duration: e.target.duration.value,
       distance: e.target.distance.value,
@@ -134,6 +135,7 @@ export default class NewOrder extends Component {
       location: '',
       startTime: '',
     })
+    e.target.elements.area.value = '';
     e.target.elements.duration.value = '';
     e.target.elements.distance.value = '';
     e.target.elements.earnings.value = '';
@@ -172,6 +174,14 @@ export default class NewOrder extends Component {
                 })}
               </datalist>
             </div>
+            <div className="col input-group-sm">
+              <input
+                type="text"
+                name="area"
+                className="form-control"
+                placeholder="Area"
+              />
+            </div>
           </div>
           <div className="form-row mb-3">
             <div className="col input-group-sm">
@@ -188,12 +198,12 @@ export default class NewOrder extends Component {
               </select>
             </div>
             <div className="col input-group-sm">
-                <input
-                  type="text"
-                  name="duration"
-                  className="form-control"
-                  placeholder="Duration"
-                />
+              <input
+                type="text"
+                name="duration"
+                className="form-control"
+                placeholder="Duration"
+              />
             </div>
           </div>
           <div className="form-row mb-3">

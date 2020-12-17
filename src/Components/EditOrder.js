@@ -7,6 +7,7 @@ export default class EditOrder extends Component {
     this.state = {
       locations: [],
       location: '',
+      area: '',
       platform: '',
       startTime: '',
       date: '',
@@ -15,6 +16,7 @@ export default class EditOrder extends Component {
       earnings: '',
     }
     this.handleLocationChange = this.handleLocationChange.bind(this);
+    this.handleAreaChange = this.handleAreaChange.bind(this);
     this.handlePlatformChange = this.handlePlatformChange.bind(this);
     this.handleStartTimeChange = this.handleStartTimeChange.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
@@ -68,6 +70,7 @@ export default class EditOrder extends Component {
 
       this.setState({
         location: data.location,
+        area: data.area,
         platform: data.platform,
         startTime: data.startTime || data.time,
         date: data.date,
@@ -81,6 +84,13 @@ export default class EditOrder extends Component {
   handleLocationChange(e) {
     this.setState({
       location: e.target.value,
+    })
+  }
+
+  handleAreaChange(e) {
+    let area = this.state
+    this.setState({
+      area: e.target.value,
     })
   }
 
@@ -124,6 +134,7 @@ export default class EditOrder extends Component {
     e.preventDefault();
     const editOrder = {
       location: e.target.location.value,
+      area: e.target.area.value,
       platform: e.target.platform.value,
       startTime: e.target.startTime.value,
       date: e.target.date.value,
@@ -162,21 +173,32 @@ export default class EditOrder extends Component {
           </div>
           <div className="form-row mb-3">
             <div className="col input-group-sm">
-                <label htmlFor="location">Location</label>
-                <input
-                  id="location"
-                  className="form-control"
-                  name="location"
-                  type="text"
-                  value={this.state.location}
-                  onChange={this.handleLocationChange}
-                  list="locations"
-                />
-                <datalist id="locations">
-                  {this.state.locations.sort().map((location, index) => {
-                    return <option key={index} value={location}/>
-                  })}
-                </datalist>
+              <label htmlFor="location">Location</label>
+              <input
+                id="location"
+                className="form-control"
+                name="location"
+                type="text"
+                value={this.state.location}
+                onChange={this.handleLocationChange}
+                list="locations"
+              />
+              <datalist id="locations">
+                {this.state.locations.sort().map((location, index) => {
+                  return <option key={index} value={location}/>
+                })}
+              </datalist>
+            </div>
+            <div className="col input-group-sm">
+              <label htmlFor="location">Area</label>
+              <input
+                id="area"
+                className="form-control"
+                name="area"
+                type="text"
+                value={this.state.area}
+                onChange={this.handleAreaChange}
+              />
             </div>
           </div>
           <div className="form-row mb-3">
