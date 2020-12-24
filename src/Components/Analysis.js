@@ -109,6 +109,7 @@ class Analysis extends Component {
 
     return (
       <div>
+        <h1>Platform</h1>
         <AnalysisSelect
           user={this.props.user}
           orders={orders}

@@ -112,7 +112,6 @@ export default class AnalysisSelect extends Component {
 
     return (
       <div>
-      <h1>Select</h1>
       <table className="table table-striped table-hover">
         <thead>
           <tr>
