@@ -90,7 +90,16 @@ export default class AnalysisSelect extends Component {
 
     if (time === 'All') {
       orders = this.props.orders;
-    } else if (time) {
+    } else if (time >= "00:00:00" && time < "10:00:00") {
+      orders = orders.filter((order) => {
+          return (
+            order.time >= time && order.time < ('0' + (parseInt(time) + 1) + ':00:00')
+            ||
+            order.startTime >= time && order.startTime < ('0' + (parseInt(time) + 1) + ':00:00')
+          )
+        }
+      );
+    } else if (time >= "10:00:00") {
       orders = orders.filter((order) => {
           return (
             order.time >= time && order.time < (parseInt(time) + 1 + ':00:00')
@@ -100,10 +109,10 @@ export default class AnalysisSelect extends Component {
         }
       );
     }
-    console.log('0' + (parseInt(time) + 1) + ':00:00');
 
     return (
       <div>
+      <h1>Select</h1>
       <table className="table table-striped table-hover">
         <thead>
           <tr>

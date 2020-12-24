@@ -145,6 +145,8 @@ export default class NewOrder extends Component {
     e.target.elements.duration.value = '';
     e.target.elements.distance.value = '';
     e.target.elements.earnings.value = '';
+
+    console.log(e.target.platform.value);
   }
 
   render() {

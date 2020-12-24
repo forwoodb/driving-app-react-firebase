@@ -3,36 +3,39 @@ import React, {Component} from 'react';
 export default class Area extends Component {
   render() {
     return (
-      <table className="table table-striped table-hover">
-        <AreaHeader/>
-        <tbody>
-        {
-          this.props.areas.map((area, index) => {
-            let areaOrders = this.props.orders.filter(order => order.area === area);
-            // let platform = orders.filter(order => order.platform);
-            if (areaOrders.length > 0) {
-              return (
-                <AnalysisArea
-                  user={this.props.user}
-                  key={index}
-                  area={area}
-                  platform={this.props.platform}
-                  day={this.props.day}
-                  numberOrders={areaOrders.length}
-                  averageTime={this.props.averageTime(areaOrders)}
-                  averageDistance={this.props.averageDistance(areaOrders)}
-                  dollarOrder={this.props.dollarOrder(areaOrders)}
-                  dollarHour={this.props.dollarHour(areaOrders)}
-                  dollarMile={this.props.dollarMile(areaOrders)}
-                />
-              );
-            }
-          }).sort((x,y) => {
-            return y.props.dollarHour - x.props.dollarHour;
-          })
-        }
-        </tbody>
-      </table>
+      <div>
+        <h1>Area</h1>
+        <table className="table table-striped table-hover">
+          <AreaHeader/>
+          <tbody>
+          {
+            this.props.areas.map((area, index) => {
+              let areaOrders = this.props.orders.filter(order => order.area === area);
+              // let platform = orders.filter(order => order.platform);
+              if (areaOrders.length > 0) {
+                return (
+                  <AnalysisArea
+                    user={this.props.user}
+                    key={index}
+                    area={area}
+                    platform={this.props.platform}
+                    day={this.props.day}
+                    numberOrders={areaOrders.length}
+                    averageTime={this.props.averageTime(areaOrders)}
+                    averageDistance={this.props.averageDistance(areaOrders)}
+                    dollarOrder={this.props.dollarOrder(areaOrders)}
+                    dollarHour={this.props.dollarHour(areaOrders)}
+                    dollarMile={this.props.dollarMile(areaOrders)}
+                  />
+                );
+              }
+            }).sort((x,y) => {
+              return y.props.dollarHour - x.props.dollarHour;
+            })
+          }
+          </tbody>
+        </table>
+      </div>
     );
   }
 }

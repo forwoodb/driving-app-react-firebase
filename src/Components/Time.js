@@ -30,48 +30,51 @@ export default class Time extends Component {
       "24:00:00",
     ]
     return (
-      <table className="table table-striped table-hover">
-        <thead>
-          <tr>
-            <th className="text-center">Time</th>
-            <th className="text-center"># of Orders</th>
-            <th className="text-center">Average Time</th>
-            <th className="text-center">Average Distance</th>
-            <th className="text-center">$/Order</th>
-            <th className="text-center">$/Hour</th>
-            <th className="text-center">$/Mile</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            times.map((time, index, times) => {
-              let timeOrders = this.props.orders.filter((order) => {
-                return (
-                  (order.startTime >= time && order.startTime < times[index + 1])
-                  ||
-                  (order.time >= time && order.time < times[index + 1])
-                );
-              })
-              if (timeOrders.length > 0) {
-                return (
-                  <AnalysisTime
-                    user={this.props.user}
-                    key={index}
-                    time={time}
-                    numberOrders={timeOrders.length}
-                    averageTime={this.props.averageTime(timeOrders)}
-                    averageDistance={this.props.averageDistance(timeOrders)}
-                    dollarOrder={this.props.dollarOrder(timeOrders)}
-                    dollarHour={this.props.dollarHour(timeOrders)}
-                    dollarMile={this.props.dollarMile(timeOrders)}
-                  />
-                );
+      <div>
+        <h1>Time</h1>
+        <table className="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th className="text-center">Time</th>
+              <th className="text-center"># of Orders</th>
+              <th className="text-center">Average Time</th>
+              <th className="text-center">Average Distance</th>
+              <th className="text-center">$/Order</th>
+              <th className="text-center">$/Hour</th>
+              <th className="text-center">$/Mile</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              times.map((time, index, times) => {
+                let timeOrders = this.props.orders.filter((order) => {
+                  return (
+                    (order.startTime >= time && order.startTime < times[index + 1])
+                    ||
+                    (order.time >= time && order.time < times[index + 1])
+                  );
+                })
+                if (timeOrders.length > 0) {
+                  return (
+                    <AnalysisTime
+                      user={this.props.user}
+                      key={index}
+                      time={time}
+                      numberOrders={timeOrders.length}
+                      averageTime={this.props.averageTime(timeOrders)}
+                      averageDistance={this.props.averageDistance(timeOrders)}
+                      dollarOrder={this.props.dollarOrder(timeOrders)}
+                      dollarHour={this.props.dollarHour(timeOrders)}
+                      dollarMile={this.props.dollarMile(timeOrders)}
+                    />
+                  );
 
-              }
-            })
-          }
-        </tbody>
-      </table>
+                }
+              })
+            }
+          </tbody>
+        </table>
+      </div>
     );
   }
 }

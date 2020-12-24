@@ -9,7 +9,8 @@ export default class Platform extends Component {
 
     return (
       <div>
-        <table className="table table-striped table-hover">
+        <h1>Platform</h1>
+        <table className="table table-striped table-hover table-responsive-stack">
           <thead>
             <tr>
               <th className="text-center">Platform</th>

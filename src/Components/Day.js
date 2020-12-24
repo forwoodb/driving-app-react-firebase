@@ -12,43 +12,46 @@ export default class Day extends Component {
       "Sun",
     ]
     return (
-      <table className="table table-striped table-hover">
-        <thead>
-          <tr>
-            <th className="text-center">Day</th>
-            <th className="text-center"># of Orders</th>
-            <th className="text-center">Average Time</th>
-            <th className="text-center">Average Distance</th>
-            <th className="text-center">$/Order</th>
-            <th className="text-center">$/Hour</th>
-            <th className="text-center">$/Mile</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            days.map((day, index) => {
-              let dayOrders = this.props.orders.filter(order => order.date.includes(day));
+      <div>
+        <h1>Day</h1>
+        <table className="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th className="text-center">Day</th>
+              <th className="text-center"># of Orders</th>
+              <th className="text-center">Average Time</th>
+              <th className="text-center">Average Distance</th>
+              <th className="text-center">$/Order</th>
+              <th className="text-center">$/Hour</th>
+              <th className="text-center">$/Mile</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              days.map((day, index) => {
+                let dayOrders = this.props.orders.filter(order => order.date.includes(day));
 
-              if (dayOrders.length > 0) {
-                return (
-                  <AnalysisDay
-                    user={this.props.user}
-                    key={index}
-                    day={day}
-                    numberOrders={dayOrders.length}
-                    averageTime={this.props.averageTime(dayOrders)}
-                    averageDistance={this.props.averageDistance(dayOrders)}
-                    dollarOrder={this.props.dollarOrder(dayOrders)}
-                    dollarHour={this.props.dollarHour(dayOrders)}
-                    dollarMile={this.props.dollarMile(dayOrders)}
-                  />
-                );
+                if (dayOrders.length > 0) {
+                  return (
+                    <AnalysisDay
+                      user={this.props.user}
+                      key={index}
+                      day={day}
+                      numberOrders={dayOrders.length}
+                      averageTime={this.props.averageTime(dayOrders)}
+                      averageDistance={this.props.averageDistance(dayOrders)}
+                      dollarOrder={this.props.dollarOrder(dayOrders)}
+                      dollarHour={this.props.dollarHour(dayOrders)}
+                      dollarMile={this.props.dollarMile(dayOrders)}
+                    />
+                  );
 
-              }
-            })
-          }
-        </tbody>
-      </table>
+                }
+              })
+            }
+          </tbody>
+        </table>
+      </div>
     );
   }
 }
