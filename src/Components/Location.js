@@ -5,7 +5,7 @@ export default class Location extends Component {
     return (
       <div>
         <h1>Location</h1>
-        <table className="table table-striped table-hover">
+        <table className="table-sm table-striped table-hover">
           <LocationHeader/>
           <tbody>
           {

@@ -32,7 +32,7 @@ export default class Time extends Component {
     return (
       <div>
         <h1>Time</h1>
-        <table className="table table-striped table-hover">
+        <table className="table-sm table-striped table-hover">
           <thead>
             <tr>
               <th className="text-center">Time</th>

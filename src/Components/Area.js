@@ -5,7 +5,7 @@ export default class Area extends Component {
     return (
       <div>
         <h1>Area</h1>
-        <table className="table table-striped table-hover">
+        <table className="table-sm table-striped table-hover">
           <AreaHeader/>
           <tbody>
           {
