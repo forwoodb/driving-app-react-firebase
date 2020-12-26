@@ -46,9 +46,6 @@ export function LocationHeader() {
     <thead>
       <tr>
         <th className="text-center">Location</th>
-        <th className="text-center">Area</th>
-        <th className="text-center">Platform</th>
-        <th className="text-center">Day</th>
         <th className="text-center"># of Orders</th>
         <th className="text-center">Average Time</th>
         <th className="text-center">Average Distance</th>
@@ -64,9 +61,6 @@ function AnalysisLocation(props) {
   return (
     <tr>
       <td className="text-center">{props.location}</td>
-      <td className="text-center">{props.area}</td>
-      <td className="text-center">{props.platform}</td>
-      <td className="text-center">{props.day}</td>
       <td className="text-center">{props.numberOrders}</td>
       <td className="text-center">{props.averageTime}</td>
       <td className="text-center">{props.averageDistance}</td>

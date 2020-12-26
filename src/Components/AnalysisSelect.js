@@ -20,6 +20,7 @@ export default class AnalysisSelect extends Component {
       day: '',
       times: this.props.times,
       time: '',
+      table: '',
     }
     this.handleLocationChange = this.handleLocationChange.bind(this);
     this.handleAreaChange = this.handleAreaChange.bind(this);
@@ -53,6 +54,36 @@ export default class AnalysisSelect extends Component {
   }
 
   handleTimeChange(e) {
+    this.setState({
+      time: e.target.value,
+    })
+  }
+
+  handleLocationClick(e) {
+    this.setState({
+      location: e.target.value,
+    })
+  }
+
+  handleAreaClick(e) {
+    this.setState({
+      area: e.target.value,
+    })
+  }
+
+  handlePlatformClick(e) {
+    this.setState({
+      platform: e.target.value,
+    })
+  }
+
+  handleDayClick(e) {
+    this.setState({
+      day: e.target.value,
+    })
+  }
+
+  handleTimeClick(e) {
     this.setState({
       time: e.target.value,
     })
@@ -113,93 +144,106 @@ export default class AnalysisSelect extends Component {
     return (
       <div>
       <h1>Select</h1>
-      <table className="table-sm table-striped table-hover table-responsive">
-        <thead>
-          <tr>
-            <th className="text-center">Location</th>
-            <th className="text-center">Area</th>
-            <th className="text-center">Platform</th>
-            <th className="text-center">Day</th>
-            <th className="text-center">Time</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td className="text-center">
-              <input
-                value={this.state.location} onChange={this.handleLocationChange}
-                list="locations" name="location" id="location"
-              />
-              <datalist id="locations">
-                {this.props.locations.sort().map((location, index) => {
-                  return <option key={index} value={location}/>
-                })}
+      <form>
+        <div className="form-row mb-3">
+          <div className="col input-group-sm">
+            <label htmlFor="location">Location</label>
+            <input
+              className="form-control"
+              value={this.state.location} onChange={this.handleLocationChange}
+              list="locations" name="location" id="location"
+            />
+            <datalist id="locations">
+              {this.props.locations.sort().map((location, index) => {
+                return <option key={index} value={location}/>
+              })}
 
-              </datalist>
-            </td>
-            <td className="text-center">
-              <input
-                value={this.state.area} onChange={this.handleAreaChange}
-                list="areas" name="area" id="area"
-              />
-              <datalist id="areas">
-                {this.props.areas.sort().map((area, index) => {
-                  return <option key={index} value={area}/>
-                })}
+            </datalist>
+          </div>
+          <div className="col input-group-sm">
+            <label htmlFor="area">Area</label>
+            <input
+              className="form-control"
+              value={this.state.area} onChange={this.handleAreaChange}
+              list="areas" name="area" id="area"
+            />
+            <datalist id="areas">
+              {this.props.areas.sort().map((area, index) => {
+                return <option key={index} value={area}/>
+              })}
 
-              </datalist>
-            </td>
-            <td className="text-center">
-              <select value={this.state.platform} onChange={this.handlePlatformChange}>
-                <option>All</option>
-                <option>DoorDash</option>
-                <option>GrubHub</option>
-                <option>UberEats</option>
-              </select>
-            </td>
-            <td className="text-center">
-              <select value={this.state.day} onChange={this.handleDayChange}>
-                <option>All</option>
-                <option>Mon</option>
-                <option>Tue</option>
-                <option>Wed</option>
-                <option>Thu</option>
-                <option>Fri</option>
-                <option>Sat</option>
-                <option>Sun</option>
-              </select>
-            </td>
-            <td className="text-center">
-              <select value={this.state.time} onChange={this.handleTimeChange}>
-                <option>All</option>
-                <option>00:00:00</option>
-                <option>01:00:00</option>
-                <option>02:00:00</option>
-                <option>03:00:00</option>
-                <option>04:00:00</option>
-                <option>05:00:00</option>
-                <option>06:00:00</option>
-                <option>07:00:00</option>
-                <option>08:00:00</option>
-                <option>09:00:00</option>
-                <option>10:00:00</option>
-                <option>11:00:00</option>
-                <option>12:00:00</option>
-                <option>13:00:00</option>
-                <option>14:00:00</option>
-                <option>15:00:00</option>
-                <option>16:00:00</option>
-                <option>17:00:00</option>
-                <option>18:00:00</option>
-                <option>19:00:00</option>
-                <option>20:00:00</option>
-                <option>21:00:00</option>
-                <option>22:00:00</option>
-                <option>23:00:00</option>
-              </select>
-            </td>
-          </tr>
-        </tbody>
+            </datalist>
+          </div>
+        </div>
+        <div className="form-row mb-3">
+          <div className="col input-group-sm">
+            <label htmlFor="platform">Platform</label>
+            <select
+              className="form-control"
+              value={this.state.platform}
+              onChange={this.handlePlatformChange}
+            >
+              <option>All</option>
+              <option>DoorDash</option>
+              <option>GrubHub</option>
+              <option>UberEats</option>
+            </select>
+          </div>
+          <div className="col input-group-sm">
+            <label htmlFor="day">Day</label>
+            <select
+              className="form-control"
+              value={this.state.day}
+              onChange={this.handleDayChange}
+            >
+              <option>All</option>
+              <option>Mon</option>
+              <option>Tue</option>
+              <option>Wed</option>
+              <option>Thu</option>
+              <option>Fri</option>
+              <option>Sat</option>
+              <option>Sun</option>
+            </select>
+          </div>
+          <div className="col input-group-sm">
+            <label htmlFor="time">Time</label>
+            <select
+              className="form-control"
+              value={this.state.time}
+              onChange={this.handleTimeChange}
+            >
+              <option>All</option>
+              <option>00:00:00</option>
+              <option>01:00:00</option>
+              <option>02:00:00</option>
+              <option>03:00:00</option>
+              <option>04:00:00</option>
+              <option>05:00:00</option>
+              <option>06:00:00</option>
+              <option>07:00:00</option>
+              <option>08:00:00</option>
+              <option>09:00:00</option>
+              <option>10:00:00</option>
+              <option>11:00:00</option>
+              <option>12:00:00</option>
+              <option>13:00:00</option>
+              <option>14:00:00</option>
+              <option>15:00:00</option>
+              <option>16:00:00</option>
+              <option>17:00:00</option>
+              <option>18:00:00</option>
+              <option>19:00:00</option>
+              <option>20:00:00</option>
+              <option>21:00:00</option>
+              <option>22:00:00</option>
+              <option>23:00:00</option>
+            </select>
+          </div>
+        </div>
+      </form>
+
+      <table className="table-sm table-striped table-hover table-responsive mb-3">
         <thead>
           <tr>
             <th className="text-center"># of Orders</th>
@@ -221,6 +265,24 @@ export default class AnalysisSelect extends Component {
           </tr>
         </tbody>
       </table>
+
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Platform</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Day</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Time</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Area</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Location</a>
+        </li>
+      </ul>
 
       <Platform
         orders={orders}
