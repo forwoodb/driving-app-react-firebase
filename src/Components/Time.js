@@ -31,7 +31,7 @@ export default class Time extends Component {
     ]
     return (
       <div>
-        <h1>Time</h1>
+        <h3>Time</h3>
         <table className="table-sm table-striped table-hover table-responsive">
           <thead>
             <tr>

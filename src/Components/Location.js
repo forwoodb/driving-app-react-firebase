@@ -4,7 +4,7 @@ export default class Location extends Component {
   render() {
     return (
       <div>
-        <h1>Location</h1>
+        <h3>Location</h3>
         <table className="table-sm table-striped table-hover table-responsive">
           <LocationHeader/>
           <tbody>

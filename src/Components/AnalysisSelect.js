@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+
+import TableSelect from './TableSelect.js';
 import {SelectHeader} from './Location.js';
 import Platform from './Platform.js';
 import Time from './Time.js';
@@ -20,13 +22,13 @@ export default class AnalysisSelect extends Component {
       day: '',
       times: this.props.times,
       time: '',
-      table: '',
     }
     this.handleLocationChange = this.handleLocationChange.bind(this);
     this.handleAreaChange = this.handleAreaChange.bind(this);
     this.handlePlatformChange = this.handlePlatformChange.bind(this);
     this.handleDayChange = this.handleDayChange.bind(this);
     this.handleTimeChange = this.handleTimeChange.bind(this);
+
   }
 
   handleLocationChange(e) {
@@ -59,37 +61,8 @@ export default class AnalysisSelect extends Component {
     })
   }
 
-  handleLocationClick(e) {
-    this.setState({
-      location: e.target.value,
-    })
-  }
-
-  handleAreaClick(e) {
-    this.setState({
-      area: e.target.value,
-    })
-  }
-
-  handlePlatformClick(e) {
-    this.setState({
-      platform: e.target.value,
-    })
-  }
-
-  handleDayClick(e) {
-    this.setState({
-      day: e.target.value,
-    })
-  }
-
-  handleTimeClick(e) {
-    this.setState({
-      time: e.target.value,
-    })
-  }
-
   render() {
+
     let orders = this.props.orders;
     let location = this.state.location;
     let area = this.state.area;
@@ -141,196 +114,145 @@ export default class AnalysisSelect extends Component {
       );
     }
 
+    let table = this.state.table;
+
+
+
     return (
       <div>
-      <h1>Select</h1>
-      <form>
-        <div className="form-row mb-3">
-          <div className="col input-group-sm">
-            <label htmlFor="location">Location</label>
-            <input
-              className="form-control"
-              value={this.state.location} onChange={this.handleLocationChange}
-              list="locations" name="location" id="location"
-            />
-            <datalist id="locations">
-              {this.props.locations.sort().map((location, index) => {
-                return <option key={index} value={location}/>
-              })}
+        <h1>Select</h1>
+        <form>
+          <div className="form-row mb-3">
+            <div className="col input-group-sm">
+              <label htmlFor="location">Location</label>
+              <input
+                className="form-control"
+                value={this.state.location} onChange={this.handleLocationChange}
+                list="locations" name="location" id="location"
+              />
+              <datalist id="locations">
+                {this.props.locations.sort().map((location, index) => {
+                  return <option key={index} value={location}/>
+                })}
 
-            </datalist>
-          </div>
-          <div className="col input-group-sm">
-            <label htmlFor="area">Area</label>
-            <input
-              className="form-control"
-              value={this.state.area} onChange={this.handleAreaChange}
-              list="areas" name="area" id="area"
-            />
-            <datalist id="areas">
-              {this.props.areas.sort().map((area, index) => {
-                return <option key={index} value={area}/>
-              })}
+              </datalist>
+            </div>
+            <div className="col input-group-sm">
+              <label htmlFor="area">Area</label>
+              <input
+                className="form-control"
+                value={this.state.area} onChange={this.handleAreaChange}
+                list="areas" name="area" id="area"
+              />
+              <datalist id="areas">
+                {this.props.areas.sort().map((area, index) => {
+                  return <option key={index} value={area}/>
+                })}
 
-            </datalist>
+              </datalist>
+            </div>
           </div>
-        </div>
-        <div className="form-row mb-3">
-          <div className="col input-group-sm">
-            <label htmlFor="platform">Platform</label>
-            <select
-              className="form-control"
-              value={this.state.platform}
-              onChange={this.handlePlatformChange}
-            >
-              <option>All</option>
-              <option>DoorDash</option>
-              <option>GrubHub</option>
-              <option>UberEats</option>
-            </select>
+          <div className="form-row mb-3">
+            <div className="col input-group-sm">
+              <label htmlFor="platform">Platform</label>
+              <select
+                className="form-control"
+                value={this.state.platform}
+                onChange={this.handlePlatformChange}
+              >
+                <option>All</option>
+                <option>DoorDash</option>
+                <option>GrubHub</option>
+                <option>UberEats</option>
+              </select>
+            </div>
+            <div className="col input-group-sm">
+              <label htmlFor="day">Day</label>
+              <select
+                className="form-control"
+                value={this.state.day}
+                onChange={this.handleDayChange}
+              >
+                <option>All</option>
+                <option>Mon</option>
+                <option>Tue</option>
+                <option>Wed</option>
+                <option>Thu</option>
+                <option>Fri</option>
+                <option>Sat</option>
+                <option>Sun</option>
+              </select>
+            </div>
+            <div className="col input-group-sm">
+              <label htmlFor="time">Time</label>
+              <select
+                className="form-control"
+                value={this.state.time}
+                onChange={this.handleTimeChange}
+              >
+                <option>All</option>
+                <option>00:00:00</option>
+                <option>01:00:00</option>
+                <option>02:00:00</option>
+                <option>03:00:00</option>
+                <option>04:00:00</option>
+                <option>05:00:00</option>
+                <option>06:00:00</option>
+                <option>07:00:00</option>
+                <option>08:00:00</option>
+                <option>09:00:00</option>
+                <option>10:00:00</option>
+                <option>11:00:00</option>
+                <option>12:00:00</option>
+                <option>13:00:00</option>
+                <option>14:00:00</option>
+                <option>15:00:00</option>
+                <option>16:00:00</option>
+                <option>17:00:00</option>
+                <option>18:00:00</option>
+                <option>19:00:00</option>
+                <option>20:00:00</option>
+                <option>21:00:00</option>
+                <option>22:00:00</option>
+                <option>23:00:00</option>
+              </select>
+            </div>
           </div>
-          <div className="col input-group-sm">
-            <label htmlFor="day">Day</label>
-            <select
-              className="form-control"
-              value={this.state.day}
-              onChange={this.handleDayChange}
-            >
-              <option>All</option>
-              <option>Mon</option>
-              <option>Tue</option>
-              <option>Wed</option>
-              <option>Thu</option>
-              <option>Fri</option>
-              <option>Sat</option>
-              <option>Sun</option>
-            </select>
-          </div>
-          <div className="col input-group-sm">
-            <label htmlFor="time">Time</label>
-            <select
-              className="form-control"
-              value={this.state.time}
-              onChange={this.handleTimeChange}
-            >
-              <option>All</option>
-              <option>00:00:00</option>
-              <option>01:00:00</option>
-              <option>02:00:00</option>
-              <option>03:00:00</option>
-              <option>04:00:00</option>
-              <option>05:00:00</option>
-              <option>06:00:00</option>
-              <option>07:00:00</option>
-              <option>08:00:00</option>
-              <option>09:00:00</option>
-              <option>10:00:00</option>
-              <option>11:00:00</option>
-              <option>12:00:00</option>
-              <option>13:00:00</option>
-              <option>14:00:00</option>
-              <option>15:00:00</option>
-              <option>16:00:00</option>
-              <option>17:00:00</option>
-              <option>18:00:00</option>
-              <option>19:00:00</option>
-              <option>20:00:00</option>
-              <option>21:00:00</option>
-              <option>22:00:00</option>
-              <option>23:00:00</option>
-            </select>
-          </div>
-        </div>
-      </form>
+        </form>
 
-      <table className="table-sm table-striped table-hover table-responsive mb-3">
-        <thead>
-          <tr>
-            <th className="text-center"># of Orders</th>
-            <th className="text-center">Average Time</th>
-            <th className="text-center">Average Distance</th>
-            <th className="text-center">$/Order</th>
-            <th className="text-center">$/Hour</th>
-            <th className="text-center">$/Mile</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td className="text-center">{orders.length}</td>
-            <td className="text-center">{this.props.averageTime(orders)}</td>
-            <td className="text-center">{this.props.averageDistance(orders)}</td>
-            <td className="text-center">{this.props.dollarOrder(orders)}</td>
-            <td className="text-center">{this.props.dollarHour(orders)}</td>
-            <td className="text-center">{this.props.dollarMile(orders)}</td>
-          </tr>
-        </tbody>
-      </table>
+        <table className="table-sm table-striped table-hover table-responsive mb-3">
+          <thead>
+            <tr>
+              <th className="text-center"># of Orders</th>
+              <th className="text-center">Average Time</th>
+              <th className="text-center">Average Distance</th>
+              <th className="text-center">$/Order</th>
+              <th className="text-center">$/Hour</th>
+              <th className="text-center">$/Mile</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className="text-center">{orders.length}</td>
+              <td className="text-center">{this.props.averageTime(orders)}</td>
+              <td className="text-center">{this.props.averageDistance(orders)}</td>
+              <td className="text-center">{this.props.dollarOrder(orders)}</td>
+              <td className="text-center">{this.props.dollarHour(orders)}</td>
+              <td className="text-center">{this.props.dollarMile(orders)}</td>
+            </tr>
+          </tbody>
+        </table>
 
-      <ul class="nav nav-tabs">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Platform</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Day</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Time</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Area</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Location</a>
-        </li>
-      </ul>
-
-      <Platform
-        orders={orders}
-        numberOrders={orders.length}
-        averageTime={this.props.averageTime}
-        averageDistance={this.props.averageDistance}
-        dollarOrder={this.props.dollarOrder}
-        dollarHour={this.props.dollarHour}
-        dollarMile={this.props.dollarMile}
-      />
-      <Day
-        orders={orders}
-        averageTime={this.props.averageTime}
-        averageDistance={this.props.averageDistance}
-        dollarOrder={this.props.dollarOrder}
-        dollarHour={this.props.dollarHour}
-        dollarMile={this.props.dollarMile}
-      />
-      <Time
-        orders={orders}
-        averageTime={this.props.averageTime}
-        averageDistance={this.props.averageDistance}
-        dollarOrder={this.props.dollarOrder}
-        dollarHour={this.props.dollarHour}
-        dollarMile={this.props.dollarMile}
-      />
-      <Area
-        orders={orders}
-        areas={this.props.areas}
-        platform={platform}
-        day={day}
-        averageTime={this.props.averageTime}
-        averageDistance={this.props.averageDistance}
-        dollarOrder={this.props.dollarOrder}
-        dollarHour={this.props.dollarHour}
-        dollarMile={this.props.dollarMile}
-      />
-      <Location
-        orders={orders}
-        locations={this.props.locations}
-        platform={platform}
-        day={day}
-        averageTime={this.props.averageTime}
-        averageDistance={this.props.averageDistance}
-        dollarOrder={this.props.dollarOrder}
-        dollarHour={this.props.dollarHour}
-        dollarMile={this.props.dollarMile}
-      />
+        <TableSelect
+          orders={orders}
+          averageTime={this.props.averageTime}
+          averageDistance={this.props.averageDistance}
+          dollarOrder={this.props.dollarOrder}
+          dollarHour={this.props.dollarHour}
+          dollarMile={this.props.dollarMile}
+          areas={this.props.areas}
+          locations={this.props.locations}
+        />
       </div>
     );
   }
