@@ -113,7 +113,7 @@ export default class AnalysisSelect extends Component {
     return (
       <div>
       <h1>Select</h1>
-      <table className="table-sm table-striped table-hover">
+      <table className="table-sm table-striped table-hover table-responsive">
         <thead>
           <tr>
             <th className="text-center">Location</th>

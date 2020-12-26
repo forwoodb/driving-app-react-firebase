@@ -60,7 +60,6 @@ class Main extends Component {
   }
 
   render() {
-    console.log(this.state.orders);
     return (
       <div className="container">
         <Router>
