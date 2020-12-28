@@ -120,7 +120,7 @@ export default class AnalysisSelect extends Component {
 
     return (
       <div>
-        <h1>Select</h1>
+        <h2>Select</h2>
         <form>
           <div className="form-row mb-3">
             <div className="col input-group-sm">
@@ -220,7 +220,7 @@ export default class AnalysisSelect extends Component {
           </div>
         </form>
 
-        <table className="table-sm table-striped table-hover table-responsive mb-3">
+        <table className="table-sm table-striped table-hover table-responsive mb-5">
           <thead>
             <tr>
               <th className="text-center"># of Orders</th>

@@ -6,7 +6,6 @@ export default class NewOrder extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      locations: [],
       location: '',
       areas: [],
       area: '',
@@ -37,10 +36,6 @@ export default class NewOrder extends Component {
           orders.push({...data[order]})
         }
       }
-
-      // Locations list
-      let locations = orders.map(order => order.location);
-      locations = [...new Set(locations)];
 
       // Areas List
       let areas = orders.map(order => order.area);
@@ -79,7 +74,6 @@ export default class NewOrder extends Component {
 
       this.__isMounted &&
       this.setState({
-        locations: locations,
         areas: areas,
         location: locationValue,
         platform: platformValue,
@@ -178,7 +172,7 @@ export default class NewOrder extends Component {
                 list="locations"
               />
               <datalist id="locations">
-                {this.state.locations.sort().map((location, index) => {
+                {this.props.locations.sort().map((location, index) => {
                   return <option key={index} value={location}/>
                 })}
               </datalist>

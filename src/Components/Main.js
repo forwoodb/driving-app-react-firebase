@@ -17,6 +17,8 @@ class Main extends Component {
     this.__isMounted = false;
     this.state = {
       orders: [],
+      locations: [],
+      location: '',
     }
     this.deleteOrder = this.deleteOrder.bind(this);
   }
@@ -44,9 +46,14 @@ class Main extends Component {
         }
       }
 
+      // Locations list
+      let locations = orders.map(order => order.location);
+      locations = [...new Set(locations)];
+
       this.__isMounted &&
       this.setState({
         orders: orders,
+        locations: locations,
       })
     })
   }
@@ -69,7 +76,10 @@ class Main extends Component {
             login={this.props.login}
           />
           <Route exact path="/">
-            <NewOrder user={this.props.user}/>
+            <NewOrder
+              user={this.props.user}
+              locations={this.state.locations}
+            />
           </Route>
           <Route path="/OrdersList">
             <OrdersList
@@ -80,10 +90,18 @@ class Main extends Component {
             />
           </Route>
           <Route path="/Analysis">
-            <Analysis user={this.props.user} orders={this.state.orders}/>
+            <Analysis
+              user={this.props.user}
+              orders={this.state.orders}
+              locations={this.state.locations}
+            />
           </Route>
           {/*<Route path="/Edit/:id" exact component={EditOrder}/>*/}
-          <Route path="/Edit/:id" render={(props) => <EditOrder user={this.props.user} {...props}/>}/>
+          <Route path="/Edit/:id" render={(props) => <EditOrder
+                                                        user={this.props.user}
+                                                        locations={this.state.locations}
+                                                        {...props}
+                                                      />}/>
         </Router>
       </div>
     );

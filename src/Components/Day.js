@@ -13,7 +13,7 @@ export default class Day extends Component {
     ]
     return (
       <div>
-        <h3>Day</h3>
+        <h4>Day</h4>
         <table className="table-sm table-striped table-hover table-responsive">
           <thead>
             <tr>

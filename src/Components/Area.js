@@ -4,7 +4,7 @@ export default class Area extends Component {
   render() {
     return (
       <div>
-        <h3>Area</h3>
+        <h4>Area</h4>
         <table className="table-sm table-striped table-hover table-responsive">
           <AreaHeader/>
           <tbody>

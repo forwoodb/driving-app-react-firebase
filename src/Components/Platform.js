@@ -9,12 +9,12 @@ export default class Platform extends Component {
 
     return (
       <div>
-        <h3>Platform</h3>
+        <h4>Platform</h4>
         <table className="table-sm table-striped table-hover table-responsive">
           <thead>
             <tr>
-              <th className="text-center">Platform</th>
-              <th className="text-center"># of Orders</th>
+              <th className="text-center first-column">Platform</th>
+              <th className="text-center second-column"># of Orders</th>
               <th className="text-center">Average Time</th>
               <th className="text-center">Average Distance</th>
               <th className="text-center">$/Order</th>
@@ -62,8 +62,8 @@ export default class Platform extends Component {
 function AnalysisPlatform(props) {
   return (
     <tr>
-      <td className="text-center">{props.platform}</td>
-      <td className="text-center">{props.numberOrders}</td>
+      <td className="text-center first-column">{props.platform}</td>
+      <td className="text-center second-column">{props.numberOrders}</td>
       <td className="text-center">{props.averageTime}</td>
       <td className="text-center">{props.averageDistance}</td>
       <td className="text-center">{props.dollarOrder}</td>

@@ -44,26 +44,35 @@ export default class TableSelect extends Component {
     })
   }
 
+  getStyle() {
+    return {
+      marginRight: '4px',
+      marginLeft: '4px',
+      paddingRight: '0px',
+      paddingLeft: '0px',
+    }
+  }
+
   render() {
     console.log(this.state.table);
     return (
-      <div>
-        <h1>Select Table</h1>
+      <div className="mb-5">
+        <h2>Select Table</h2>
         <ul className="nav nav-tabs mb-3">
-          <li className="nav-item">
-            <a className="nav-link" onClick={this.handlePlatformClick}>Platform</a>
+          <li className="nav-item" style={this.getStyle()}>
+            <a className="nav-link" onClick={this.handlePlatformClick} style={this.getStyle()}>Platform</a>
           </li>
-          <li className="nav-item">
-            <a className="nav-link" onClick={this.handleDayClick}>Day</a>
+          <li className="nav-item" style={this.getStyle()}>
+            <a className="nav-link" onClick={this.handleDayClick} style={this.getStyle()}>Day</a>
           </li>
-          <li className="nav-item">
-            <a className="nav-link" onClick={this.handleTimeClick}>Time</a>
+          <li className="nav-item" style={this.getStyle()}>
+            <a className="nav-link" onClick={this.handleTimeClick} style={this.getStyle()}>Time</a>
           </li>
-          <li className="nav-item">
-            <a className="nav-link" onClick={this.handleAreaClick}>Area</a>
+          <li className="nav-item" style={this.getStyle()}>
+            <a className="nav-link" onClick={this.handleAreaClick} style={this.getStyle()}>Area</a>
           </li>
-          <li className="nav-item">
-            <a className="nav-link" onClick={this.handleLocationClick}>Location</a>
+          <li className="nav-item" style={this.getStyle()}>
+            <a className="nav-link" onClick={this.handleLocationClick} style={this.getStyle()}>Location</a>
           </li>
         </ul>
         <Tables

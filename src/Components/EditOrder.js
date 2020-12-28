@@ -5,7 +5,7 @@ export default class EditOrder extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      locations: [],
+      // locations: [],
       areas: [],
       location: '',
       area: '',
@@ -45,16 +45,12 @@ export default class EditOrder extends Component {
         }
       }
 
-      // Locations list
-      let locations = orders.map(order => order.location);
-      locations = [...new Set(locations)];
-
       // Areas list
       let areas = orders.map(order => order.area);
       areas = [...new Set(areas)];
 
       this.setState({
-        locations: locations,
+        // locations: locations,
         areas: areas,
       })
     });
@@ -190,7 +186,7 @@ export default class EditOrder extends Component {
                 list="locations"
               />
               <datalist id="locations">
-                {this.state.locations.sort().map((location, index) => {
+                {this.props.locations.sort().map((location, index) => {
                   return <option key={index} value={location}/>
                 })}
               </datalist>

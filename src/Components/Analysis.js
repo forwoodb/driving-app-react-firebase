@@ -5,8 +5,8 @@ import AnalysisSelect from './AnalysisSelect.js';
 import Platform from './Platform.js';
 
 class Analysis extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.averageTime = this.averageTime.bind(this);
     this.averageDistance = this.averageDistance.bind(this);
     this.dollarHour = this.dollarHour.bind(this);
@@ -63,9 +63,6 @@ class Analysis extends Component {
     let platforms = orders.map(order => order.platform);
     platforms = [...new Set(platforms)].sort();
 
-    let locations = orders.map(order => order.location);
-    locations = [...new Set(locations)].sort();
-
     let areas = orders.map(order => order.area);
     areas = [...new Set(areas)].sort();
 
@@ -112,7 +109,7 @@ class Analysis extends Component {
         <AnalysisSelect
           user={this.props.user}
           orders={orders}
-          locations={locations}
+          locations={this.props.locations}
           areas={areas}
           days={days}
           times={times}
