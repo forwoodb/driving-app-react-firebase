@@ -22,10 +22,10 @@ export default class Location extends Component {
                     platform={this.props.platform}
                     day={this.props.day}
                     numberOrders={locationOrders.length}
-                    averageTime={this.props.averageTime(locationOrders)}
-                    averageDistance={this.props.averageDistance(locationOrders)}
                     dollarOrder={this.props.dollarOrder(locationOrders)}
                     dollarHour={this.props.dollarHour(locationOrders)}
+                    averageTime={this.props.averageTime(locationOrders)}
+                    averageDistance={this.props.averageDistance(locationOrders)}
                     dollarMile={this.props.dollarMile(locationOrders)}
                   />
                 );
@@ -46,11 +46,11 @@ export function LocationHeader() {
     <thead>
       <tr>
         <th className="text-center">Location</th>
-        <th className="text-center"># of Orders</th>
-        <th className="text-center">Average Time</th>
-        <th className="text-center">Average Distance</th>
+        <th className="text-center">#Orders</th>
         <th className="text-center">$/Order</th>
         <th className="text-center">$/Hour</th>
+        <th className="text-center">AveTime</th>
+        <th className="text-center">AveDist</th>
         <th className="text-center">$/Mile</th>
       </tr>
     </thead>
@@ -62,10 +62,10 @@ function AnalysisLocation(props) {
     <tr>
       <td className="text-center">{props.location}</td>
       <td className="text-center">{props.numberOrders}</td>
-      <td className="text-center">{props.averageTime}</td>
-      <td className="text-center">{props.averageDistance}</td>
       <td className="text-center">{props.dollarOrder}</td>
       <td className="text-center">{props.dollarHour}</td>
+      <td className="text-center">{props.averageTime}</td>
+      <td className="text-center">{props.averageDistance}</td>
       <td className="text-center">{props.dollarMile}</td>
     </tr>
   );

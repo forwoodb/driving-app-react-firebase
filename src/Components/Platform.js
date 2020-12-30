@@ -14,11 +14,11 @@ export default class Platform extends Component {
           <thead>
             <tr>
               <th className="text-center first-column">Platform</th>
-              <th className="text-center second-column"># of Orders</th>
-              <th className="text-center">Average Time</th>
-              <th className="text-center">Average Distance</th>
+              <th className="text-center second-column">#Orders</th>
               <th className="text-center">$/Order</th>
               <th className="text-center">$/Hour</th>
+              <th className="text-center">AveTime</th>
+              <th className="text-center">AveDist</th>
               <th className="text-center">$/Mile</th>
             </tr>
           </thead>
@@ -27,10 +27,10 @@ export default class Platform extends Component {
               user={this.props.user}
               platform="All"
               numberOrders={this.props.numberOrders}
-              averageTime={this.props.averageTime(orders)}
-              averageDistance={this.props.averageDistance(orders)}
               dollarOrder={this.props.dollarOrder(orders)}
               dollarHour={this.props.dollarHour(orders)}
+              averageTime={this.props.averageTime(orders)}
+              averageDistance={this.props.averageDistance(orders)}
               dollarMile={this.props.dollarMile(orders)}
             />
             {
@@ -64,10 +64,10 @@ function AnalysisPlatform(props) {
     <tr>
       <td className="text-center first-column">{props.platform}</td>
       <td className="text-center second-column">{props.numberOrders}</td>
-      <td className="text-center">{props.averageTime}</td>
-      <td className="text-center">{props.averageDistance}</td>
       <td className="text-center">{props.dollarOrder}</td>
       <td className="text-center">{props.dollarHour}</td>
+      <td className="text-center">{props.averageTime}</td>
+      <td className="text-center">{props.averageDistance}</td>
       <td className="text-center">{props.dollarMile}</td>
     </tr>
   );

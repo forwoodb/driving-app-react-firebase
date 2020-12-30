@@ -225,20 +225,20 @@ export default class AnalysisSelect extends Component {
           <thead>
             <tr>
               <th className="text-center"># of Orders</th>
-              <th className="text-center">Average Time</th>
-              <th className="text-center">Average Distance</th>
               <th className="text-center">$/Order</th>
               <th className="text-center">$/Hour</th>
+              <th className="text-center">Average Time</th>
+              <th className="text-center">Average Distance</th>
               <th className="text-center">$/Mile</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td className="text-center">{orders.length}</td>
-              <td className="text-center">{this.props.averageTime(orders)}</td>
-              <td className="text-center">{this.props.averageDistance(orders)}</td>
               <td className="text-center">{this.props.dollarOrder(orders)}</td>
               <td className="text-center">{this.props.dollarHour(orders)}</td>
+              <td className="text-center">{this.props.averageTime(orders)}</td>
+              <td className="text-center">{this.props.averageDistance(orders)}</td>
               <td className="text-center">{this.props.dollarMile(orders)}</td>
             </tr>
           </tbody>

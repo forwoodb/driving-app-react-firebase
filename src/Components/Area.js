@@ -21,10 +21,10 @@ export default class Area extends Component {
                     platform={this.props.platform}
                     day={this.props.day}
                     numberOrders={areaOrders.length}
-                    averageTime={this.props.averageTime(areaOrders)}
-                    averageDistance={this.props.averageDistance(areaOrders)}
                     dollarOrder={this.props.dollarOrder(areaOrders)}
                     dollarHour={this.props.dollarHour(areaOrders)}
+                    averageTime={this.props.averageTime(areaOrders)}
+                    averageDistance={this.props.averageDistance(areaOrders)}
                     dollarMile={this.props.dollarMile(areaOrders)}
                   />
                 );
@@ -45,11 +45,11 @@ export function AreaHeader() {
     <thead>
       <tr>
         <th className="text-center">Area</th>
-        <th className="text-center"># of Orders</th>
-        <th className="text-center">Average Time</th>
-        <th className="text-center">Average Distance</th>
+        <th className="text-center">#Orders</th>
         <th className="text-center">$/Order</th>
         <th className="text-center">$/Hour</th>
+        <th className="text-center">AveTime</th>
+        <th className="text-center">AveDist</th>
         <th className="text-center">$/Mile</th>
       </tr>
     </thead>
@@ -61,10 +61,10 @@ function AnalysisArea(props) {
     <tr>
       <td className="text-center">{props.area}</td>
       <td className="text-center">{props.numberOrders}</td>
-      <td className="text-center">{props.averageTime}</td>
-      <td className="text-center">{props.averageDistance}</td>
       <td className="text-center">{props.dollarOrder}</td>
       <td className="text-center">{props.dollarHour}</td>
+      <td className="text-center">{props.averageTime}</td>
+      <td className="text-center">{props.averageDistance}</td>
       <td className="text-center">{props.dollarMile}</td>
     </tr>
   );

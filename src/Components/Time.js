@@ -36,11 +36,11 @@ export default class Time extends Component {
           <thead>
             <tr>
               <th className="text-center">Time</th>
-              <th className="text-center"># of Orders</th>
-              <th className="text-center">Average Time</th>
-              <th className="text-center">Average Distance</th>
+              <th className="text-center">#Orders</th>
               <th className="text-center">$/Order</th>
               <th className="text-center">$/Hour</th>
+              <th className="text-center">AveTime</th>
+              <th className="text-center">AveDist</th>
               <th className="text-center">$/Mile</th>
             </tr>
           </thead>
@@ -61,14 +61,13 @@ export default class Time extends Component {
                       key={index}
                       time={time}
                       numberOrders={timeOrders.length}
-                      averageTime={this.props.averageTime(timeOrders)}
-                      averageDistance={this.props.averageDistance(timeOrders)}
                       dollarOrder={this.props.dollarOrder(timeOrders)}
                       dollarHour={this.props.dollarHour(timeOrders)}
+                      averageTime={this.props.averageTime(timeOrders)}
+                      averageDistance={this.props.averageDistance(timeOrders)}
                       dollarMile={this.props.dollarMile(timeOrders)}
                     />
                   );
-
                 }
               })
             }
@@ -84,10 +83,10 @@ function AnalysisTime(props) {
     <tr>
       <td className="text-center">{props.time}</td>
       <td className="text-center">{props.numberOrders}</td>
-      <td className="text-center">{props.averageTime}</td>
-      <td className="text-center">{props.averageDistance}</td>
       <td className="text-center">{props.dollarOrder}</td>
       <td className="text-center">{props.dollarHour}</td>
+      <td className="text-center">{props.averageTime}</td>
+      <td className="text-center">{props.averageDistance}</td>
       <td className="text-center">{props.dollarMile}</td>
     </tr>
   );
