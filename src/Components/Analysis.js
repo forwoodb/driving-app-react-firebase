@@ -63,9 +63,6 @@ class Analysis extends Component {
     let platforms = orders.map(order => order.platform);
     platforms = [...new Set(platforms)].sort();
 
-    let areas = orders.map(order => order.area);
-    areas = [...new Set(areas)].sort();
-
     let days = [
       "Mon",
       "Tue",
@@ -110,7 +107,7 @@ class Analysis extends Component {
           user={this.props.user}
           orders={orders}
           locations={this.props.locations}
-          areas={areas}
+          areas={this.props.areas}
           days={days}
           times={times}
           averageTime={(data) => this.averageTime(data).toFixed(2)}

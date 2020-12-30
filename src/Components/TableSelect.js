@@ -54,7 +54,6 @@ export default class TableSelect extends Component {
   }
 
   render() {
-    console.log(this.state.table);
     return (
       <div className="mb-5">
         <h2>Select Table</h2>

@@ -74,6 +74,7 @@ export default class AnalysisSelect extends Component {
 
     if (location) {
       orders = orders.filter(order => order.location === location);
+      console.log(orders);
     }
 
     if (area) {

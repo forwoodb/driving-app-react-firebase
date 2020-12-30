@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-
+// import UpdateArea from './UpdateArea.js';
 // Try form attribute for edit
 class OrdersList extends Component {
   render() {
@@ -13,12 +13,10 @@ class OrdersList extends Component {
       }
       return comparison;
     }
+
+
     return (
       <div>
-        <form>
-          <input/>
-          <input/>
-        </form>
         <table className="table-sm table-striped table-hover table-responsive">
           <thead>
             <tr>
@@ -41,22 +39,23 @@ class OrdersList extends Component {
                 let dateY = new Date(y.date);
                 return dateY - dateX || compareTime(x,y);
               })
-            .map(order =>
-              <Order
-                key={order.order_id}
-                id={order.id}
-                order={order}
-                date={order.date}
-                startTime={order.startTime || order.time}
-                location={order.location}
-                area={order.area}
-                platform={order.platform}
-                duration={order.duration}
-                distance={Number(order.distance).toFixed(2)}
-                earnings={Number(order.earnings).toFixed(2)}
-                onDelete={() => this.props.onDelete(order.id)}
-              />
-            )}
+              .map(order =>
+                <Order
+                  key={order.order_id}
+                  id={order.id}
+                  order={order}
+                  date={order.date}
+                  startTime={order.startTime || order.time}
+                  location={order.location}
+                  area={order.area}
+                  platform={order.platform}
+                  duration={order.duration}
+                  distance={Number(order.distance).toFixed(2)}
+                  earnings={Number(order.earnings).toFixed(2)}
+                  onDelete={() => this.props.onDelete(order.id)}
+                />
+              )
+            }
           </tbody>
         </table>
       </div>

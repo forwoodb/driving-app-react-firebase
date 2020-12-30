@@ -7,7 +7,6 @@ export default class NewOrder extends Component {
     super(props);
     this.state = {
       location: '',
-      areas: [],
       area: '',
       platform: 'All Platforms',
       startTime: '',
@@ -36,10 +35,6 @@ export default class NewOrder extends Component {
           orders.push({...data[order]})
         }
       }
-
-      // Areas List
-      let areas = orders.map(order => order.area);
-      areas = [...new Set(areas)];
 
       if (locationValue) {
         orders = orders.filter(order => order.location === locationValue);
@@ -74,7 +69,6 @@ export default class NewOrder extends Component {
 
       this.__isMounted &&
       this.setState({
-        areas: areas,
         location: locationValue,
         platform: platformValue,
         numberOrders: orders.length,
@@ -187,7 +181,7 @@ export default class NewOrder extends Component {
                 list="areas"
               />
               <datalist id="areas">
-                {this.state.areas.sort().map((area, index) => {
+                {this.props.areas.sort().map((area, index) => {
                   return <option key={index} value={area}/>
                 })}
               </datalist>

@@ -5,8 +5,6 @@ export default class EditOrder extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // locations: [],
-      areas: [],
       location: '',
       area: '',
       platform: '',
@@ -27,48 +25,16 @@ export default class EditOrder extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  getLocations() {
-    firebase.database().ref('orders').on('value', (snapshot) => {
-      const data = snapshot.val();
-      let orders = [];
-
-      let user;
-      if (this.props.user) {
-        user = this.props.user;
-      } else {
-        user = 'demo';
-      }
-
-      for (var order in data) {
-        if (data[order].user === user) {
-          orders.push({...data[order]})
-        }
-      }
-
-      // Areas list
-      let areas = orders.map(order => order.area);
-      areas = [...new Set(areas)];
-
-      this.setState({
-        // locations: locations,
-        areas: areas,
-      })
-    });
-  }
-
   componentDidMount() {
     firebase.database().ref('orders/' + this.props.match.params.id).on('value', (snapshot) => {
       const data = snapshot.val();
-      // let orders = [];
-      //
+
       let user;
       if (this.props.user) {
         user = this.props.user;
       } else {
         user = 'demo';
       }
-
-      this.getLocations()
 
       this.setState({
         location: data.location,
@@ -157,6 +123,7 @@ export default class EditOrder extends Component {
   }
 
   render() {
+    console.log(firebase.database().ref('orders/' + this.props.match.params.id));
     return (
       <div>
         <h2 className="text-center">Edit Order</h2>
@@ -203,7 +170,7 @@ export default class EditOrder extends Component {
                 list="areas"
               />
               <datalist id="areas">
-                {this.state.areas.sort().map((area, index) => {
+                {this.props.areas.sort().map((area, index) => {
                   return <option key={index} value={area}/>
                 })}
               </datalist>
