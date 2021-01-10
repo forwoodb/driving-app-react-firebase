@@ -30,9 +30,9 @@ export default class Time extends Component {
       "24:00:00",
     ]
     return (
-      <div>
+      <div className="table-responsive">
         <h4>Time</h4>
-        <table className="table-sm table-striped table-hover table-responsive">
+        <table className="table table-sm table-striped table-hover table-responsive">
           <thead>
             <tr>
               <th className="text-center">Time</th>

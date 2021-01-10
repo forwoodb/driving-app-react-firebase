@@ -82,7 +82,7 @@ export default class UpdateArea extends Component {
 
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
+        <form className="my-3" onSubmit={this.handleSubmit}>
           <input
             id="location"
             name="location"

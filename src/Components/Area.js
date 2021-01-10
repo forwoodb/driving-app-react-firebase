@@ -3,9 +3,9 @@ import React, {Component} from 'react';
 export default class Area extends Component {
   render() {
     return (
-      <div>
+      <div className="table-responsive">
         <h4>Area</h4>
-        <table className="table-sm table-striped table-hover table-responsive">
+        <table className="table table-sm table-striped table-hover table-responsive">
           <AreaHeader/>
           <tbody>
           {

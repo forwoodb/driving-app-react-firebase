@@ -12,9 +12,9 @@ export default class Day extends Component {
       "Sun",
     ]
     return (
-      <div>
+      <div className="table-responsive">
         <h4>Day</h4>
-        <table className="table-sm table-striped table-hover table-responsive">
+        <table className="table table-sm table-striped table-hover table-responsive">
           <thead>
             <tr>
               <th className="text-center">Day</th>

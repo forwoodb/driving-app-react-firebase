@@ -8,9 +8,9 @@ export default class Platform extends Component {
     platforms = [...new Set(platforms)].sort();
 
     return (
-      <div>
+      <div className="table-responsive">
         <h4>Platform</h4>
-        <table className="table-sm table-striped table-hover table-responsive">
+        <table className="table table-sm table-striped table-hover table-responsive">
           <thead>
             <tr>
               <th className="text-center first-column">Platform</th>

@@ -16,8 +16,8 @@ class OrdersList extends Component {
 
 
     return (
-      <div>
-        <table className="table-sm table-striped table-hover table-responsive">
+      <div className="table-responsive">
+        <table className="table table-sm table-striped table-hover">
           <thead>
             <tr>
               <th scope="col" className="text-center">Date</th>

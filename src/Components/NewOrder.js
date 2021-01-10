@@ -141,12 +141,12 @@ export default class NewOrder extends Component {
   render() {
     return (
       <div className="mb-5">
-        <div className="mt-3 mb-4">
+        <div className="my-3">
           <form className="row g-3" onSubmit={this.handleSubmit}>
-            <div className="col-12 mb-3">
+            <div className="col-12">
               <button type="button" onClick={this.startTime}>Enter Timestamp</button>
             </div>
-            <div className="col-lg-6 mb-3">
+            <div className="col-lg-6">
               <input
                 className="form-control"
                 type="text"
@@ -155,7 +155,7 @@ export default class NewOrder extends Component {
                 value={this.state.startTime} onChange={this.handleStartTimeChange}
               />
             </div>
-            <div className="col-lg-6 mb-3">
+            <div className="col-lg-6">
               <input
                 className="form-control"
                 type="text" placeholder="Location"
@@ -169,7 +169,7 @@ export default class NewOrder extends Component {
                 })}
               </datalist>
             </div>
-            <div className="col-6 mb-3">
+            <div className="col-6">
               <input
                 className="form-control"
                 type="text"
@@ -184,7 +184,7 @@ export default class NewOrder extends Component {
                 })}
               </datalist>
             </div>
-            <div className="col-6 mb-3">
+            <div className="col-6">
               <select
                 className="form-control"
                 type="text"
@@ -197,7 +197,7 @@ export default class NewOrder extends Component {
                 <option>UberEats</option>
               </select>
             </div>
-            <div className="col-4 mb-3">
+            <div className="col-4">
               <input
                 type="text"
                 name="duration"
@@ -205,7 +205,7 @@ export default class NewOrder extends Component {
                 placeholder="Duration"
               />
             </div>
-            <div className="col-4 mb-3">
+            <div className="col-4">
                 <input
                   type="text"
                   name="distance"
@@ -213,7 +213,7 @@ export default class NewOrder extends Component {
                   placeholder="Distance"
                 />
             </div>
-            <div className="col-4 mb-3">
+            <div className="col-4">
               <input
                 type="text"
                 name="earnings"

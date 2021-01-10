@@ -3,9 +3,9 @@ import React, {Component} from 'react';
 export default class Location extends Component {
   render() {
     return (
-      <div>
+      <div className="table-responsive">
         <h3>Location</h3>
-        <table className="table-sm table-striped table-hover table-responsive">
+        <table className="table table-sm table-striped table-hover table-responsive">
           <LocationHeader/>
           <tbody>
           {
