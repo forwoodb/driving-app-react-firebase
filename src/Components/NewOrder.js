@@ -140,13 +140,13 @@ export default class NewOrder extends Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <div className="form-row mb-3 align-center">
-            <button type="button" onClick={this.startTime}>Enter Timestamp</button>
-          </div>
-          <div className="form-row mb-3">
-            <div className="col input-group-sm">
+      <div className="mb-5">
+        <div className="mt-3 mb-4">
+          <form className="row g-3" onSubmit={this.handleSubmit}>
+            <div className="col-12 mb-3">
+              <button type="button" onClick={this.startTime}>Enter Timestamp</button>
+            </div>
+            <div className="col-lg-6 mb-3">
               <input
                 className="form-control"
                 type="text"
@@ -155,9 +155,7 @@ export default class NewOrder extends Component {
                 value={this.state.startTime} onChange={this.handleStartTimeChange}
               />
             </div>
-          </div>
-          <div className="form-row mb-3">
-            <div className="col input-group-sm">
+            <div className="col-lg-6 mb-3">
               <input
                 className="form-control"
                 type="text" placeholder="Location"
@@ -171,7 +169,7 @@ export default class NewOrder extends Component {
                 })}
               </datalist>
             </div>
-            <div className="col input-group-sm">
+            <div className="col-6 mb-3">
               <input
                 className="form-control"
                 type="text"
@@ -186,9 +184,7 @@ export default class NewOrder extends Component {
                 })}
               </datalist>
             </div>
-          </div>
-          <div className="form-row mb-3">
-            <div className="col input-group-sm">
+            <div className="col-6 mb-3">
               <select
                 className="form-control"
                 type="text"
@@ -201,7 +197,7 @@ export default class NewOrder extends Component {
                 <option>UberEats</option>
               </select>
             </div>
-            <div className="col input-group-sm">
+            <div className="col-4 mb-3">
               <input
                 type="text"
                 name="duration"
@@ -209,9 +205,7 @@ export default class NewOrder extends Component {
                 placeholder="Duration"
               />
             </div>
-          </div>
-          <div className="form-row mb-3">
-            <div className="col input-group-sm">
+            <div className="col-4 mb-3">
                 <input
                   type="text"
                   name="distance"
@@ -219,7 +213,7 @@ export default class NewOrder extends Component {
                   placeholder="Distance"
                 />
             </div>
-            <div className="col input-group-sm">
+            <div className="col-4 mb-3">
               <input
                 type="text"
                 name="earnings"
@@ -227,9 +221,13 @@ export default class NewOrder extends Component {
                 placeholder="Earnings"
               />
             </div>
-          </div>
-          <button className="btn btn-success btn-sm mb-3" type="submit">Add</button>
-        </form>
+            <div className="col">
+              <button className="btn btn-success">Add</button>
+            </div>
+          </form>
+        </div>
+
+
         <LocationData
           dollarHour={this.state.dollarHour}
           dollarMile={this.state.dollarMile}
