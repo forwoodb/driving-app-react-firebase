@@ -127,117 +127,109 @@ export default class EditOrder extends Component {
     return (
       <div>
         <h2 className="text-center">Edit Order</h2>
-        <form onSubmit={this.handleSubmit} style={this.getStyle()}>
-          <div className="form-row mb-3">
-            <div className="col input-group-sm">
-              <label htmlFor="startTime">Start Time</label>
-              <input
-                className="form-control"
-                type="text"
-                name="startTime"
-                value={this.state.startTime}
-                onChange={this.handleStartTimeChange}
-              />
-            </div>
+        <form className="row g-3" onSubmit={this.handleSubmit} style={this.getStyle()}>
+          <div className="col-12 input-group-sm">
+            <label htmlFor="startTime">Start Time</label>
+            <input
+              className="form-control"
+              type="text"
+              name="startTime"
+              value={this.state.startTime}
+              onChange={this.handleStartTimeChange}
+            />
           </div>
-          <div className="form-row mb-3">
-            <div className="col input-group-sm">
-              <label htmlFor="location">Location</label>
-              <input
-                id="location"
-                className="form-control"
-                name="location"
-                type="text"
-                value={this.state.location}
-                onChange={this.handleLocationChange}
-                list="locations"
-              />
-              <datalist id="locations">
-                {this.props.locations.sort().map((location, index) => {
-                  return <option key={index} value={location}/>
-                })}
-              </datalist>
-            </div>
-            <div className="col input-group-sm">
-              <label htmlFor="area">Area</label>
-              <input
-                id="area"
-                className="form-control"
-                name="area"
-                type="text"
-                value={this.state.area}
-                onChange={this.handleAreaChange}
-                list="areas"
-              />
-              <datalist id="areas">
-                {this.props.areas.sort().map((area, index) => {
-                  return <option key={index} value={area}/>
-                })}
-              </datalist>
-            </div>
+          <div className="col-12 input-group-sm">
+            <label htmlFor="date">Date</label>
+            <input
+              className="form-control"
+              type="text"
+              name="date"
+              value={this.state.date}
+              onChange={this.handleDateChange}
+            />
           </div>
-          <div className="form-row mb-3">
-            <div className="col input-group-sm">
-                <label htmlFor="platform">Platform</label>
-                <select
-                  id="platform"
-                  className="form-control"
-                  name="platform"
-                  type="text"
-                  value={this.state.platform}
-                  onChange={this.handlePlatformChange}
-                >
-                  <option>All Platforms</option>
-                  <option>DoorDash</option>
-                  <option>GrubHub</option>
-                  <option>UberEats</option>
-                </select>
-            </div>
-            <div className="col input-group-sm">
-              <label htmlFor="date">Date</label>
-              <input
-                className="form-control"
-                type="text"
-                name="date"
-                value={this.state.date}
-                onChange={this.handleDateChange}
-              />
-            </div>
+          <div className="col-12 input-group-sm">
+            <label htmlFor="location">Location</label>
+            <input
+              id="location"
+              className="form-control"
+              name="location"
+              type="text"
+              value={this.state.location}
+              onChange={this.handleLocationChange}
+              list="locations"
+            />
+            <datalist id="locations">
+              {this.props.locations.sort().map((location, index) => {
+                return <option key={index} value={location}/>
+              })}
+            </datalist>
           </div>
-          <div className="form-row mb-3">
-            <div className="col input-group-sm">
-              <label htmlFor="time">Duration</label>
-              <input
-                type="text"
-                name="duration"
-                value={this.state.duration}
-                id="duration"
-                className="form-control"
-                onChange={this.handleDurationChange}
-              />
-            </div>
-            <div className="col input-group-sm">
-              <label htmlFor="distance">Distance</label>
-              <input
-                type="text"
-                name="distance"
-                value={this.state.distance}
-                id="distance"
-                className="form-control"
-                onChange={this.handleDistanceChange}
-              />
-            </div>
-            <div className="col input-group-sm">
-              <label htmlFor="earnings">Earnings</label>
-              <input
-                type="text"
-                name="earnings"
-                value={this.state.earnings}
-                id="earnings"
-                className="form-control"
-                onChange={this.handleEarningsChange}
-              />
-            </div>
+          <div className="col-6 input-group-sm">
+            <label htmlFor="area">Area</label>
+            <input
+              id="area"
+              className="form-control"
+              name="area"
+              type="text"
+              value={this.state.area}
+              onChange={this.handleAreaChange}
+              list="areas"
+            />
+            <datalist id="areas">
+              {this.props.areas.sort().map((area, index) => {
+                return <option key={index} value={area}/>
+              })}
+            </datalist>
+          </div>
+          <div className="col-6 input-group-sm">
+            <label htmlFor="platform">Platform</label>
+            <select
+              id="platform"
+              className="form-control"
+              name="platform"
+              type="text"
+              value={this.state.platform}
+              onChange={this.handlePlatformChange}
+            >
+              <option>All Platforms</option>
+              <option>DoorDash</option>
+              <option>GrubHub</option>
+              <option>UberEats</option>
+            </select>
+          </div>
+          <div className="col input-group-sm">
+            <label htmlFor="time">Duration</label>
+            <input
+              type="text"
+              name="duration"
+              value={this.state.duration}
+              id="duration"
+              className="form-control"
+              onChange={this.handleDurationChange}
+            />
+          </div>
+          <div className="col input-group-sm">
+            <label htmlFor="distance">Distance</label>
+            <input
+              type="text"
+              name="distance"
+              value={this.state.distance}
+              id="distance"
+              className="form-control"
+              onChange={this.handleDistanceChange}
+            />
+          </div>
+          <div className="col input-group-sm">
+            <label htmlFor="earnings">Earnings</label>
+            <input
+              type="text"
+              name="earnings"
+              value={this.state.earnings}
+              id="earnings"
+              className="form-control"
+              onChange={this.handleEarningsChange}
+            />
           </div>
           <button className="btn btn-primary btn-sm mb-3">Update</button>
         </form>
