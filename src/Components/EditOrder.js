@@ -128,7 +128,7 @@ export default class EditOrder extends Component {
       <div>
         <h2 className="text-center">Edit Order</h2>
         <form className="row g-3" onSubmit={this.handleSubmit} style={this.getStyle()}>
-          <div className="col-12 input-group-sm">
+          <div className="col-7 col-lg-3 input-group-sm">
             <label htmlFor="startTime">Start Time</label>
             <input
               className="form-control"
@@ -138,7 +138,7 @@ export default class EditOrder extends Component {
               onChange={this.handleStartTimeChange}
             />
           </div>
-          <div className="col-12 input-group-sm">
+          <div className="col-5 col-lg-3 input-group-sm">
             <label htmlFor="date">Date</label>
             <input
               className="form-control"
@@ -148,7 +148,7 @@ export default class EditOrder extends Component {
               onChange={this.handleDateChange}
             />
           </div>
-          <div className="col-12 input-group-sm">
+          <div className="col-6 col-lg-3 input-group-sm">
             <label htmlFor="location">Location</label>
             <input
               id="location"
@@ -165,7 +165,7 @@ export default class EditOrder extends Component {
               })}
             </datalist>
           </div>
-          <div className="col-6 input-group-sm">
+          <div className="col-6 col-lg-3 input-group-sm">
             <label htmlFor="area">Area</label>
             <input
               id="area"
@@ -182,7 +182,7 @@ export default class EditOrder extends Component {
               })}
             </datalist>
           </div>
-          <div className="col-6 input-group-sm">
+          <div className="col-4 col-lg-3 input-group-sm">
             <label htmlFor="platform">Platform</label>
             <select
               id="platform"
@@ -231,7 +231,9 @@ export default class EditOrder extends Component {
               onChange={this.handleEarningsChange}
             />
           </div>
-          <button className="btn btn-primary btn-sm mb-3">Update</button>
+          <div>
+            <button className="btn btn-primary btn-sm mb-3">Update</button>
+          </div>
         </form>
       </div>
     );
