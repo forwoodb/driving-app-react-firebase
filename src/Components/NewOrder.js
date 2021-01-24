@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import firebase from '../firebase.js';
 import LocationData from './LocationData.js';
 import LocationInput from './LocationInput.js';
+import AreaInput from './AreaInput.js';
 
 
 export default class NewOrder extends Component {
@@ -147,7 +148,7 @@ export default class NewOrder extends Component {
             <div className="col-12">
               <button type="button" onClick={this.startTime}>Enter Timestamp</button>
             </div>
-            <div className="col-lg-6">
+            <div className="col-lg-6 input-group-sm input-group-sm">
               <input
                 className="form-control"
                 type="text"
@@ -156,29 +157,21 @@ export default class NewOrder extends Component {
                 value={this.state.startTime} onChange={this.handleStartTimeChange}
               />
             </div>
-            <div className="col-lg-6">
+            <div className="col-lg-6 input-group-sm">
               <LocationInput
                 location={this.state.location}
-                locations={this.props.locations} 
+                locations={this.props.locations}
                 onChange={this.handleLocationChange}
               />
             </div>
-            <div className="col-6">
-              <input
-                className="form-control"
-                type="text"
-                name="area"
-                className="form-control"
-                placeholder="Area"
-                list="areas"
+            <div className="col-6 input-group-sm">
+              <AreaInput
+                area={this.state.area}
+                areas={this.props.areas}
+                onChange={this.handleAreaChange}
               />
-              <datalist id="areas">
-                {this.props.areas.sort().map((area, index) => {
-                  return <option key={index} value={area}/>
-                })}
-              </datalist>
             </div>
-            <div className="col-6">
+            <div className="col-6 input-group-sm">
               <select
                 className="form-control"
                 type="text"
@@ -191,7 +184,7 @@ export default class NewOrder extends Component {
                 <option>UberEats</option>
               </select>
             </div>
-            <div className="col-4">
+            <div className="col-4 input-group-sm">
               <input
                 type="text"
                 name="duration"
@@ -199,7 +192,7 @@ export default class NewOrder extends Component {
                 placeholder="Duration"
               />
             </div>
-            <div className="col-4">
+            <div className="col-4 input-group-sm">
                 <input
                   type="text"
                   name="distance"
@@ -207,7 +200,7 @@ export default class NewOrder extends Component {
                   placeholder="Distance"
                 />
             </div>
-            <div className="col-4">
+            <div className="col-4 input-group-sm">
               <input
                 type="text"
                 name="earnings"

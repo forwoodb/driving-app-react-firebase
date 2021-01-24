@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 export default class LocationInput extends Component {
   render() {
     return (
-      <div>
+      <div class="input-group-sm">
         <input
           className="form-control"
           type="text" placeholder="Location"

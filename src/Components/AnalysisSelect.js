@@ -8,6 +8,7 @@ import Location from './Location.js';
 import Area from './Area.js';
 import Day from './Day.js';
 import LocationInput from './LocationInput.js';
+import AreaInput from './AreaInput.js';
 
 export default class AnalysisSelect extends Component {
   constructor(props) {
@@ -134,17 +135,11 @@ export default class AnalysisSelect extends Component {
           </div>
           <div className="col-6 input-group-sm">
             <label htmlFor="area">Area</label>
-            <input
-              className="form-control"
-              value={this.state.area} onChange={this.handleAreaChange}
-              list="areas" name="area" id="area"
+            <AreaInput
+              area={this.state.area}
+              areas={this.props.areas}
+              onChange={this.handleAreaChange}
             />
-            <datalist id="areas">
-              {this.props.areas.sort().map((area, index) => {
-                return <option key={index} value={area}/>
-              })}
-
-            </datalist>
           </div>
           <div className="col-6 input-group-sm">
             <label htmlFor="platform">Platform</label>
