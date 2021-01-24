@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import firebase from '../firebase.js';
+import LocationInput from './LocationInput.js';
 
 export default class EditOrder extends Component {
   constructor(props) {
@@ -150,20 +151,11 @@ export default class EditOrder extends Component {
           </div>
           <div className="col-6 col-lg-3 input-group-sm">
             <label htmlFor="location">Location</label>
-            <input
-              id="location"
-              className="form-control"
-              name="location"
-              type="text"
-              value={this.state.location}
+            <LocationInput
+              location={this.state.location}
+              locations={this.props.locations}
               onChange={this.handleLocationChange}
-              list="locations"
             />
-            <datalist id="locations">
-              {this.props.locations.sort().map((location, index) => {
-                return <option key={index} value={location}/>
-              })}
-            </datalist>
           </div>
           <div className="col-6 col-lg-3 input-group-sm">
             <label htmlFor="area">Area</label>

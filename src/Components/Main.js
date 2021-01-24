@@ -18,8 +18,8 @@ class Main extends Component {
     this.__isMounted = false;
     this.state = {
       orders: [],
-      locations: [],
       areas: [],
+      locations: [],
       location: '',
     }
     this.deleteOrder = this.deleteOrder.bind(this);

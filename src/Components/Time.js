@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
+import AnalysisData from './AnalysisData';
+import AnalysisTable from './AnalysisTable';
 
 export default class Time extends Component {
-  render() {
+  renderTableData() {
     let times = [
       "00:00:00",
       "01:00:00",
@@ -29,65 +31,36 @@ export default class Time extends Component {
       "23:00:00",
       "24:00:00",
     ]
+
+
+    return times.map((time, index, times) => {
+      let timeOrders = this.props.orders.filter(order => order.startTime >= time && order.startTime < times[index + 1])
+
+      if (timeOrders.length > 0) {
+        return (
+          <AnalysisData
+            user={this.props.user}
+            key={index}
+            category={time}
+            numberOrders={timeOrders.length}
+            dollarOrder={this.props.dollarOrder(timeOrders)}
+            dollarHour={this.props.dollarHour(timeOrders)}
+            averageTime={this.props.averageTime(timeOrders)}
+            averageDistance={this.props.averageDistance(timeOrders)}
+            dollarMile={this.props.dollarMile(timeOrders)}
+          />
+        );
+      }
+    })
+  }
+
+  render() {
+
     return (
-      <div className="table-responsive">
-        <h4>Time</h4>
-        <table className="table table-sm table-striped table-hover table-responsive">
-          <thead>
-            <tr>
-              <th className="text-center">Time</th>
-              <th className="text-center">#Orders</th>
-              <th className="text-center">$/Order</th>
-              <th className="text-center">$/Hour</th>
-              <th className="text-center">AveTime</th>
-              <th className="text-center">AveDist</th>
-              <th className="text-center">$/Mile</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              times.map((time, index, times) => {
-                let timeOrders = this.props.orders.filter((order) => {
-                  return (
-                    (order.startTime >= time && order.startTime < times[index + 1])
-                    ||
-                    (order.time >= time && order.time < times[index + 1])
-                  );
-                })
-                if (timeOrders.length > 0) {
-                  return (
-                    <AnalysisTime
-                      user={this.props.user}
-                      key={index}
-                      time={time}
-                      numberOrders={timeOrders.length}
-                      dollarOrder={this.props.dollarOrder(timeOrders)}
-                      dollarHour={this.props.dollarHour(timeOrders)}
-                      averageTime={this.props.averageTime(timeOrders)}
-                      averageDistance={this.props.averageDistance(timeOrders)}
-                      dollarMile={this.props.dollarMile(timeOrders)}
-                    />
-                  );
-                }
-              })
-            }
-          </tbody>
-        </table>
-      </div>
+      <AnalysisTable
+        categoryTitle="Day"
+        tableData={this.renderTableData()}
+      />
     );
   }
-}
-
-function AnalysisTime(props) {
-  return (
-    <tr>
-      <td className="text-center">{props.time}</td>
-      <td className="text-center">{props.numberOrders}</td>
-      <td className="text-center">{props.dollarOrder}</td>
-      <td className="text-center">{props.dollarHour}</td>
-      <td className="text-center">{props.averageTime}</td>
-      <td className="text-center">{props.averageDistance}</td>
-      <td className="text-center">{props.dollarMile}</td>
-    </tr>
-  );
 }
