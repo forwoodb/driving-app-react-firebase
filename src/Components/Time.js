@@ -58,7 +58,7 @@ export default class Time extends Component {
 
     return (
       <AnalysisTable
-        categoryTitle="Day"
+        categoryTitle="Time"
         tableData={this.renderTableData()}
       />
     );

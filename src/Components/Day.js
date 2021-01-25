@@ -19,20 +19,21 @@ export default class Day extends Component {
 
     return days.map((day, index) => {
       let dayOrders = this.props.orders.filter(order => order.date.includes(day));
-
-      return (
-        <AnalysisData
-          user={this.props.user}
-          key={index}
-          category={day}
-          numberOrders={dayOrders.length}
-          dollarOrder={this.props.dollarOrder(dayOrders)}
-          dollarHour={this.props.dollarHour(dayOrders)}
-          averageTime={this.props.averageTime(dayOrders)}
-          averageDistance={this.props.averageDistance(dayOrders)}
-          dollarMile={this.props.dollarMile(dayOrders)}
-        />
-      );
+      if (dayOrders.length > 0) {
+        return (
+          <AnalysisData
+            user={this.props.user}
+            key={index}
+            category={day}
+            numberOrders={dayOrders.length}
+            dollarOrder={this.props.dollarOrder(dayOrders)}
+            dollarHour={this.props.dollarHour(dayOrders)}
+            averageTime={this.props.averageTime(dayOrders)}
+            averageDistance={this.props.averageDistance(dayOrders)}
+            dollarMile={this.props.dollarMile(dayOrders)}
+          />
+        );
+      }
     })
   }
 

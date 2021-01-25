@@ -9,6 +9,8 @@ import Area from './Area.js';
 import Day from './Day.js';
 import LocationInput from './LocationInput.js';
 import AreaInput from './AreaInput.js';
+import AnalysisData from './AnalysisData';
+import AnalysisTable from './AnalysisTable';
 
 export default class AnalysisSelect extends Component {
   constructor(props) {
@@ -117,7 +119,7 @@ export default class AnalysisSelect extends Component {
       );
     }
 
-    let table = this.state.table;
+    // let table = this.state.table;
 
 
 
@@ -206,31 +208,19 @@ export default class AnalysisSelect extends Component {
             </select>
           </div>
         </form>
-
-        <div className="table-responsive">
-          <table className="table table-sm table-striped table-hover mb-5">
-            <thead>
-              <tr>
-                <th className="text-center"># of Orders</th>
-                <th className="text-center">$/Order</th>
-                <th className="text-center">$/Hour</th>
-                <th className="text-center">Average Time</th>
-                <th className="text-center">Average Distance</th>
-                <th className="text-center">$/Mile</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td className="text-center">{orders.length}</td>
-                <td className="text-center">{this.props.dollarOrder(orders)}</td>
-                <td className="text-center">{this.props.dollarHour(orders)}</td>
-                <td className="text-center">{this.props.averageTime(orders)}</td>
-                <td className="text-center">{this.props.averageDistance(orders)}</td>
-                <td className="text-center">{this.props.dollarMile(orders)}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <AnalysisTable
+          tableData={
+            <AnalysisData
+              user={this.props.user}
+              numberOrders={orders.length}
+              averageTime={this.props.averageTime(orders)}
+              averageDistance={this.props.averageDistance(orders)}
+              dollarOrder={this.props.dollarOrder(orders)}
+              dollarHour={this.props.dollarHour(orders)}
+              dollarMile={this.props.dollarMile(orders)}
+            />
+          }
+        />
         <TableSelect
           orders={orders}
           averageTime={this.props.averageTime}

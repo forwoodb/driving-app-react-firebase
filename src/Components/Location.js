@@ -6,20 +6,21 @@ export default class Location extends Component {
   renderTableData() {
     return this.props.locations.map((location, index) => {
       let locationOrders = this.props.orders.filter(order => order.location === location);
-
-      return (
-        <AnalysisData
-          user={this.props.user}
-          key={index}
-          category={location}
-          numberOrders={locationOrders.length}
-          dollarOrder={this.props.dollarOrder(locationOrders)}
-          dollarHour={this.props.dollarHour(locationOrders)}
-          averageTime={this.props.averageTime(locationOrders)}
-          averageDistance={this.props.averageDistance(locationOrders)}
-          dollarMile={this.props.dollarMile(locationOrders)}
-        />
-      );
+      if (locationOrders.length > 0) {
+        return (
+          <AnalysisData
+            user={this.props.user}
+            key={index}
+            category={location}
+            numberOrders={locationOrders.length}
+            dollarOrder={this.props.dollarOrder(locationOrders)}
+            dollarHour={this.props.dollarHour(locationOrders)}
+            averageTime={this.props.averageTime(locationOrders)}
+            averageDistance={this.props.averageDistance(locationOrders)}
+            dollarMile={this.props.dollarMile(locationOrders)}
+          />
+        );
+      }
     }).sort((x,y) => {
       return y.props.dollarHour - x.props.dollarHour;
     })
@@ -28,7 +29,7 @@ export default class Location extends Component {
   render() {
     return (
       <AnalysisTable
-        categoryTitle="Day"
+        categoryTitle="Location"
         tableData={this.renderTableData()}
       />
     );
