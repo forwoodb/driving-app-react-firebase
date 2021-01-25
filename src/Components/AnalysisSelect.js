@@ -25,13 +25,15 @@ export default class AnalysisSelect extends Component {
       days: [],
       day: '',
       times: this.props.times,
-      time: '',
+      timeFrom: '',
+      timeTo: '',
     }
     this.handleLocationChange = this.handleLocationChange.bind(this);
     this.handleAreaChange = this.handleAreaChange.bind(this);
     this.handlePlatformChange = this.handlePlatformChange.bind(this);
     this.handleDayChange = this.handleDayChange.bind(this);
-    this.handleTimeChange = this.handleTimeChange.bind(this);
+    this.handleTimeFromChange = this.handleTimeFromChange.bind(this);
+    this.handleTimeToChange = this.handleTimeToChange.bind(this);
 
   }
 
@@ -59,9 +61,15 @@ export default class AnalysisSelect extends Component {
     })
   }
 
-  handleTimeChange(e) {
+  handleTimeFromChange(e) {
     this.setState({
-      time: e.target.value,
+      timeFrom: e.target.value,
+    })
+  }
+
+  handleTimeToChange(e) {
+    this.setState({
+      timeTo: e.target.value,
     })
   }
 
@@ -72,7 +80,7 @@ export default class AnalysisSelect extends Component {
     let area = this.state.area;
     let platform = this.state.platform;
     let day = this.state.day;
-    let time = this.state.time;
+    let timeFrom = this.state.timeFrom;
     // let locations = orders.map(order => order.location);
     // locations = [...new Set(locations)].sort();
 
@@ -97,31 +105,13 @@ export default class AnalysisSelect extends Component {
       orders = orders.filter(order => order.date.includes(day));
     }
 
-    if (time === 'All') {
+    if (timeFrom === 'All') {
       orders = this.props.orders;
-    } else if (time >= "00:00:00" && time < "10:00:00") {
-      orders = orders.filter((order) => {
-          return (
-            order.time >= time && order.time < ('0' + (parseInt(time) + 1) + ':00:00')
-            ||
-            order.startTime >= time && order.startTime < ('0' + (parseInt(time) + 1) + ':00:00')
-          )
-        }
-      );
-    } else if (time >= "10:00:00") {
-      orders = orders.filter((order) => {
-          return (
-            order.time >= time && order.time < (parseInt(time) + 1 + ':00:00')
-            ||
-            order.startTime >= time && order.startTime < (parseInt(time) + 1 + ':00:00')
-          )
-        }
-      );
+    } else if (timeFrom >= "00:00:00" && timeFrom < "10:00:00") {
+      orders = orders.filter((order) => order.startTime >= timeFrom && order.startTime < (this.state.timeTo || '0' + (parseInt(timeFrom) + 1) + ':00:00'));
+    } else if (timeFrom >= "10:00:00") {
+      orders = orders.filter(order => order.startTime >= timeFrom && order.startTime < (this.state.timeTo || parseInt(timeFrom) + 1 + ':00:00'));
     }
-
-    // let table = this.state.table;
-
-
 
     return (
       <div>
@@ -174,11 +164,45 @@ export default class AnalysisSelect extends Component {
             </select>
           </div>
           <div className="col input-group-sm">
-            <label htmlFor="time">Time</label>
+            <label htmlFor="timeFrom">Start Time</label>
             <select
               className="form-control"
-              value={this.state.time}
-              onChange={this.handleTimeChange}
+              value={this.state.timeFrom}
+              onChange={this.handleTimeFromChange}
+            >
+              <option>All</option>
+              <option>00:00:00</option>
+              <option>01:00:00</option>
+              <option>02:00:00</option>
+              <option>03:00:00</option>
+              <option>04:00:00</option>
+              <option>05:00:00</option>
+              <option>06:00:00</option>
+              <option>07:00:00</option>
+              <option>08:00:00</option>
+              <option>09:00:00</option>
+              <option>10:00:00</option>
+              <option>11:00:00</option>
+              <option>12:00:00</option>
+              <option>13:00:00</option>
+              <option>14:00:00</option>
+              <option>15:00:00</option>
+              <option>16:00:00</option>
+              <option>17:00:00</option>
+              <option>18:00:00</option>
+              <option>19:00:00</option>
+              <option>20:00:00</option>
+              <option>21:00:00</option>
+              <option>22:00:00</option>
+              <option>23:00:00</option>
+            </select>
+          </div>
+          <div className="col input-group-sm">
+            <label htmlFor="timeFrom">End Time</label>
+            <select
+              className="form-control"
+              value={this.state.timeTo}
+              onChange={this.handleTimeToChange}
             >
               <option>All</option>
               <option>00:00:00</option>
