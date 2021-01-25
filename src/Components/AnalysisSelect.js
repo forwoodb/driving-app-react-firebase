@@ -11,6 +11,7 @@ import LocationInput from './LocationInput.js';
 import AreaInput from './AreaInput.js';
 import AnalysisData from './AnalysisData';
 import AnalysisTable from './AnalysisTable';
+import AnalysisTimeInput from './AnalysisTimeInput';
 
 export default class AnalysisSelect extends Component {
   constructor(props) {
@@ -163,74 +164,16 @@ export default class AnalysisSelect extends Component {
               <option>Sun</option>
             </select>
           </div>
-          <div className="col input-group-sm">
-            <label htmlFor="timeFrom">Start Time</label>
-            <select
-              className="form-control"
-              value={this.state.timeFrom}
-              onChange={this.handleTimeFromChange}
-            >
-              <option>All</option>
-              <option>00:00:00</option>
-              <option>01:00:00</option>
-              <option>02:00:00</option>
-              <option>03:00:00</option>
-              <option>04:00:00</option>
-              <option>05:00:00</option>
-              <option>06:00:00</option>
-              <option>07:00:00</option>
-              <option>08:00:00</option>
-              <option>09:00:00</option>
-              <option>10:00:00</option>
-              <option>11:00:00</option>
-              <option>12:00:00</option>
-              <option>13:00:00</option>
-              <option>14:00:00</option>
-              <option>15:00:00</option>
-              <option>16:00:00</option>
-              <option>17:00:00</option>
-              <option>18:00:00</option>
-              <option>19:00:00</option>
-              <option>20:00:00</option>
-              <option>21:00:00</option>
-              <option>22:00:00</option>
-              <option>23:00:00</option>
-            </select>
-          </div>
-          <div className="col input-group-sm">
-            <label htmlFor="timeFrom">End Time</label>
-            <select
-              className="form-control"
-              value={this.state.timeTo}
-              onChange={this.handleTimeToChange}
-            >
-              <option>All</option>
-              <option>00:00:00</option>
-              <option>01:00:00</option>
-              <option>02:00:00</option>
-              <option>03:00:00</option>
-              <option>04:00:00</option>
-              <option>05:00:00</option>
-              <option>06:00:00</option>
-              <option>07:00:00</option>
-              <option>08:00:00</option>
-              <option>09:00:00</option>
-              <option>10:00:00</option>
-              <option>11:00:00</option>
-              <option>12:00:00</option>
-              <option>13:00:00</option>
-              <option>14:00:00</option>
-              <option>15:00:00</option>
-              <option>16:00:00</option>
-              <option>17:00:00</option>
-              <option>18:00:00</option>
-              <option>19:00:00</option>
-              <option>20:00:00</option>
-              <option>21:00:00</option>
-              <option>22:00:00</option>
-              <option>23:00:00</option>
-            </select>
-          </div>
+          <AnalysisTimeInput
+            title="Start Time"
+            value={this.state.timeFrom}
+            onChange={this.handleTimeFromChange}
+          />
+          <AnalysisTimeInput
+            title="End Time"
+            value={this.state.timeTo}
+            onChange={this.handleTimeToChange}
+          />
         </form>
         <AnalysisTable
           tableData={
