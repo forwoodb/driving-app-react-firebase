@@ -35,6 +35,7 @@ export default class AnalysisTimeInput extends Component {
           <option>21:00:00</option>
           <option>22:00:00</option>
           <option>23:00:00</option>
+          <option>23:59:59</option>
         </select>
       </div>
     );

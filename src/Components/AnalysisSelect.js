@@ -94,23 +94,29 @@ export default class AnalysisSelect extends Component {
       orders = orders.filter(order => order.area === area);
     }
 
-    if (platform === 'All') {
-      orders = this.props.orders;
-    } else if (platform) {
+    if (
+        platform === 'DoorDash' ||
+        platform === 'GrubHub' ||
+        platform === 'UberEats'
+      ) {
       orders = orders.filter(order => order.platform === platform);
     }
 
-    if (day === 'All') {
-      orders = this.props.orders;
-    } else if (day) {
+    if (
+        day === 'Mon' ||
+        day === 'Tue' ||
+        day === 'Wed' ||
+        day === 'Thu' ||
+        day === 'Fri' ||
+        day === 'Sat' ||
+        day === 'Sun' 
+      ) {
       orders = orders.filter(order => order.date.includes(day));
     }
 
-    if (timeFrom === 'All') {
-      orders = this.props.orders;
-    } else if (timeFrom >= "00:00:00" && timeFrom < "10:00:00") {
+    if (timeFrom >= "00:00:00" && timeFrom < "10:00:00") {
       orders = orders.filter((order) => order.startTime >= timeFrom && order.startTime < (this.state.timeTo || '0' + (parseInt(timeFrom) + 1) + ':00:00'));
-    } else if (timeFrom >= "10:00:00") {
+    } else if (timeFrom >= "10:00:00" && timeFrom <= "23:59:59") {
       orders = orders.filter(order => order.startTime >= timeFrom && order.startTime < (this.state.timeTo || parseInt(timeFrom) + 1 + ':00:00'));
     }
 
