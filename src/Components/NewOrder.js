@@ -16,6 +16,7 @@ export default class NewOrder extends Component {
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleLocationChange = this.handleLocationChange.bind(this);
+    this.handleAreaChange = this.handleAreaChange.bind(this);
     this.handlePlatformChange = this.handlePlatformChange.bind(this);
     this.handleStartTimeChange = this.handleStartTimeChange.bind(this);
     this.startTime = this.startTime.bind(this);
@@ -100,7 +101,16 @@ export default class NewOrder extends Component {
   }
 
   handleLocationChange(e) {
+    this.setState({
+      location: e.target.value,
+    })
     this.getData(e.target.value, this.state.platform);
+  }
+
+  handleAreaChange(e) {
+    this.setState({
+      area: e.target.value,
+    })
   }
 
   handlePlatformChange(e) {
@@ -132,6 +142,7 @@ export default class NewOrder extends Component {
       location: '',
       startTime: '',
     })
+    e.target.elements.location.value = '';
     e.target.elements.area.value = '';
     e.target.elements.duration.value = '';
     e.target.elements.distance.value = '';
@@ -166,6 +177,7 @@ export default class NewOrder extends Component {
             </div>
             <div className="col-6 input-group-sm">
               <AreaInput
+                name="area"
                 area={this.state.area}
                 areas={this.props.areas}
                 onChange={this.handleAreaChange}
