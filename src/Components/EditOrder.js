@@ -58,7 +58,7 @@ export default class EditOrder extends Component {
   }
 
   handleAreaChange(e) {
-    let area = this.state
+    // let area = this.state
     this.setState({
       area: e.target.value,
     })

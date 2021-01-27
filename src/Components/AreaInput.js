@@ -7,7 +7,7 @@ export default class AreaInput extends Component {
         <input
           className="form-control"
           type="text" placeholder="Area"
-          name={this.props.name}
+          name="area"
           value={this.props.area} onChange={this.props.onChange}
           list="areas"
         />
