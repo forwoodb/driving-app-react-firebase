@@ -4,8 +4,6 @@ import AnalysisTable from './AnalysisTable';
 
 export default class Day extends Component {
   renderTableData() {
-    const orders = this.props.orders;
-
     let days = [
       "Mon",
       "Tue",
@@ -33,6 +31,8 @@ export default class Day extends Component {
             dollarMile={this.props.dollarMile(dayOrders)}
           />
         );
+      } else {
+        return false;
       }
     })
   }

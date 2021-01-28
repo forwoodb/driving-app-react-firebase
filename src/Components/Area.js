@@ -20,6 +20,8 @@ export default class Area extends Component {
             dollarMile={this.props.dollarMile(areaOrders)}
           />
         );
+      } else {
+        return false;
       }
     }).sort((x,y) => {
       return y.props.dollarHour - x.props.dollarHour;

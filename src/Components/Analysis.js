@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 
 // Components
 import AnalysisSelect from './AnalysisSelect.js';
-import Platform from './Platform.js';
 
 class Analysis extends Component {
   constructor(props) {
@@ -59,9 +58,6 @@ class Analysis extends Component {
 
   render() {
     let orders = this.props.orders;
-
-    let platforms = orders.map(order => order.platform);
-    platforms = [...new Set(platforms)].sort();
 
     let days = [
       "Mon",

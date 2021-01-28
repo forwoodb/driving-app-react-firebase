@@ -33,25 +33,29 @@ export default class Time extends Component {
     ]
 
 
-    return times.map((time, index, times) => {
-      let timeOrders = this.props.orders.filter(order => order.startTime >= time && order.startTime < times[index + 1])
+    return (
+      times.map((time, index, times) => {
+        let timeOrders = this.props.orders.filter(order => order.startTime >= time && order.startTime < times[index + 1])
 
-      if (timeOrders.length > 0) {
-        return (
-          <AnalysisData
-            user={this.props.user}
-            key={index}
-            category={time}
-            numberOrders={timeOrders.length}
-            dollarOrder={this.props.dollarOrder(timeOrders)}
-            dollarHour={this.props.dollarHour(timeOrders)}
-            averageTime={this.props.averageTime(timeOrders)}
-            averageDistance={this.props.averageDistance(timeOrders)}
-            dollarMile={this.props.dollarMile(timeOrders)}
-          />
-        );
-      }
-    })
+        if (timeOrders.length > 0) {
+          return (
+            <AnalysisData
+              user={this.props.user}
+              key={index}
+              category={time}
+              numberOrders={timeOrders.length}
+              dollarOrder={this.props.dollarOrder(timeOrders)}
+              dollarHour={this.props.dollarHour(timeOrders)}
+              averageTime={this.props.averageTime(timeOrders)}
+              averageDistance={this.props.averageDistance(timeOrders)}
+              dollarMile={this.props.dollarMile(timeOrders)}
+            />
+          );
+        } else {
+          return false;
+        }
+      })
+    )
   }
 
   render() {

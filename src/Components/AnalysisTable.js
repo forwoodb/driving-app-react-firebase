@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import AnalysisData from './AnalysisData';
 import AnalysisHeader from './AnalysisHeader';
 
 export default class AnalysisTable extends Component {

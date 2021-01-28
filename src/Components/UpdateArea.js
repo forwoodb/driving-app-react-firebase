@@ -71,12 +71,11 @@ export default class UpdateArea extends Component {
   render() {
     let orders = this.props.orders;
     let location = this.state.location;
-    let updateArea = this.state.area;
 
     if (location) {
       orders = orders.filter(order => order.location === location)
       orders.map((order) => {
-        this.state.updateOrders.push(order)
+        return this.state.updateOrders.push(order)
       })
     }
 

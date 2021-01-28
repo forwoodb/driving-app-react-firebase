@@ -1,12 +1,6 @@
 import React, {Component} from 'react';
 
 import TableSelect from './TableSelect.js';
-import {SelectHeader} from './Location.js';
-import Platform from './Platform.js';
-import Time from './Time.js';
-import Location from './Location.js';
-import Area from './Area.js';
-import Day from './Day.js';
 import LocationInput from './LocationInput.js';
 import AreaInput from './AreaInput.js';
 import AnalysisData from './AnalysisData';
@@ -109,7 +103,7 @@ export default class AnalysisSelect extends Component {
         day === 'Thu' ||
         day === 'Fri' ||
         day === 'Sat' ||
-        day === 'Sun' 
+        day === 'Sun'
       ) {
       orders = orders.filter(order => order.date.includes(day));
     }

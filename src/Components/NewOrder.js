@@ -44,9 +44,11 @@ export default class NewOrder extends Component {
         orders = orders.filter(order => order.location === locationValue);
       }
 
-      if (platformValue === 'All Platforms') {
-        orders = orders;
-      } else if (platformValue) {
+      if (
+        platformValue === 'DoorDash' ||
+        platformValue === 'GrubHub' ||
+        platformValue === 'UberEats'
+      ) {
         orders = orders.filter(order => order.platform === platformValue);
       }
 

@@ -20,7 +20,7 @@ export default class Location extends Component {
             dollarMile={this.props.dollarMile(locationOrders)}
           />
         );
-      }
+      } return false;
     }).sort((x,y) => {
       return y.props.dollarHour - x.props.dollarHour;
     })

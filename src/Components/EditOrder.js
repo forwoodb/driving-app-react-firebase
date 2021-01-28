@@ -31,12 +31,12 @@ export default class EditOrder extends Component {
     firebase.database().ref('orders/' + this.props.match.params.id).on('value', (snapshot) => {
       const data = snapshot.val();
 
-      let user;
-      if (this.props.user) {
-        user = this.props.user;
-      } else {
-        user = 'demo';
-      }
+      // let user;
+      // if (this.props.user) {
+      //   user = this.props.user;
+      // } else {
+      //   user = 'demo';
+      // }
 
       this.setState({
         location: data.location,

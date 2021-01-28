@@ -6,7 +6,6 @@ import firebase from '../firebase.js';
 // Components
 import HeaderNavbar from './Navbar.js';
 import NewOrder from './NewOrder.js';
-import OrdersList from './OrdersList.js';
 import UpdateArea from './UpdateArea.js';
 import EditOrder from './EditOrder.js';
 import Analysis from './Analysis.js';
