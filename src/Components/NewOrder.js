@@ -140,15 +140,12 @@ export default class NewOrder extends Component {
     firebase.database().ref('orders').push(newOrder)
     this.setState({
       location: '',
+      area: '',
       startTime: '',
     })
-    e.target.elements.location.value = '';
-    e.target.elements.area.value = '';
     e.target.elements.duration.value = '';
     e.target.elements.distance.value = '';
     e.target.elements.earnings.value = '';
-
-    console.log(e.target.platform.value);
   }
 
   render() {
@@ -177,7 +174,6 @@ export default class NewOrder extends Component {
             </div>
             <div className="col-6 input-group-sm">
               <AreaInput
-                name="area"
                 area={this.state.area}
                 areas={this.props.areas}
                 onChange={this.handleAreaChange}

@@ -43,7 +43,8 @@ class Main extends Component {
           orders.push({
             id: order,
             user: data[order].user,
-            ...data[order]
+            ...data[order],
+            location: data[order].location.replace("’", "'"),
           })
         }
       }
@@ -51,6 +52,7 @@ class Main extends Component {
       // Locations list
       let locations = orders.map(order => order.location);
       locations = [...new Set(locations)];
+      // console.log(locations);
 
       // Areas list
       let areas = orders.map(order => order.area);
