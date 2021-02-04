@@ -1,37 +1,37 @@
-import React, {Component} from 'react';
+import React from 'react';
 import AnalysisData from './AnalysisData';
 import AnalysisTable from './AnalysisTable';
 
-export default class Location extends Component {
-  renderTableData() {
-    return this.props.locations.map((location, index) => {
-      let locationOrders = this.props.orders.filter(order => order.location === location);
+export default function Location(props) {
+  const renderTableData = () => {
+    return props.locations.map((location, index) => {
+      let locationOrders = props.orders.filter(order => order.location === location);
       if (locationOrders.length > 0) {
         return (
           <AnalysisData
-            user={this.props.user}
+            user={props.user}
             key={index}
             category={location}
             numberOrders={locationOrders.length}
-            dollarOrder={this.props.dollarOrder(locationOrders)}
-            dollarHour={this.props.dollarHour(locationOrders)}
-            averageTime={this.props.averageTime(locationOrders)}
-            averageDistance={this.props.averageDistance(locationOrders)}
-            dollarMile={this.props.dollarMile(locationOrders)}
+            dollarOrder={props.dollarOrder(locationOrders)}
+            dollarHour={props.dollarHour(locationOrders)}
+            averageTime={props.averageTime(locationOrders)}
+            averageDistance={props.averageDistance(locationOrders)}
+            dollarMile={props.dollarMile(locationOrders)}
           />
         );
-      } return false;
+      // } else {
+      //   return false; <-- fixes lint warning, but breaks sort, try for(each, in) loop
+      }
     }).sort((x,y) => {
       return y.props.dollarHour - x.props.dollarHour;
     })
   }
 
-  render() {
-    return (
-      <AnalysisTable
-        categoryTitle="Location"
-        tableData={this.renderTableData()}
-      />
-    );
-  }
+  return (
+    <AnalysisTable
+      categoryTitle="Location"
+      tableData={renderTableData()}
+    />
+  );
 }

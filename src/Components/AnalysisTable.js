@@ -1,22 +1,18 @@
-import React, {Component} from 'react';
+import React from 'react';
 import AnalysisHeader from './AnalysisHeader';
 
-export default class AnalysisTable extends Component {
+export default function AnalysisTable(props) {
+  const categoryTitle = props.categoryTitle;
 
-
-  render() {
-    const categoryTitle = this.props.categoryTitle;
-
-    return (
-      <div className="table-responsive">
-        <h4>{categoryTitle}</h4>
-        <table className="table table-sm table-striped table-hover table-responsive">
-          <AnalysisHeader categoryTitle={categoryTitle}/>
-          <tbody>
-            {this.props.tableData}
-          </tbody>
-        </table>
-      </div>
-    )
-  }
+  return (
+    <div className="table-responsive">
+      <h4>{categoryTitle}</h4>
+      <table className="table table-sm table-striped table-hover table-responsive">
+        <AnalysisHeader categoryTitle={categoryTitle}/>
+        <tbody>
+          {props.tableData}
+        </tbody>
+      </table>
+    </div>
+  )
 }

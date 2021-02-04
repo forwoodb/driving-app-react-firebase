@@ -125,7 +125,6 @@ export default class EditOrder extends Component {
   }
 
   render() {
-    console.log(firebase.database().ref('orders/' + this.props.match.params.id));
     return (
       <div>
         <h2 className="text-center">Edit Order</h2>

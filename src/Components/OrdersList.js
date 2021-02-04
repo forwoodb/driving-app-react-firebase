@@ -1,66 +1,64 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
 // import UpdateArea from './UpdateArea.js';
 // Try form attribute for edit
-class OrdersList extends Component {
-  render() {
-    function compareTime(a,b) {
-      let comparison = 0;
-      if (a.startTime < b.startTime) {
-        comparison = 1
-      } else if (a.startTime > b.startTime) {
-        comparison = -1;
-      }
-      return comparison;
+function OrdersList(props) {
+  const compareTime = (a,b) => {
+    let comparison = 0;
+    if (a.startTime < b.startTime) {
+      comparison = 1
+    } else if (a.startTime > b.startTime) {
+      comparison = -1;
     }
-
-
-    return (
-      <div className="table-responsive">
-        <table className="table table-sm table-striped table-hover">
-          <thead>
-            <tr>
-              <th scope="col" className="text-center">Date</th>
-              <th scope="col" className="text-center">Time</th>
-              <th scope="col" className="text-center">Location</th>
-              <th scope="col" className="text-center">Area</th>
-              <th scope="col" className="text-center">Platform</th>
-              <th scope="col" className="text-center">Duration</th>
-              <th scope="col" className="text-center">Distance</th>
-              <th scope="col" className="text-center">Earnings</th>
-              <th scope="col" className="text-center"></th>
-              <th scope="col" className="text-center"></th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.props.orders
-              .sort((x,y) => {
-                let dateX = new Date(x.date);
-                let dateY = new Date(y.date);
-                return dateY - dateX || compareTime(x,y);
-              })
-              .map(order =>
-                <Order
-                  key={order.order_id}
-                  id={order.id}
-                  order={order}
-                  date={order.date}
-                  startTime={order.startTime || order.time}
-                  location={order.location}
-                  area={order.area}
-                  platform={order.platform}
-                  duration={order.duration}
-                  distance={Number(order.distance).toFixed(2)}
-                  earnings={Number(order.earnings).toFixed(2)}
-                  onDelete={() => this.props.onDelete(order.id)}
-                />
-              )
-            }
-          </tbody>
-        </table>
-      </div>
-    );
+    return comparison;
   }
+
+
+  return (
+    <div className="table-responsive">
+      <table className="table table-sm table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col" className="text-center">Date</th>
+            <th scope="col" className="text-center">Time</th>
+            <th scope="col" className="text-center">Location</th>
+            <th scope="col" className="text-center">Area</th>
+            <th scope="col" className="text-center">Platform</th>
+            <th scope="col" className="text-center">Duration</th>
+            <th scope="col" className="text-center">Distance</th>
+            <th scope="col" className="text-center">Earnings</th>
+            <th scope="col" className="text-center"></th>
+            <th scope="col" className="text-center"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {props.orders
+            .sort((x,y) => {
+              let dateX = new Date(x.date);
+              let dateY = new Date(y.date);
+              return dateY - dateX || compareTime(x,y);
+            })
+            .map(order =>
+              <Order
+                key={order.order_id}
+                id={order.id}
+                order={order}
+                date={order.date}
+                startTime={order.startTime || order.time}
+                location={order.location}
+                area={order.area}
+                platform={order.platform}
+                duration={order.duration}
+                distance={Number(order.distance).toFixed(2)}
+                earnings={Number(order.earnings).toFixed(2)}
+                onDelete={() => props.onDelete(order.id)}
+              />
+            )
+          }
+        </tbody>
+      </table>
+    </div>
+  );
 }
 
 function Order(props) {

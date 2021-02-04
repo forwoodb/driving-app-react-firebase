@@ -1,73 +1,71 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Platform from './Platform.js';
 import Day from './Day.js';
 import Time from './Time.js';
 import Area from './Area.js';
 import Location from './Location.js';
 
-export default class Tables extends Component {
-  render() {
-    const orders = this.props.orders;
-    const table = this.props.table;
+export default function Tables(props) {
+  const orders = props.orders;
+  const table = props.table;
 
-    if (table === 'day') {
-      return (
-        <Day
-          orders={orders}
-          averageTime={this.props.averageTime}
-          averageDistance={this.props.averageDistance}
-          dollarOrder={this.props.dollarOrder}
-          dollarHour={this.props.dollarHour}
-          dollarMile={this.props.dollarMile}
-        />
-      )
-    } else if (table === 'time') {
-      return (
-        <Time
-          orders={orders}
-          averageTime={this.props.averageTime}
-          averageDistance={this.props.averageDistance}
-          dollarOrder={this.props.dollarOrder}
-          dollarHour={this.props.dollarHour}
-          dollarMile={this.props.dollarMile}
-        />
-      )
-    } else if (table === 'area') {
-      return (
-        <Area
-          orders={orders}
-          averageTime={this.props.averageTime}
-          averageDistance={this.props.averageDistance}
-          dollarOrder={this.props.dollarOrder}
-          dollarHour={this.props.dollarHour}
-          dollarMile={this.props.dollarMile}
-          areas={this.props.areas}
-        />
-      )
-    } else if (table === 'location') {
-      return (
-        <Location
-          orders={orders}
-          averageTime={this.props.averageTime}
-          averageDistance={this.props.averageDistance}
-          dollarOrder={this.props.dollarOrder}
-          dollarHour={this.props.dollarHour}
-          dollarMile={this.props.dollarMile}
-          locations={this.props.locations}
-        />
-      )
-    } else {
-      return (
-        <Platform
-          orders={orders}
-          numberOrders={orders.length}
-          averageTime={this.props.averageTime}
-          averageDistance={this.props.averageDistance}
-          dollarOrder={this.props.dollarOrder}
-          dollarHour={this.props.dollarHour}
-          dollarMile={this.props.dollarMile}
-        />
-      )
-    }
+  if (table === 'day') {
+    return (
+      <Day
+        orders={orders}
+        averageTime={props.averageTime}
+        averageDistance={props.averageDistance}
+        dollarOrder={props.dollarOrder}
+        dollarHour={props.dollarHour}
+        dollarMile={props.dollarMile}
+      />
+    )
+  } else if (table === 'time') {
+    return (
+      <Time
+        orders={orders}
+        averageTime={props.averageTime}
+        averageDistance={props.averageDistance}
+        dollarOrder={props.dollarOrder}
+        dollarHour={props.dollarHour}
+        dollarMile={props.dollarMile}
+      />
+    )
+  } else if (table === 'area') {
+    return (
+      <Area
+        orders={orders}
+        averageTime={props.averageTime}
+        averageDistance={props.averageDistance}
+        dollarOrder={props.dollarOrder}
+        dollarHour={props.dollarHour}
+        dollarMile={props.dollarMile}
+        areas={props.areas}
+      />
+    )
+  } else if (table === 'location') {
+    return (
+      <Location
+        orders={orders}
+        averageTime={props.averageTime}
+        averageDistance={props.averageDistance}
+        dollarOrder={props.dollarOrder}
+        dollarHour={props.dollarHour}
+        dollarMile={props.dollarMile}
+        locations={props.locations}
+      />
+    )
+  } else {
+    return (
+      <Platform
+        orders={orders}
+        numberOrders={orders.length}
+        averageTime={props.averageTime}
+        averageDistance={props.averageDistance}
+        dollarOrder={props.dollarOrder}
+        dollarHour={props.dollarHour}
+        dollarMile={props.dollarMile}
+      />
+    )
   }
 }

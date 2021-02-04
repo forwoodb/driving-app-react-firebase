@@ -76,8 +76,6 @@ export default class AnalysisSelect extends Component {
     let platform = this.state.platform;
     let day = this.state.day;
     let timeFrom = this.state.timeFrom;
-    // let locations = orders.map(order => order.location);
-    // locations = [...new Set(locations)].sort();
 
     if (location) {
       orders = orders.filter(order => order.location === location);

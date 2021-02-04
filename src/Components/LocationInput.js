@@ -1,22 +1,20 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-export default class LocationInput extends Component {
-  render() {
-    return (
-      <div className="input-group-sm">
-        <input
-          className="form-control"
-          type="text" placeholder="Location"
-          name="location"
-          value={this.props.location} onChange={this.props.onChange}
-          list="locations"
-        />
-        <datalist id="locations">
-          {this.props.locations.sort().map((location, index) => {
-            return <option key={index} value={location}/>
-          })}
-        </datalist>
-      </div>
-    );
-  }
+export default function LocationInput(props) {
+  return (
+    <div className="input-group-sm">
+      <input
+        className="form-control"
+        type="text" placeholder="Location"
+        name="location"
+        value={props.location} onChange={props.onChange}
+        list="locations"
+      />
+      <datalist id="locations">
+        {props.locations.sort().map((location, index) => {
+          return <option key={index} value={location}/>
+        })}
+      </datalist>
+    </div>
+  );
 }

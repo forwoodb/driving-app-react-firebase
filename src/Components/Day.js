@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React from 'react';
 import AnalysisData from './AnalysisData';
 import AnalysisTable from './AnalysisTable';
 
-export default class Day extends Component {
-  renderTableData() {
+export default function Day(props) {
+  const renderTableData = () => {
     let days = [
       "Mon",
       "Tue",
@@ -16,19 +16,19 @@ export default class Day extends Component {
 
 
     return days.map((day, index) => {
-      let dayOrders = this.props.orders.filter(order => order.date.includes(day));
+      let dayOrders = props.orders.filter(order => order.date.includes(day));
       if (dayOrders.length > 0) {
         return (
           <AnalysisData
-            user={this.props.user}
+            user={props.user}
             key={index}
             category={day}
             numberOrders={dayOrders.length}
-            dollarOrder={this.props.dollarOrder(dayOrders)}
-            dollarHour={this.props.dollarHour(dayOrders)}
-            averageTime={this.props.averageTime(dayOrders)}
-            averageDistance={this.props.averageDistance(dayOrders)}
-            dollarMile={this.props.dollarMile(dayOrders)}
+            dollarOrder={props.dollarOrder(dayOrders)}
+            dollarHour={props.dollarHour(dayOrders)}
+            averageTime={props.averageTime(dayOrders)}
+            averageDistance={props.averageDistance(dayOrders)}
+            dollarMile={props.dollarMile(dayOrders)}
           />
         );
       } else {
@@ -37,13 +37,11 @@ export default class Day extends Component {
     })
   }
 
-  render() {
 
-    return (
-      <AnalysisTable
-        categoryTitle="Day"
-        tableData={this.renderTableData()}
-      />
-    );
-  }
+  return (
+    <AnalysisTable
+      categoryTitle="Day"
+      tableData={renderTableData()}
+    />
+  );
 }

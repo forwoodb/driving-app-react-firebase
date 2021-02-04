@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React from 'react';
 import AnalysisData from './AnalysisData';
 import AnalysisTable from './AnalysisTable';
 
-export default class Time extends Component {
-  renderTableData() {
+export default function Time(props) {
+  const renderTableData = () => {
     let times = [
       "00:00:00",
       "01:00:00",
@@ -35,20 +35,20 @@ export default class Time extends Component {
 
     return (
       times.map((time, index, times) => {
-        let timeOrders = this.props.orders.filter(order => order.startTime >= time && order.startTime < times[index + 1])
+        let timeOrders = props.orders.filter(order => order.startTime >= time && order.startTime < times[index + 1])
 
         if (timeOrders.length > 0) {
           return (
             <AnalysisData
-              user={this.props.user}
+              user={props.user}
               key={index}
               category={time}
               numberOrders={timeOrders.length}
-              dollarOrder={this.props.dollarOrder(timeOrders)}
-              dollarHour={this.props.dollarHour(timeOrders)}
-              averageTime={this.props.averageTime(timeOrders)}
-              averageDistance={this.props.averageDistance(timeOrders)}
-              dollarMile={this.props.dollarMile(timeOrders)}
+              dollarOrder={props.dollarOrder(timeOrders)}
+              dollarHour={props.dollarHour(timeOrders)}
+              averageTime={props.averageTime(timeOrders)}
+              averageDistance={props.averageDistance(timeOrders)}
+              dollarMile={props.dollarMile(timeOrders)}
             />
           );
         } else {
@@ -58,13 +58,11 @@ export default class Time extends Component {
     )
   }
 
-  render() {
 
-    return (
-      <AnalysisTable
-        categoryTitle="Time"
-        tableData={this.renderTableData()}
-      />
-    );
-  }
+  return (
+    <AnalysisTable
+      categoryTitle="Time"
+      tableData={renderTableData()}
+    />
+  );
 }

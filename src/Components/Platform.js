@@ -1,41 +1,39 @@
-import React, {Component} from 'react';
+import React from 'react';
 import AnalysisData from './AnalysisData';
 import AnalysisTable from './AnalysisTable';
 
-export default class Platform extends Component {
+export default function Platform(props) {
 
-  renderTableData() {
-    const orders = this.props.orders;
+  const renderTableData = () => {
+    const orders = props.orders;
 
     let platforms = orders.map(order => order.platform);
     platforms = [...new Set(platforms)].sort();
 
 
     return platforms.map((platform, index) => {
-      let platformOrders = this.props.orders.filter(order => order.platform === platform);
+      let platformOrders = props.orders.filter(order => order.platform === platform);
 
       return (
         <AnalysisData
-          user={this.props.user}
+          user={props.user}
           key={index}
           category={platform}
           numberOrders={platformOrders.length}
-          averageTime={this.props.averageTime(platformOrders)}
-          averageDistance={this.props.averageDistance(platformOrders)}
-          dollarOrder={this.props.dollarOrder(platformOrders)}
-          dollarHour={this.props.dollarHour(platformOrders)}
-          dollarMile={this.props.dollarMile(platformOrders)}
+          averageTime={props.averageTime(platformOrders)}
+          averageDistance={props.averageDistance(platformOrders)}
+          dollarOrder={props.dollarOrder(platformOrders)}
+          dollarHour={props.dollarHour(platformOrders)}
+          dollarMile={props.dollarMile(platformOrders)}
         />
       )
     })
   }
 
-  render() {
-    return (
-      <AnalysisTable
-        categoryTitle="Platform"
-        tableData={this.renderTableData()}
-      />
-    );
-  }
+  return (
+    <AnalysisTable
+      categoryTitle="Platform"
+      tableData={renderTableData()}
+    />
+  );
 }
