@@ -6,7 +6,7 @@ export default function Area(props) {
   const renderTableData = () => {
     return props.areas.map((area, index) => {
       let areaOrders = props.orders.filter(order => order.area === area);
-      if (areaOrders.length > 0) {
+      if (area && areaOrders.length > 0) {
         return (
           <AnalysisData
             user={props.user}

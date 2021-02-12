@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function AnalysisData(props) {
+const AnalysisData = (props) => {
   return (
     <tr>
       <td className="text-center first-column">{props.category}</td>
@@ -13,3 +13,6 @@ export default function AnalysisData(props) {
     </tr>
   );
 }
+
+export default AnalysisData;
+

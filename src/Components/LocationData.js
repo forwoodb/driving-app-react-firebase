@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function LocationData(props) {
+const LocationData = (props) => {
   return (
     <table className="table table-striped table-hover">
       <thead>
@@ -34,3 +34,5 @@ export default function LocationData(props) {
     </table>
   );
 }
+
+export default LocationData;

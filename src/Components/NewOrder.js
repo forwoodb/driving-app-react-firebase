@@ -5,7 +5,7 @@ import LocationInput from './LocationInput.js';
 import AreaInput from './AreaInput.js';
 
 
-export default class NewOrder extends Component {
+class NewOrder extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -238,3 +238,4 @@ export default class NewOrder extends Component {
   }
 }
 
+export default NewOrder;

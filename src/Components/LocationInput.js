@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function LocationInput(props) {
+const LocationInput = (props) => {
   return (
     <div className="input-group-sm">
       <input
@@ -18,3 +18,5 @@ export default function LocationInput(props) {
     </div>
   );
 }
+
+export default LocationInput;

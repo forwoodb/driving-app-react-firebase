@@ -23,46 +23,39 @@ export default class AnalysisSelect extends Component {
       timeFrom: '',
       timeTo: '',
     }
-    this.handleLocationChange = this.handleLocationChange.bind(this);
-    this.handleAreaChange = this.handleAreaChange.bind(this);
-    this.handlePlatformChange = this.handlePlatformChange.bind(this);
-    this.handleDayChange = this.handleDayChange.bind(this);
-    this.handleTimeFromChange = this.handleTimeFromChange.bind(this);
-    this.handleTimeToChange = this.handleTimeToChange.bind(this);
-
   }
 
-  handleLocationChange(e) {
+  handleLocationChange = (e) => {
     this.setState({
       location: e.target.value,
     })
   }
 
-  handleAreaChange(e) {
+  handleAreaChange = (e) => {
     this.setState({
       area: e.target.value,
     })
   }
 
-  handlePlatformChange(e) {
+  handlePlatformChange = (e) => {
     this.setState({
       platform: e.target.value,
     })
   }
 
-  handleDayChange(e) {
+  handleDayChange = (e) => {
     this.setState({
       day: e.target.value,
     })
   }
 
-  handleTimeFromChange(e) {
+  handleTimeFromChange = (e) => {
     this.setState({
       timeFrom: e.target.value,
     })
   }
 
-  handleTimeToChange(e) {
+  handleTimeToChange = (e) => {
     this.setState({
       timeTo: e.target.value,
     })

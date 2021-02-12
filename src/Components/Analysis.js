@@ -3,7 +3,7 @@ import React from 'react';
 // Components
 import AnalysisSelect from './AnalysisSelect.js';
 
-function Analysis(props) {
+const Analysis = (props) => {
   const averageTime = (data) => {
     return (
       data.reduce(function(total, order) {

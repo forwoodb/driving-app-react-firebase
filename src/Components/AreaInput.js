@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function AreaInput(props) {
+const AreaInput = (props) => {
   return (
     <div className="input-group-sm">
       <input
@@ -18,3 +18,5 @@ export default function AreaInput(props) {
     </div>
   );
 }
+
+export default AreaInput;

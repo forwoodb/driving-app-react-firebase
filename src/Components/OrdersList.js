@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 // import UpdateArea from './UpdateArea.js';
 // Try form attribute for edit
-function OrdersList(props) {
+const OrdersList = (props) => {
   const compareTime = (a,b) => {
     let comparison = 0;
     if (a.startTime < b.startTime) {
@@ -13,6 +13,28 @@ function OrdersList(props) {
     return comparison;
   }
 
+  let orders = props.orders
+    .sort((x,y) => {
+      let dateX = new Date(x.date);
+      let dateY = new Date(y.date);
+      return dateY - dateX || compareTime(x,y);
+    })
+    .map(order =>
+      <Order
+        key={order.order_id}
+        id={order.id}
+        order={order}
+        date={order.date}
+        startTime={order.startTime || order.time}
+        location={order.location}
+        area={order.area}
+        platform={order.platform}
+        duration={order.duration}
+        distance={Number(order.distance).toFixed(2)}
+        earnings={Number(order.earnings).toFixed(2)}
+        onDelete={() => props.onDelete(order.id)}
+      />
+    )
 
   return (
     <div className="table-responsive">
@@ -32,36 +54,14 @@ function OrdersList(props) {
           </tr>
         </thead>
         <tbody>
-          {props.orders
-            .sort((x,y) => {
-              let dateX = new Date(x.date);
-              let dateY = new Date(y.date);
-              return dateY - dateX || compareTime(x,y);
-            })
-            .map(order =>
-              <Order
-                key={order.order_id}
-                id={order.id}
-                order={order}
-                date={order.date}
-                startTime={order.startTime || order.time}
-                location={order.location}
-                area={order.area}
-                platform={order.platform}
-                duration={order.duration}
-                distance={Number(order.distance).toFixed(2)}
-                earnings={Number(order.earnings).toFixed(2)}
-                onDelete={() => props.onDelete(order.id)}
-              />
-            )
-          }
+          {orders.slice(0,50)}
         </tbody>
       </table>
     </div>
   );
 }
 
-function Order(props) {
+const Order = (props) => {
   return (
     <tr>
       <td className="text-center" width="275px">{props.date}</td>
