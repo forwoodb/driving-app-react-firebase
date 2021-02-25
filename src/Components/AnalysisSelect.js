@@ -172,6 +172,7 @@ export default class AnalysisSelect extends Component {
               user={this.props.user}
               numberOrders={orders.length}
               averageTime={this.props.averageTime(orders)}
+              minMile={this.props.minMile(orders)}
               averageDistance={this.props.averageDistance(orders)}
               dollarOrder={this.props.dollarOrder(orders)}
               dollarHour={this.props.dollarHour(orders)}
@@ -182,6 +183,7 @@ export default class AnalysisSelect extends Component {
         <TableSelect
           orders={orders}
           averageTime={this.props.averageTime}
+          minMile={this.props.minMile}
           averageDistance={this.props.averageDistance}
           dollarOrder={this.props.dollarOrder}
           dollarHour={this.props.dollarHour}

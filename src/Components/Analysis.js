@@ -47,6 +47,10 @@ const Analysis = (props) => {
     );
   }
 
+  const minMile = (data) => {
+    return averageTime(data)/averageDistance(data)
+  }
+
   let orders = props.orders;
 
   let days = [
@@ -97,6 +101,7 @@ const Analysis = (props) => {
         days={days}
         times={times}
         averageTime={(data) => averageTime(data).toFixed(2)}
+        minMile={(data) => minMile(data).toFixed(2)}
         averageDistance={(data) => averageDistance(data).toFixed(2)}
         dollarOrder={(data) => dollarOrder(data).toFixed(2)}
         dollarHour={(data) => dollarHour(data).toFixed(2)}

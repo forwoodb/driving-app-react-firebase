@@ -14,6 +14,7 @@ export default function Tables(props) {
       <Day
         orders={orders}
         averageTime={props.averageTime}
+        minMile={props.minMile}
         averageDistance={props.averageDistance}
         dollarOrder={props.dollarOrder}
         dollarHour={props.dollarHour}
@@ -25,6 +26,7 @@ export default function Tables(props) {
       <Time
         orders={orders}
         averageTime={props.averageTime}
+        minMile={props.minMile}
         averageDistance={props.averageDistance}
         dollarOrder={props.dollarOrder}
         dollarHour={props.dollarHour}
@@ -36,6 +38,7 @@ export default function Tables(props) {
       <Area
         orders={orders}
         averageTime={props.averageTime}
+        minMile={props.minMile}
         averageDistance={props.averageDistance}
         dollarOrder={props.dollarOrder}
         dollarHour={props.dollarHour}
@@ -48,6 +51,7 @@ export default function Tables(props) {
       <Location
         orders={orders}
         averageTime={props.averageTime}
+        minMile={props.minMile}
         averageDistance={props.averageDistance}
         dollarOrder={props.dollarOrder}
         dollarHour={props.dollarHour}
@@ -61,6 +65,7 @@ export default function Tables(props) {
         orders={orders}
         numberOrders={orders.length}
         averageTime={props.averageTime}
+        minMile={props.minMile}
         averageDistance={props.averageDistance}
         dollarOrder={props.dollarOrder}
         dollarHour={props.dollarHour}

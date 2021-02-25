@@ -13,6 +13,7 @@ class NewOrder extends Component {
       area: '',
       platform: 'All Platforms',
       startTime: '',
+      projDist: '',
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleLocationChange = this.handleLocationChange.bind(this);
@@ -20,9 +21,10 @@ class NewOrder extends Component {
     this.handlePlatformChange = this.handlePlatformChange.bind(this);
     this.handleStartTimeChange = this.handleStartTimeChange.bind(this);
     this.startTime = this.startTime.bind(this);
+    this.handleProjDistChange = this.handleProjDistChange.bind(this);
   }
 
-  getData(locationValue, platformValue) {
+  getOrderData(locationValue, platformValue) {
     firebase.database().ref('orders').on('value', (snapshot) => {
       const data = snapshot.val();
       let orders = [];
@@ -39,6 +41,19 @@ class NewOrder extends Component {
           orders.push({...data[order]})
         }
       }
+
+      let aveDollarHour = orders.reduce(function(total, order) {
+        return total + Number(order.earnings);
+      }, 0)/orders.length/(orders.reduce(function(total, order) {
+        return total + Number(order.duration);
+      }, 0)/orders.length) * 60;
+
+      // let minMile = orders.reduce(function(total, order) {
+      //   return total + Number(order.duration);
+      // }, 0)/orders.length/(orders.reduce(function(total, order) {
+      //   return total + Number(order.distance);
+      // }, 0)/orders.length)
+
 
       if (locationValue) {
         orders = orders.filter(order => order.location === locationValue);
@@ -61,17 +76,22 @@ class NewOrder extends Component {
         return total + Number(order.distance);
       }, 0)/orders.length;
 
+      let minMile = averageTime/averageDistance
+
       let dollarOrder = orders.reduce(function(total, order) {
         return total + Number(order.earnings);
       }, 0)/orders.length;
 
-      let dollarHour = orders.reduce(function(total, order) {
-        return total + Number(order.earnings);
-      }, 0)/orders.length/averageTime * 60;
+      let dollarHour = dollarOrder/averageTime * 60;
 
       let dollarMile = orders.reduce(function(total, order) {
         return total + Number(order.earnings);
       }, 0)/orders.length/averageDistance;
+
+      const projDist = this.state.projDist;
+
+      let projTime = minMile * projDist;
+      let tarEarn = ((aveDollarHour/60)*projTime)
 
       this.__isMounted &&
       this.setState({
@@ -79,17 +99,20 @@ class NewOrder extends Component {
         platform: platformValue,
         numberOrders: orders.length,
         averageTime: averageTime.toFixed(2),
+        minMile: minMile.toFixed(2),
         averageDistance: averageDistance.toFixed(2),
         dollarOrder: dollarOrder.toFixed(2),
         dollarHour: dollarHour.toFixed(2),
         dollarMile: dollarMile.toFixed(2),
+        projTime: projTime.toFixed(2),
+        tarEarn: tarEarn.toFixed(2),
       });
     });
   }
 
   componentDidMount() {
     this.__isMounted = true;
-    this.getData(this.state.location);
+    this.getOrderData(this.state.location);
   }
 
   componentWillUnmount() {
@@ -103,10 +126,10 @@ class NewOrder extends Component {
   }
 
   handleLocationChange(e) {
+    this.getOrderData(e.target.value, this.state.platform);
     this.setState({
       location: e.target.value,
     })
-    this.getData(e.target.value, this.state.platform);
   }
 
   handleAreaChange(e) {
@@ -116,12 +139,19 @@ class NewOrder extends Component {
   }
 
   handlePlatformChange(e) {
-    this.getData(this.state.location, e.target.value);
+    this.getOrderData(this.state.location, e.target.value);
   }
 
   handleStartTimeChange(e) {
     this.setState({
       startTime: e.target.value,
+    })
+  }
+
+  handleProjDistChange(e) {
+    this.getOrderData(this.state.location, e.target.value)
+    this.setState({
+      projDist: e.target.value,
     })
   }
 
@@ -175,13 +205,6 @@ class NewOrder extends Component {
               />
             </div>
             <div className="col-6 input-group-sm">
-              <AreaInput
-                area={this.state.area}
-                areas={this.props.areas}
-                onChange={this.handleAreaChange}
-              />
-            </div>
-            <div className="col-6 input-group-sm">
               <select
                 className="form-control"
                 type="text"
@@ -197,18 +220,35 @@ class NewOrder extends Component {
             <div className="col-4 input-group-sm">
               <input
                 type="text"
+                name="projDist"
+                className="form-control"
+                placeholder="Projected Distance"
+                value={this.state.projDist}
+                onChange={this.handleProjDistChange}
+              />
+            </div>
+            <div className="col-6 input-group-sm">
+              <AreaInput
+                area={this.state.area}
+                areas={this.props.areas}
+                onChange={this.handleAreaChange}
+              />
+            </div>
+            <div className="col-4 input-group-sm">
+              <input
+                type="text"
                 name="duration"
                 className="form-control"
                 placeholder="Duration"
               />
             </div>
             <div className="col-4 input-group-sm">
-                <input
-                  type="text"
-                  name="distance"
-                  className="form-control"
-                  placeholder="Distance"
-                />
+              <input
+                type="text"
+                name="distance"
+                className="form-control"
+                placeholder="Distance"
+              />
             </div>
             <div className="col-4 input-group-sm">
               <input
@@ -231,7 +271,10 @@ class NewOrder extends Component {
           numberOrders={this.state.numberOrders}
           dollarOrder={this.state.dollarOrder}
           averageTime={this.state.averageTime}
+          minMile={this.state.minMile}
           averageDistance={this.state.averageDistance}
+          projTime={this.state.projTime}
+          tarEarn={this.state.tarEarn}
         />
       </div>
     );
