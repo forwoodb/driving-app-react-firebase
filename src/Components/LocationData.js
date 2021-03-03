@@ -5,14 +5,12 @@ const LocationData = (props) => {
     <table className="table table-striped table-hover">
       <thead>
         <tr>
-          <th className="text-center">Min/Mile</th>
           <th className="text-center">Projected Time</th>
           <th className="text-center">Target Earnings</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td className="text-center">{props.minMile}</td>
           <td className="text-center">{props.projTime}</td>
           <td className="text-center">{props.tarEarn}</td>
         </tr>

@@ -99,7 +99,7 @@ class NewOrder extends Component {
         platform: platformValue,
         numberOrders: orders.length,
         averageTime: averageTime.toFixed(2),
-        minMile: minMile.toFixed(2),
+        // minMile: minMile.toFixed(2),
         averageDistance: averageDistance.toFixed(2),
         dollarOrder: dollarOrder.toFixed(2),
         dollarHour: dollarHour.toFixed(2),
@@ -188,7 +188,7 @@ class NewOrder extends Component {
             <div className="col-12">
               <button type="button" onClick={this.startTime}>Enter Timestamp</button>
             </div>
-            <div className="col-lg-6 input-group-sm input-group-sm">
+            <div className="col-lg-6 input-group-sm">
               <input
                 className="form-control"
                 type="text"
@@ -204,7 +204,7 @@ class NewOrder extends Component {
                 onChange={this.handleLocationChange}
               />
             </div>
-            <div className="col-6 input-group-sm">
+            <div className="col-lg-6 input-group-sm">
               <select
                 className="form-control"
                 type="text"
@@ -217,7 +217,7 @@ class NewOrder extends Component {
                 <option>UberEats</option>
               </select>
             </div>
-            <div className="col-4 input-group-sm">
+            <div className="col-6 input-group-sm">
               <input
                 type="text"
                 name="projDist"
@@ -271,7 +271,7 @@ class NewOrder extends Component {
           numberOrders={this.state.numberOrders}
           dollarOrder={this.state.dollarOrder}
           averageTime={this.state.averageTime}
-          minMile={this.state.minMile}
+          // minMile={this.state.minMile}
           averageDistance={this.state.averageDistance}
           projTime={this.state.projTime}
           tarEarn={this.state.tarEarn}
