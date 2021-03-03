@@ -38,7 +38,12 @@ class NewOrder extends Component {
 
       for (var order in data) {
         if (data[order].user === user) {
-          orders.push({...data[order]})
+          orders.push({
+            id: order,
+            user: data[order].user,
+            ...data[order],
+            location: data[order].location.replace("’", "'"),
+          })
         }
       }
 
