@@ -149,7 +149,7 @@ class NewOrder extends Component {
   }
 
   handleProjDistChange(e) {
-    this.getOrderData(this.state.location, e.target.value)
+    this.getOrderData(this.state.location, this.state.platform)
     this.setState({
       projDist: e.target.value,
     })
@@ -197,14 +197,24 @@ class NewOrder extends Component {
                 value={this.state.startTime} onChange={this.handleStartTimeChange}
               />
             </div>
-            <div className="col-lg-6 input-group-sm">
+            <div className="col-9 input-group-sm">
               <LocationInput
                 location={this.state.location}
                 locations={this.props.locations}
                 onChange={this.handleLocationChange}
               />
             </div>
-            <div className="col-lg-6 input-group-sm">
+            <div className="col-3 input-group-sm">
+              <input
+                type="text"
+                name="projDist"
+                className="form-control"
+                placeholder="Proj Dist"
+                value={this.state.projDist}
+                onChange={this.handleProjDistChange}
+              />
+            </div>
+            <div className="col-6 input-group-sm">
               <select
                 className="form-control"
                 type="text"
@@ -216,16 +226,6 @@ class NewOrder extends Component {
                 <option>GrubHub</option>
                 <option>UberEats</option>
               </select>
-            </div>
-            <div className="col-6 input-group-sm">
-              <input
-                type="text"
-                name="projDist"
-                className="form-control"
-                placeholder="Projected Distance"
-                value={this.state.projDist}
-                onChange={this.handleProjDistChange}
-              />
             </div>
             <div className="col-6 input-group-sm">
               <AreaInput
