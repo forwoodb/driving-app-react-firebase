@@ -4,52 +4,29 @@ import React from 'react';
 import AnalysisSelect from './AnalysisSelect.js';
 
 const Analysis = (props) => {
-  const averageTime = (data) => {
+
+  const total = (data, category) => {
     return (
       data.reduce(function(total, order) {
-        if (isNaN(order.duration)) {
-          return order.duration = 0;
+        if (isNaN(order[category])) {
+          return order[category] = 0;
         }
-        return total + (parseFloat(order.duration) || 0);
+        return total + (parseFloat(order[category]) || 0);
       }, 0)/data.length
     );
   }
 
-  const averageDistance = (data) => {
-    return (
-      data.reduce(function(total, order) {
-        return total + (parseFloat(order.distance) || 0);
-      }, 0)/data.length || 0
-    );
-  }
+  const averageTime = (data) => total(data, 'duration')
 
-  const dollarOrder = (data) => {
-    return (
-      data.reduce(function(total, order) {
-        return total + (parseFloat(order.earnings) || 0);
-      }, 0)/data.length || 0
-    );
-  }
+  const averageDistance = (data) => total(data, 'distance')
 
-  const dollarHour = (data) => {
-    return (
-      data.reduce(function(total, order) {
-        return total + (parseFloat(order.earnings) || 0);
-      }, 0)/data.length/averageTime(data) * 60 || 0
-    );
-  }
+  const dollarOrder = (data) => total(data, 'earnings')
 
-  const dollarMile = (data) => {
-    return (
-      data.reduce(function(total, order) {
-        return total + (parseFloat(order.earnings) || 0);
-      }, 0)/data.length/averageDistance(data) || 0
-    );
-  }
+  const dollarHour = (data) => dollarOrder(data)/averageTime(data) * 60 || 0
 
-  const minMile = (data) => {
-    return averageTime(data)/averageDistance(data)
-  }
+  const dollarMile = (data) => dollarOrder(data)/averageDistance(data) || 0
+
+  const minMile = (data) => averageTime(data)/averageDistance(data)
 
   let orders = props.orders;
 
