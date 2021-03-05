@@ -1,6 +1,5 @@
 import React from 'react';
 
-// Components
 import AnalysisSelect from './AnalysisSelect.js';
 
 const Analysis = (props) => {
@@ -17,15 +16,10 @@ const Analysis = (props) => {
   }
 
   const averageTime = (data) => total(data, 'duration')
-
   const averageDistance = (data) => total(data, 'distance')
-
   const dollarOrder = (data) => total(data, 'earnings')
-
   const dollarHour = (data) => dollarOrder(data)/averageTime(data) * 60 || 0
-
   const dollarMile = (data) => dollarOrder(data)/averageDistance(data) || 0
-
   const minMile = (data) => averageTime(data)/averageDistance(data)
 
   let orders = props.orders;

@@ -47,19 +47,6 @@ class NewOrder extends Component {
         }
       }
 
-      let aveDollarHour = orders.reduce(function(total, order) {
-        return total + Number(order.earnings);
-      }, 0)/orders.length/(orders.reduce(function(total, order) {
-        return total + Number(order.duration);
-      }, 0)/orders.length) * 60;
-
-      // let minMile = orders.reduce(function(total, order) {
-      //   return total + Number(order.duration);
-      // }, 0)/orders.length/(orders.reduce(function(total, order) {
-      //   return total + Number(order.distance);
-      // }, 0)/orders.length)
-
-
       if (locationValue) {
         orders = orders.filter(order => order.location === locationValue);
       }
@@ -72,27 +59,23 @@ class NewOrder extends Component {
         orders = orders.filter(order => order.platform === platformValue);
       }
 
+      const total = (category) => {
+        return (
+          orders.reduce(function(total, order) {
+            return total + Number(order[category]);
+          }, 0)/orders.length
+        );
+      }
 
-      let averageTime = orders.reduce(function(total, order) {
-        return total + Number(order.duration);
-      }, 0)/orders.length;
 
-      let averageDistance = orders.reduce(function(total, order) {
-        return total + Number(order.distance);
-      }, 0)/orders.length;
-
+      let averageTime = total('duration');
+      let averageDistance = total('distance')
+      let dollarOrder = total('earnings')
       let minMile = averageTime/averageDistance
-
-      let dollarOrder = orders.reduce(function(total, order) {
-        return total + Number(order.earnings);
-      }, 0)/orders.length;
-
       let dollarHour = dollarOrder/averageTime * 60;
+      let dollarMile = dollarOrder/averageDistance;
 
-      let dollarMile = orders.reduce(function(total, order) {
-        return total + Number(order.earnings);
-      }, 0)/orders.length/averageDistance;
-
+      let aveDollarHour = averageDistance/(averageTime * 60);
       const projDist = this.state.projDist;
 
       let projTime = minMile * projDist;
