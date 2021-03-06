@@ -49,6 +49,7 @@ export default function Time(props) {
               averageTime={props.averageTime(timeOrders)}
               averageDistance={props.averageDistance(timeOrders)}
               dollarMile={props.dollarMile(timeOrders)}
+              averageWait={props.averageWait(timeOrders)}
             />
           );
         } else {

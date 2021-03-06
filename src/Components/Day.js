@@ -29,6 +29,7 @@ export default function Day(props) {
             averageTime={props.averageTime(dayOrders)}
             averageDistance={props.averageDistance(dayOrders)}
             dollarMile={props.dollarMile(dayOrders)}
+            averageWait={props.averageWait(dayOrders)}
           />
         );
       } else {

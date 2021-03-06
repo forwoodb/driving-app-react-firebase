@@ -18,6 +18,7 @@ export default function Location(props) {
             averageTime={props.averageTime(locationOrders)}
             averageDistance={props.averageDistance(locationOrders)}
             dollarMile={props.dollarMile(locationOrders)}
+            averageWait={props.averageWait(locationOrders)}
           />
         );
       // } else {

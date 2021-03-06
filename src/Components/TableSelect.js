@@ -78,7 +78,7 @@ export default class TableSelect extends Component {
           orders={this.props.orders}
           table={this.state.table}
           averageTime={this.props.averageTime}
-          minMile={this.props.minMile}
+          averageWait={this.props.averageWait}
           averageDistance={this.props.averageDistance}
           dollarOrder={this.props.dollarOrder}
           dollarHour={this.props.dollarHour}

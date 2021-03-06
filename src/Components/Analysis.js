@@ -15,12 +15,43 @@ const Analysis = (props) => {
     );
   }
 
+  // const waitTime = (data) => {
+  //   console.log(data);
+  //   return (
+  //     data.filter((order) => {
+  //       if (order.waitTime) {
+  //         return true
+  //       } return false;
+  //     }).map((order) => {
+  //       return Number(order.waitTime);
+  //     })
+  //   );
+  // }
+
+
   const averageTime = (data) => total(data, 'duration')
   const averageDistance = (data) => total(data, 'distance')
+  // const averageWait = (data) => total(data, 'waitTime')
   const dollarOrder = (data) => total(data, 'earnings')
   const dollarHour = (data) => dollarOrder(data)/averageTime(data) * 60 || 0
   const dollarMile = (data) => dollarOrder(data)/averageDistance(data) || 0
-  const minMile = (data) => averageTime(data)/averageDistance(data)
+  const averageWait = (data) => {
+    let waitTime = data.filter((order) => {
+      if (order.waitTime) {
+        return true
+      } return false;
+    }).map((order) => {
+      return Number(order.waitTime);
+    })
+    return (
+      waitTime.reduce(function(total, order) {
+        return total + Number(order);
+      }, 0)/waitTime.length
+    );
+  }
+
+  // console.log(averageDistance(7));
+
 
   let orders = props.orders;
 
@@ -72,7 +103,7 @@ const Analysis = (props) => {
         days={days}
         times={times}
         averageTime={(data) => averageTime(data).toFixed(2)}
-        minMile={(data) => minMile(data).toFixed(2)}
+        averageWait={(data) => averageWait(data).toFixed(2)}
         averageDistance={(data) => averageDistance(data).toFixed(2)}
         dollarOrder={(data) => dollarOrder(data).toFixed(2)}
         dollarHour={(data) => dollarHour(data).toFixed(2)}
