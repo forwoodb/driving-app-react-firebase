@@ -90,9 +90,15 @@ class NewOrder extends Component {
         return Number(order.waitTime);
       })
 
-      let averageWait = waitTime.reduce(function(total, order) {
-        return total + Number(order);
-      }, 0)/waitTime.length
+      let averageWait;
+
+      if (waitTime.length === 0) {
+        averageWait = '';
+      } else {
+        averageWait = waitTime.reduce(function(total, order) {
+          return total + Number(order);
+        }, 0)/waitTime.length
+      }
 
       let dollarHour = dollarOrder/averageTime * 60;
       let dollarMile = dollarOrder/averageDistance;
