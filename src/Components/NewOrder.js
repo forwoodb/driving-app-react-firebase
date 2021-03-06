@@ -70,6 +70,9 @@ class NewOrder extends Component {
       const total = (category) => {
         return (
           orders.reduce(function(total, order) {
+            if (isNaN(order[category])) {
+              return order[category] = '';
+            }
             return total + Number(order[category]);
           }, 0)/orders.length
         );
@@ -78,9 +81,24 @@ class NewOrder extends Component {
       let averageTime = total('duration');
       let averageDistance = total('distance')
       let dollarOrder = total('earnings')
-      let waitTime = total('waitTime')
+
+      let waitTime = orders.filter((order) => {
+        if (order.waitTime) {
+          return true
+        } return false;
+      }).map((order) => {
+        return Number(order.waitTime);
+      })
+
+      let averageWait = waitTime.reduce(function(total, order) {
+        return total + Number(order);
+      }, 0)/waitTime.length
+
       let dollarHour = dollarOrder/averageTime * 60;
       let dollarMile = dollarOrder/averageDistance;
+
+      console.log(waitTime);
+      console.log(averageWait);
 
       const projDist = this.state.projDist;
 
@@ -98,7 +116,7 @@ class NewOrder extends Component {
         dollarOrder: dollarOrder.toFixed(2),
         dollarHour: dollarHour.toFixed(2),
         dollarMile: dollarMile.toFixed(2),
-        waitTime: waitTime.toFixed(2),
+        averageWait: averageWait,
         tarEarn: tarEarn.toFixed(2),
       });
     });
@@ -180,6 +198,7 @@ class NewOrder extends Component {
     e.target.elements.duration.value = '';
     e.target.elements.distance.value = '';
     e.target.elements.earnings.value = '';
+    e.target.elements.waitTime.value = '';
   }
 
 
@@ -281,9 +300,8 @@ class NewOrder extends Component {
           numberOrders={this.state.numberOrders}
           dollarOrder={this.state.dollarOrder}
           averageTime={this.state.averageTime}
-          // minMile={this.state.minMile}
+          averageWait={this.state.averageWait}
           averageDistance={this.state.averageDistance}
-          projTime={this.state.projTime}
           tarEarn={this.state.tarEarn}
         />
       </div>
@@ -291,7 +309,7 @@ class NewOrder extends Component {
   }
 }
 
-const Timer = () => {
+const Timer = (props) => {
   const [seconds, setSeconds] = useState(0);
   const [isActive, setIsActive] = useState(false);
 
@@ -330,7 +348,8 @@ const Timer = () => {
         Reset
       </button>
       <input
-        value={`${seconds}s`}
+        value={seconds}
+        onChange={props.onChange}
         placeholder="Wait Time"
         name="waitTime"
       />

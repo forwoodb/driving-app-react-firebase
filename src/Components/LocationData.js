@@ -11,7 +11,7 @@ const LocationData = (props) => {
       </thead>
       <tbody>
         <tr>
-          <td className="text-center">{props.projTime}</td>
+          <td className="text-center">{props.averageWait}</td>
           <td className="text-center">{props.tarEarn}</td>
         </tr>
         <tr>

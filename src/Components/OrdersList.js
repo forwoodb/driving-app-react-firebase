@@ -27,12 +27,12 @@ const OrdersList = (props) => {
         date={order.date}
         startTime={order.startTime || order.time}
         location={order.location}
+        waitTime={Number(order.waitTime) ? Number(order.waitTime) : ''}
         area={order.area}
         platform={order.platform}
         duration={order.duration}
         distance={Number(order.distance).toFixed(2)}
         earnings={Number(order.earnings).toFixed(2)}
-        waitTime={Number(order.waitTime).toFixed(2)}
         onDelete={() => props.onDelete(order.id)}
       />
     )
