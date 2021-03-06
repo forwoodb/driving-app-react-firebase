@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useState, useEffect} from 'react';
 import firebase from '../firebase.js';
 import LocationData from './LocationData.js';
 import LocationInput from './LocationInput.js';
@@ -14,6 +14,7 @@ class NewOrder extends Component {
       platform: 'All Platforms',
       startTime: '',
       projDist: '',
+      waitTime: '',
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleLocationChange = this.handleLocationChange.bind(this);
@@ -22,6 +23,7 @@ class NewOrder extends Component {
     this.handleStartTimeChange = this.handleStartTimeChange.bind(this);
     this.startTime = this.startTime.bind(this);
     this.handleProjDistChange = this.handleProjDistChange.bind(this);
+    this.handleWaitTimeChange = this.handleWaitTimeChange.bind(this);
   }
 
   getOrderData(locationValue, platformValue) {
@@ -47,6 +49,12 @@ class NewOrder extends Component {
         }
       }
 
+      let allDollarHour = orders.reduce(function(total, order) {
+        return total + Number(order.earnings);
+      }, 0)/orders.length/(orders.reduce(function(total, order) {
+        return total + Number(order.duration);
+      }, 0)/orders.length) * 60;
+
       if (locationValue) {
         orders = orders.filter(order => order.location === locationValue);
       }
@@ -67,7 +75,6 @@ class NewOrder extends Component {
         );
       }
 
-
       let averageTime = total('duration');
       let averageDistance = total('distance')
       let dollarOrder = total('earnings')
@@ -75,11 +82,10 @@ class NewOrder extends Component {
       let dollarHour = dollarOrder/averageTime * 60;
       let dollarMile = dollarOrder/averageDistance;
 
-      let aveDollarHour = averageDistance/(averageTime * 60);
       const projDist = this.state.projDist;
 
       let projTime = minMile * projDist;
-      let tarEarn = ((aveDollarHour/60)*projTime)
+      let tarEarn = ((allDollarHour/60)*averageTime) * (projDist/averageDistance)
 
       this.__isMounted &&
       this.setState({
@@ -143,6 +149,12 @@ class NewOrder extends Component {
     })
   }
 
+  handleWaitTimeChange(e) {
+    this.setState({
+      waitTime: e.target.value,
+    })
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     const newOrder = {
@@ -156,17 +168,21 @@ class NewOrder extends Component {
       duration: e.target.duration.value,
       distance: e.target.distance.value,
       earnings: e.target.earnings.value,
+      waitTime: e.target.waitTime.value,
     }
     firebase.database().ref('orders').push(newOrder)
     this.setState({
       location: '',
       area: '',
       startTime: '',
+      waitTime: '',
     })
     e.target.elements.duration.value = '';
     e.target.elements.distance.value = '';
     e.target.elements.earnings.value = '';
   }
+
+
 
   render() {
     return (
@@ -222,6 +238,12 @@ class NewOrder extends Component {
                 onChange={this.handleAreaChange}
               />
             </div>
+
+            <Timer
+              waitTime={this.state.waitTime}
+              onChange={this.handleWaitTimeChange}
+            />
+
             <div className="col-4 input-group-sm">
               <input
                 type="text"
@@ -268,5 +290,59 @@ class NewOrder extends Component {
     );
   }
 }
+
+const Timer = () => {
+  const [seconds, setSeconds] = useState(0);
+  const [isActive, setIsActive] = useState(false);
+
+  function toggle() {
+    setIsActive(!isActive);
+  }
+
+  function waitTime() {
+    setSeconds(seconds)
+  }
+
+  function reset() {
+    setSeconds(0);
+    setIsActive(false);
+  }
+
+  useEffect(() => {
+    let interval = null;
+    if (isActive) {
+      interval = setInterval(() => {
+        setSeconds(seconds => seconds + 1);
+      }, 1000);
+    } else if (!isActive && seconds !== 0) {
+      clearInterval(interval);
+    }
+    return () => clearInterval(interval);
+  }, [isActive, seconds]);
+
+  return (
+    <div className="row">
+      <div>
+        {seconds}s
+      </div>
+      <div>
+        <button className={`btn btn-${isActive ? 'warning' : 'primary'}`} type="button" onClick={toggle}>
+          {isActive ? 'Pause' : 'Start'}
+        </button>
+        <button className="button">
+          Enter
+        </button>
+        <input
+          value={`${seconds}s`}
+          placeholder="Wait Time"
+          name="waitTime"
+        />
+        <button className="button" onClick={reset}>
+          Reset
+        </button>
+      </div>
+    </div>
+  );
+};
 
 export default NewOrder;

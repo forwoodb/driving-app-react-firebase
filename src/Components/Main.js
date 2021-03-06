@@ -24,8 +24,7 @@ class Main extends Component {
     this.deleteOrder = this.deleteOrder.bind(this);
   }
 
-  componentDidMount() {
-    this.__isMounted = true;
+  getOrderData() {
     firebase.database().ref('orders').on('value', (snapshot) => {
       const data = snapshot.val();
       let orders = [];
@@ -63,6 +62,11 @@ class Main extends Component {
         areas: areas,
       })
     })
+  }
+
+  componentDidMount() {
+    this.__isMounted = true;
+    this.getOrderData();
   }
 
   componentWillUnmount() {
