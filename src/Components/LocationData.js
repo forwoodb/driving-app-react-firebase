@@ -5,8 +5,8 @@ const LocationData = (props) => {
     <table className="table table-striped table-hover">
       <thead>
         <tr>
-          <th className="text-center">Projected Time</th>
-          <th className="text-center">Target Earnings</th>
+          <th className="text-center">AveWait</th>
+          <th className="text-center">TargetEarnings</th>
         </tr>
       </thead>
       <tbody>
@@ -16,7 +16,7 @@ const LocationData = (props) => {
         </tr>
         <tr>
           <th className="text-center">$/Hour</th>
-          <th className="text-center">Average Time</th>
+          <th className="text-center">AveTime</th>
         </tr>
         <tr>
           <td className="text-center">{props.dollarHour}</td>
@@ -24,7 +24,7 @@ const LocationData = (props) => {
         </tr>
         <tr>
           <th className="text-center">$/Mile</th>
-          <th className="text-center">Average Distance</th>
+          <th className="text-center">AveDistance</th>
         </tr>
         <tr>
           <td className="text-center">{props.dollarMile}</td>

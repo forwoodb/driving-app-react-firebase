@@ -32,6 +32,7 @@ const OrdersList = (props) => {
         duration={order.duration}
         distance={Number(order.distance).toFixed(2)}
         earnings={Number(order.earnings).toFixed(2)}
+        waitTime={Number(order.waitTime).toFixed(2)}
         onDelete={() => props.onDelete(order.id)}
       />
     )
@@ -44,6 +45,7 @@ const OrdersList = (props) => {
             <th scope="col" className="text-center">Date</th>
             <th scope="col" className="text-center">Time</th>
             <th scope="col" className="text-center">Location</th>
+            <th scope="col" className="text-center">WaitTime</th>
             <th scope="col" className="text-center">Area</th>
             <th scope="col" className="text-center">Platform</th>
             <th scope="col" className="text-center">Duration</th>
@@ -67,6 +69,7 @@ const Order = (props) => {
       <td className="text-center" width="275px">{props.date}</td>
       <td className="text-center" width="275px">{props.startTime}</td>
       <td className="text-center" width="275px">{props.location}</td>
+      <td className="text-center" width="275px">{props.waitTime}</td>
       <td className="text-center" width="275px">{props.area}</td>
       <td className="text-center" width="275px">{props.platform}</td>
       <td className="text-center" width="275px">{props.duration}</td>

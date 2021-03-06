@@ -78,13 +78,13 @@ class NewOrder extends Component {
       let averageTime = total('duration');
       let averageDistance = total('distance')
       let dollarOrder = total('earnings')
-      let minMile = averageTime/averageDistance
+      let waitTime = total('waitTime')
       let dollarHour = dollarOrder/averageTime * 60;
       let dollarMile = dollarOrder/averageDistance;
 
       const projDist = this.state.projDist;
 
-      let projTime = minMile * projDist;
+      // let projTime = minMile * projDist;
       let tarEarn = ((allDollarHour/60)*averageTime) * (projDist/averageDistance)
 
       this.__isMounted &&
@@ -98,7 +98,7 @@ class NewOrder extends Component {
         dollarOrder: dollarOrder.toFixed(2),
         dollarHour: dollarHour.toFixed(2),
         dollarMile: dollarMile.toFixed(2),
-        projTime: projTime.toFixed(2),
+        waitTime: waitTime.toFixed(2),
         tarEarn: tarEarn.toFixed(2),
       });
     });
@@ -238,12 +238,12 @@ class NewOrder extends Component {
                 onChange={this.handleAreaChange}
               />
             </div>
-
-            <Timer
-              waitTime={this.state.waitTime}
-              onChange={this.handleWaitTimeChange}
-            />
-
+            <div>
+              <Timer
+                waitTime={this.state.waitTime}
+                onChange={this.handleWaitTimeChange}
+              />
+            </div>
             <div className="col-4 input-group-sm">
               <input
                 type="text"
@@ -321,26 +321,26 @@ const Timer = () => {
   }, [isActive, seconds]);
 
   return (
-    <div className="row">
-      <div>
-        {seconds}s
-      </div>
-      <div>
-        <button className={`btn btn-${isActive ? 'warning' : 'primary'}`} type="button" onClick={toggle}>
-          {isActive ? 'Pause' : 'Start'}
-        </button>
-        <button className="button">
-          Enter
-        </button>
-        <input
-          value={`${seconds}s`}
-          placeholder="Wait Time"
-          name="waitTime"
-        />
-        <button className="button" onClick={reset}>
-          Reset
-        </button>
-      </div>
+    <div className="input-group-sm">
+      <button
+        className="btn btn-danger"
+        type="button"
+        onClick={reset}
+      >
+        Reset
+      </button>
+      <input
+        value={`${seconds}s`}
+        placeholder="Wait Time"
+        name="waitTime"
+      />
+      <button
+        className={`btn btn-${isActive ? 'warning' : 'primary'}`}
+        type="button"
+        onClick={toggle}
+      >
+        {isActive ? 'Pause' : 'Start'}
+      </button>
     </div>
   );
 };
