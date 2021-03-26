@@ -49,11 +49,11 @@ class NewOrder extends Component {
         }
       }
 
-      // let allDollarHour = orders.reduce(function(total, order) {
-      //   return total + Number(order.earnings);
-      // }, 0)/orders.length/(orders.reduce(function(total, order) {
-      //   return total + Number(order.duration);
-      // }, 0)/orders.length) * 60;
+      let allDollarHour = orders.reduce(function(total, order) {
+        return total + Number(order.earnings);
+      }, 0)/orders.length/(orders.reduce(function(total, order) {
+        return total + Number(order.duration);
+      }, 0)/orders.length) * 60;
 
       if (locationValue) {
         orders = orders.filter(order => order.location === locationValue);
@@ -103,11 +103,7 @@ class NewOrder extends Component {
       let dollarHour = dollarOrder/averageTime * 60;
       let dollarMile = dollarOrder/averageDistance;
 
-      console.log(dollarOrder);
-      console.log(averageTime);
-      console.log(dollarHour);
-
-      const projDist = this.state.projDist;
+      // const projDist = this.state.projDist;
 
       // let projTime = minMile * projDist;
       // let tarEarn = ((allDollarHour/60)*averageTime) * (projDist/averageDistance)
@@ -193,19 +189,19 @@ class NewOrder extends Component {
       duration: e.target.duration.value,
       distance: e.target.distance.value,
       earnings: e.target.earnings.value,
-      waitTime: e.target.waitTime.value,
+      // waitTime: e.target.waitTime.value,
     }
     firebase.database().ref('orders').push(newOrder)
     this.setState({
       location: '',
       area: '',
       startTime: '',
-      waitTime: '',
+      // waitTime: '',
     })
     e.target.elements.duration.value = '';
     e.target.elements.distance.value = '';
     e.target.elements.earnings.value = '';
-    e.target.elements.waitTime.value = '';
+    // e.target.elements.waitTime.value = '';
   }
 
 
@@ -227,14 +223,14 @@ class NewOrder extends Component {
                 value={this.state.startTime} onChange={this.handleStartTimeChange}
               />
             </div>
-            <div className="col-9 input-group-sm">
+            <div className="col-lg-6 input-group-sm">
               <LocationInput
                 location={this.state.location}
                 locations={this.props.locations}
                 onChange={this.handleLocationChange}
               />
             </div>
-            <div className="col-3 input-group-sm">
+            {/*<div className="col-3 input-group-sm">
               <input
                 type="text"
                 name="projDist"
@@ -243,7 +239,7 @@ class NewOrder extends Component {
                 value={this.state.projDist}
                 onChange={this.handleProjDistChange}
               />
-            </div>
+            </div>*/}
             <div className="col-6 input-group-sm">
               <select
                 className="form-control"
