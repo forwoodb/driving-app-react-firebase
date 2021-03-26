@@ -18,7 +18,7 @@ export default function Area(props) {
             averageTime={props.averageTime(areaOrders)}
             averageDistance={props.averageDistance(areaOrders)}
             dollarMile={props.dollarMile(areaOrders)}
-            averageWait={props.averageWait(areaOrders)}
+            // averageWait={props.averageWait(areaOrders)}
           />
         );
       // } else {

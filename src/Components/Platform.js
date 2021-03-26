@@ -21,7 +21,7 @@ export default function Platform(props) {
           category={platform}
           numberOrders={platformOrders.length}
           averageTime={props.averageTime(platformOrders)}
-          averageWait={props.averageWait(platformOrders)}
+          // averageWait={props.averageWait(platformOrders)}
           averageDistance={props.averageDistance(platformOrders)}
           dollarOrder={props.dollarOrder(platformOrders)}
           dollarHour={props.dollarHour(platformOrders)}

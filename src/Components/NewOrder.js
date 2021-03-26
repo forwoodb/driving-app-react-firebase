@@ -49,11 +49,11 @@ class NewOrder extends Component {
         }
       }
 
-      let allDollarHour = orders.reduce(function(total, order) {
-        return total + Number(order.earnings);
-      }, 0)/orders.length/(orders.reduce(function(total, order) {
-        return total + Number(order.duration);
-      }, 0)/orders.length) * 60;
+      // let allDollarHour = orders.reduce(function(total, order) {
+      //   return total + Number(order.earnings);
+      // }, 0)/orders.length/(orders.reduce(function(total, order) {
+      //   return total + Number(order.duration);
+      // }, 0)/orders.length) * 60;
 
       if (locationValue) {
         orders = orders.filter(order => order.location === locationValue);
@@ -67,7 +67,7 @@ class NewOrder extends Component {
         orders = orders.filter(order => order.platform === platformValue);
       }
 
-      const total = (category) => {
+      const average = (category) => {
         return (
           orders.reduce(function(total, order) {
             if (isNaN(order[category])) {
@@ -78,38 +78,39 @@ class NewOrder extends Component {
         );
       }
 
-      let averageTime = total('duration');
-      let averageDistance = total('distance')
-      let dollarOrder = total('earnings')
+      let averageTime = average('duration');
+      let averageDistance = average('distance')
+      let dollarOrder = average('earnings')
 
-      let waitTime = orders.filter((order) => {
-        if (order.waitTime) {
-          return true
-        } return false;
-      }).map((order) => {
-        return Number(order.waitTime);
-      })
+      // let waitTime = orders.filter((order) => {
+      //   if (order.waitTime) {
+      //     return true
+      //   } return false;
+      // }).map((order) => {
+      //   return Number(order.waitTime);
+      // })
 
-      let averageWait;
-
-      if (waitTime.length === 0) {
-        averageWait = '';
-      } else {
-        averageWait = waitTime.reduce(function(total, order) {
-          return total + Number(order);
-        }, 0)/waitTime.length
-      }
+      // let averageWait;
+      //
+      // if (waitTime.length === 0) {
+      //   averageWait = '';
+      // } else {
+      //   averageWait = waitTime.reduce(function(total, order) {
+      //     return total + Number(order);
+      //   }, 0)/waitTime.length
+      // }
 
       let dollarHour = dollarOrder/averageTime * 60;
       let dollarMile = dollarOrder/averageDistance;
 
-      console.log(waitTime);
-      console.log(averageWait);
+      console.log(dollarOrder);
+      console.log(averageTime);
+      console.log(dollarHour);
 
       const projDist = this.state.projDist;
 
       // let projTime = minMile * projDist;
-      let tarEarn = ((allDollarHour/60)*averageTime) * (projDist/averageDistance)
+      // let tarEarn = ((allDollarHour/60)*averageTime) * (projDist/averageDistance)
 
       this.__isMounted &&
       this.setState({
@@ -122,8 +123,8 @@ class NewOrder extends Component {
         dollarOrder: dollarOrder.toFixed(2),
         dollarHour: dollarHour.toFixed(2),
         dollarMile: dollarMile.toFixed(2),
-        averageWait: averageWait,
-        tarEarn: tarEarn.toFixed(2),
+        // averageWait: averageWait,
+        // tarEarn: tarEarn.toFixed(2),
       });
     });
   }
@@ -263,12 +264,12 @@ class NewOrder extends Component {
                 onChange={this.handleAreaChange}
               />
             </div>
-            <div>
+            {/*<div>
               <Timer
                 waitTime={this.state.waitTime}
                 onChange={this.handleWaitTimeChange}
               />
-            </div>
+            </div>*/}
             <div className="col-4 input-group-sm">
               <input
                 type="text"
@@ -306,7 +307,7 @@ class NewOrder extends Component {
           numberOrders={this.state.numberOrders}
           dollarOrder={this.state.dollarOrder}
           averageTime={this.state.averageTime}
-          averageWait={this.state.averageWait}
+          // averageWait={this.state.averageWait}
           averageDistance={this.state.averageDistance}
           tarEarn={this.state.tarEarn}
         />

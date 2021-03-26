@@ -27,7 +27,7 @@ const OrdersList = (props) => {
         date={order.date}
         startTime={order.startTime || order.time}
         location={order.location}
-        waitTime={Number(order.waitTime) ? Number(order.waitTime) : ''}
+        // waitTime={Number(order.waitTime) ? Number(order.waitTime) : ''}
         area={order.area}
         platform={order.platform}
         duration={order.duration}
@@ -45,7 +45,7 @@ const OrdersList = (props) => {
             <th scope="col" className="text-center">Date</th>
             <th scope="col" className="text-center">Time</th>
             <th scope="col" className="text-center">Location</th>
-            <th scope="col" className="text-center">WaitTime</th>
+            {/*<th scope="col" className="text-center">WaitTime</th>*/}
             <th scope="col" className="text-center">Area</th>
             <th scope="col" className="text-center">Platform</th>
             <th scope="col" className="text-center">Duration</th>
@@ -56,7 +56,8 @@ const OrdersList = (props) => {
           </tr>
         </thead>
         <tbody>
-          {orders.slice(0,50)}
+          {orders}
+          // {orders.slice(0,100)}
         </tbody>
       </table>
     </div>
@@ -69,7 +70,7 @@ const Order = (props) => {
       <td className="text-center" width="275px">{props.date}</td>
       <td className="text-center" width="275px">{props.startTime}</td>
       <td className="text-center" width="275px">{props.location}</td>
-      <td className="text-center" width="275px">{props.waitTime}</td>
+      {/*<td className="text-center" width="275px">{props.waitTime}</td>*/}
       <td className="text-center" width="275px">{props.area}</td>
       <td className="text-center" width="275px">{props.platform}</td>
       <td className="text-center" width="275px">{props.duration}</td>
