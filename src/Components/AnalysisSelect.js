@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import addDays from 'date-fns/addDays'
 
 import TableSelect from './TableSelect.js';
 import LocationInput from './LocationInput.js';
@@ -19,6 +22,8 @@ export default class AnalysisSelect extends Component {
       area: '',
       days: [],
       day: '',
+      startDate: '',
+      endDate: '',
       times: this.props.times,
       timeFrom: '',
       timeTo: '',
@@ -61,6 +66,18 @@ export default class AnalysisSelect extends Component {
     })
   }
 
+  handleChangeStartDate = (startDate) => {
+    this.setState({
+      startDate: startDate,
+    })
+  }
+
+  handleChangeEndDate = (endDate) => {
+    this.setState({
+      endDate: endDate,
+    })
+  }
+
   render() {
 
     let orders = this.props.orders;
@@ -69,6 +86,10 @@ export default class AnalysisSelect extends Component {
     let platform = this.state.platform;
     let day = this.state.day;
     let timeFrom = this.state.timeFrom;
+    // let startDate = this.state.startDate;
+    // let startDate = this.state.startDate.getDate();
+    let startDate = new Date(this.state.startDate).toDateString();
+    let endDate = new Date(this.state.endDate).toDateString();
 
     if (location) {
       orders = orders.filter(order => order.location === location);
@@ -103,6 +124,28 @@ export default class AnalysisSelect extends Component {
     } else if (timeFrom >= "10:00:00" && timeFrom <= "23:59:59") {
       orders = orders.filter(order => order.startTime >= timeFrom && order.startTime < (this.state.timeTo || parseInt(timeFrom) + 1 + ':00:00'));
     }
+
+    if (startDate === 'Invalid Date' || startDate === 'Wed Dec 31 1969' || startDate === 'undefined') {
+      orders = orders;
+    } else if (startDate) {
+      orders = orders.filter((order) => new Date(order.date) >= new Date(startDate))
+    }
+
+    if (endDate === 'Invalid Date' || endDate === 'Wed Dec 31 1969' || endDate === 'undefined') {
+      orders = orders;
+    } else if (endDate) {
+      orders = orders.filter((order) => new Date(order.date) <= new Date(endDate))
+    }
+
+
+    console.log(orders.map((order) => {
+      if (order.date >= order.date.includes(startDate)) {
+        return order;
+      }
+    }));
+
+    console.log(endDate);
+
 
     return (
       <div>
@@ -164,6 +207,20 @@ export default class AnalysisSelect extends Component {
             value={this.state.timeTo}
             onChange={this.handleTimeToChange}
           />
+          <div className="col input-group-sm">
+            <label>Start Date</label>
+            <DatePicker
+              selected={this.state.startDate}
+              onChange={this.handleChangeStartDate}
+            />
+          </div>
+          <div className="col input-group-sm">
+            <label>End Date</label>
+            <DatePicker
+              selected={this.state.endDate}
+              onChange={this.handleChangeEndDate}
+            />
+          </div>
         </form>
         <AnalysisTable
           tableData={

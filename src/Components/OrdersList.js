@@ -17,7 +17,8 @@ const OrdersList = (props) => {
     .sort((x,y) => {
       let dateX = new Date(x.date);
       let dateY = new Date(y.date);
-      return dateY - dateX || compareTime(x,y);
+      return dateY - dateX
+      || compareTime(x,y);
     })
     .map(order =>
       <Order
@@ -57,7 +58,6 @@ const OrdersList = (props) => {
         </thead>
         <tbody>
           {orders}
-          // {orders.slice(0,100)}
         </tbody>
       </table>
     </div>
