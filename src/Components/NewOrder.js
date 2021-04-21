@@ -1,4 +1,4 @@
-import React, {Component, useState, useEffect} from 'react';
+import React, {Component} from 'react';
 import firebase from '../firebase.js';
 import LocationData from './LocationData.js';
 import LocationInput from './LocationInput.js';
@@ -49,11 +49,11 @@ class NewOrder extends Component {
         }
       }
 
-      let allDollarHour = orders.reduce(function(total, order) {
-        return total + Number(order.earnings);
-      }, 0)/orders.length/(orders.reduce(function(total, order) {
-        return total + Number(order.duration);
-      }, 0)/orders.length) * 60;
+      // let allDollarHour = orders.reduce(function(total, order) {
+      //   return total + Number(order.earnings);
+      // }, 0)/orders.length/(orders.reduce(function(total, order) {
+      //   return total + Number(order.duration);
+      // }, 0)/orders.length) * 60;
 
       if (locationValue) {
         orders = orders.filter(order => order.location === locationValue);
@@ -207,6 +207,7 @@ class NewOrder extends Component {
 
 
   render() {
+    console.log(this.props.user);
     return (
       <div className="mb-5">
         <div className="my-3">
@@ -312,59 +313,59 @@ class NewOrder extends Component {
   }
 }
 
-const Timer = (props) => {
-  const [seconds, setSeconds] = useState(0);
-  const [isActive, setIsActive] = useState(false);
-
-  function toggle() {
-    setIsActive(!isActive);
-  }
-
-  function waitTime() {
-    setSeconds(seconds)
-  }
-
-  function reset() {
-    setSeconds(0);
-    setIsActive(false);
-  }
-
-  useEffect(() => {
-    let interval = null;
-    if (isActive) {
-      interval = setInterval(() => {
-        setSeconds(seconds => seconds + 1);
-      }, 1000);
-    } else if (!isActive && seconds !== 0) {
-      clearInterval(interval);
-    }
-    return () => clearInterval(interval);
-  }, [isActive, seconds]);
-
-  return (
-    <div className="input-group-sm">
-      <button
-        className="btn btn-danger"
-        type="button"
-        onClick={reset}
-      >
-        Reset
-      </button>
-      <input
-        value={seconds}
-        onChange={props.onChange}
-        placeholder="Wait Time"
-        name="waitTime"
-      />
-      <button
-        className={`btn btn-${isActive ? 'warning' : 'primary'}`}
-        type="button"
-        onClick={toggle}
-      >
-        {isActive ? 'Pause' : 'Start'}
-      </button>
-    </div>
-  );
-};
+// const Timer = (props) => {
+//   const [seconds, setSeconds] = useState(0);
+//   const [isActive, setIsActive] = useState(false);
+//
+//   function toggle() {
+//     setIsActive(!isActive);
+//   }
+//
+//   function waitTime() {
+//     setSeconds(seconds)
+//   }
+//
+//   function reset() {
+//     setSeconds(0);
+//     setIsActive(false);
+//   }
+//
+//   useEffect(() => {
+//     let interval = null;
+//     if (isActive) {
+//       interval = setInterval(() => {
+//         setSeconds(seconds => seconds + 1);
+//       }, 1000);
+//     } else if (!isActive && seconds !== 0) {
+//       clearInterval(interval);
+//     }
+//     return () => clearInterval(interval);
+//   }, [isActive, seconds]);
+//
+//   return (
+//     <div className="input-group-sm">
+//       <button
+//         className="btn btn-danger"
+//         type="button"
+//         onClick={reset}
+//       >
+//         Reset
+//       </button>
+//       <input
+//         value={seconds}
+//         onChange={props.onChange}
+//         placeholder="Wait Time"
+//         name="waitTime"
+//       />
+//       <button
+//         className={`btn btn-${isActive ? 'warning' : 'primary'}`}
+//         type="button"
+//         onClick={toggle}
+//       >
+//         {isActive ? 'Pause' : 'Start'}
+//       </button>
+//     </div>
+//   );
+// };
 
 export default NewOrder;

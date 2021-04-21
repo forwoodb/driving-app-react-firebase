@@ -3,7 +3,7 @@ import AnalysisHeader from './AnalysisHeader';
 
 export default function AnalysisTable(props) {
   const categoryTitle = props.categoryTitle;
-
+  // console.log(props.user);
   return (
     <div className="table-responsive">
       <h4>{categoryTitle}</h4>

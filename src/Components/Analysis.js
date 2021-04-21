@@ -92,7 +92,7 @@ const Analysis = (props) => {
     "23:00:00",
     "24:00:00",
   ]
-
+  // console.log(props.user);
   return (
     <div>
       <AnalysisSelect

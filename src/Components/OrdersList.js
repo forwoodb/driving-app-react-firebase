@@ -37,7 +37,7 @@ const OrdersList = (props) => {
         onDelete={() => props.onDelete(order.id)}
       />
     )
-
+  // console.log(props.user);
   return (
     <div className="table-responsive">
       <table className="table table-sm table-striped table-hover">
@@ -57,7 +57,7 @@ const OrdersList = (props) => {
           </tr>
         </thead>
         <tbody>
-          {orders}
+          {orders.slice(0, 50)}
         </tbody>
       </table>
     </div>

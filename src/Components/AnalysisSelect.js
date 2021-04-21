@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import addDays from 'date-fns/addDays'
+// import addDays from 'date-fns/addDays'
 
 import TableSelect from './TableSelect.js';
 import LocationInput from './LocationInput.js';
@@ -138,15 +138,15 @@ export default class AnalysisSelect extends Component {
     }
 
 
-    console.log(orders.map((order) => {
-      if (order.date >= order.date.includes(startDate)) {
-        return order;
-      }
-    }));
+    // console.log(orders.map((order) => {
+    //   if (order.date >= order.date.includes(startDate)) {
+    //     return order;
+    //   }
+    // }));
+    //
+    // console.log(endDate);
 
-    console.log(endDate);
-
-
+    // console.log(this.props.user);
     return (
       <div>
         <h2>Select</h2>
@@ -223,6 +223,7 @@ export default class AnalysisSelect extends Component {
           </div>
         </form>
         <AnalysisTable
+          user={this.props.user}
           tableData={
             <AnalysisData
               user={this.props.user}
