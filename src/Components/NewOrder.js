@@ -188,6 +188,7 @@ class NewOrder extends Component {
       platform: e.target.platform.value,
       duration: e.target.duration.value,
       distance: e.target.distance.value,
+      projEarnings: e.target.projEarnings.value,
       earnings: e.target.earnings.value,
       // waitTime: e.target.waitTime.value,
     }
@@ -200,6 +201,7 @@ class NewOrder extends Component {
     })
     e.target.elements.duration.value = '';
     e.target.elements.distance.value = '';
+    e.target.elements.projEarnings.value = '';
     e.target.elements.earnings.value = '';
     // e.target.elements.waitTime.value = '';
   }
@@ -224,11 +226,19 @@ class NewOrder extends Component {
                 value={this.state.startTime} onChange={this.handleStartTimeChange}
               />
             </div>
-            <div className="col-lg-6 input-group-sm">
+            <div className="col-lg-6 col-9 input-group-sm">
               <LocationInput
                 location={this.state.location}
                 locations={this.props.locations}
                 onChange={this.handleLocationChange}
+              />
+            </div>
+            <div className="col-3 input-group-sm">
+              <input
+                type="text"
+                name="projEarnings"
+                className="form-control"
+                placeholder="Proj Earn"
               />
             </div>
             {/*<div className="col-3 input-group-sm">

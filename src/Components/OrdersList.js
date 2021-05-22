@@ -33,6 +33,7 @@ const OrdersList = (props) => {
         platform={order.platform}
         duration={order.duration}
         distance={Number(order.distance).toFixed(2)}
+        projEarnings={Number(order.projEarnings).toFixed(2)}
         earnings={Number(order.earnings).toFixed(2)}
         onDelete={() => props.onDelete(order.id)}
       />
