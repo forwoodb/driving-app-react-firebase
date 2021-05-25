@@ -79,7 +79,6 @@ export default class AnalysisSelect extends Component {
   }
 
   render() {
-
     let orders = this.props.orders;
     let location = this.state.location;
     let area = this.state.area;
@@ -90,6 +89,8 @@ export default class AnalysisSelect extends Component {
     // let startDate = this.state.startDate.getDate();
     let startDate = new Date(this.state.startDate).toDateString();
     let endDate = new Date(this.state.endDate).toDateString();
+
+    // const ordersTaken = orders.filter(order => order.location != "")
 
     if (location) {
       orders = orders.filter(order => order.location === location);
@@ -207,19 +208,25 @@ export default class AnalysisSelect extends Component {
             value={this.state.timeTo}
             onChange={this.handleTimeToChange}
           />
-          <div className="col input-group-sm">
-            <label>Start Date</label>
-            <DatePicker
-              selected={this.state.startDate}
-              onChange={this.handleChangeStartDate}
-            />
-          </div>
-          <div className="col input-group-sm">
-            <label>End Date</label>
-            <DatePicker
-              selected={this.state.endDate}
-              onChange={this.handleChangeEndDate}
-            />
+          <div className="row mt-3">
+            <div className="col input-group-sm mb-1">
+              <label>Start Date</label>
+              <div>
+                <DatePicker
+                  selected={this.state.startDate}
+                  onChange={this.handleChangeStartDate}
+                />
+              </div>
+            </div>
+            <div className="col input-group-sm">
+              <label>End Date</label>
+              <div>
+                <DatePicker
+                  selected={this.state.endDate}
+                  onChange={this.handleChangeEndDate}
+                />
+              </div>
+            </div>
           </div>
         </form>
         <AnalysisTable
@@ -231,6 +238,7 @@ export default class AnalysisSelect extends Component {
               averageTime={this.props.averageTime(orders)}
               // averageWait={this.props.averageWait(orders)}
               averageDistance={this.props.averageDistance(orders)}
+              // dollarOrder={this.props.dollarOrder(orders)}
               dollarOrder={this.props.dollarOrder(orders)}
               dollarHour={this.props.dollarHour(orders)}
               dollarMile={this.props.dollarMile(orders)}

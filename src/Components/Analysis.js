@@ -28,7 +28,6 @@ const Analysis = (props) => {
   //   );
   // }
 
-
   const averageTime = (data) => total(data, 'duration')
   const averageDistance = (data) => total(data, 'distance')
   // const averageWait = (data) => total(data, 'waitTime')
@@ -51,8 +50,7 @@ const Analysis = (props) => {
   // }
 
   // console.log(averageDistance(7));
-
-
+  
   let orders = props.orders;
 
   let days = [

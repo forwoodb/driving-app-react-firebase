@@ -43,7 +43,6 @@ export default function Time(props) {
     )
   }
 
-
   return (
     <AnalysisTable
       categoryTitle="Time"
